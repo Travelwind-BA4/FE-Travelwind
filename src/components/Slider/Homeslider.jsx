@@ -20,12 +20,12 @@ const Homeslider = () => {
         pagination={{
           clickable: true,
         }}
-        navigation={true}
-        modules={[Pagination, Navigation]}
-        className="mySwiper"
+        modules={[Navigation, Pagination]}
+        style={{ maxHeight: "400px" }}
+        className="homeSlider rounded-lg cursor-pointer"
       >
         <SwiperSlide>
-          <div className="rounded-full">
+          <div className="">
             <img src={header_1} alt="" className="" />
           </div>
         </SwiperSlide>
