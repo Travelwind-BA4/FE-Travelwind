@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import {GiAirplaneDeparture} from "react-icons/gi";
 import {SiChinasouthernairlines} from "react-icons/si";
-import {AiOutlineArrowRight} from "react-icons/ai";
+import {AiOutlineArrowRight, AiOutlineDown} from "react-icons/ai";
 import {RiSuitcase2Line} from "react-icons/ri";
 import axios from "axios";
-
-
 
 const Resultpage = () => {
     const [showForm, setShowForm] = useState(false);
@@ -69,11 +67,14 @@ const Resultpage = () => {
                     </div>
                 </div>
                 {/* //! Holding feature  */}
-                {/* <div className='flex flex-1 justify-between items-center mt-2'>
-                    <div className='flex flex-row list-filter gap-2 mx-5 py-2'>
-                        <p>Filter :</p>
+                <div className='flex flex-1 justify-between items-center mt-2'>
+                    <div className='flex flex-row items-center list-filter gap-2 mx-5 py-2'>
+                        <p>Filter: </p>
                         <div className='flex button-filter gap-3'>
-                            <button>Price</button>
+                            <div className='button-filter flex bg-gray-200 rounded-md items-center px-2 py-1 gap-2'>
+                                <button>Price</button>
+                                <AiOutlineDown/>
+                            </div>
                             <button>Stops</button>
                             <button>Airlines</button>
                             <button>Departure</button>
@@ -84,7 +85,7 @@ const Resultpage = () => {
                         <p>Sort: </p>
                         <button>Sorting</button>
                     </div>
-                </div> */}
+                </div>
             </div>
             <div className='flex flex-col gap-y-6 py-[10px] mx-[15rem] mt-3'>
                 {dummy.map((res) => {
