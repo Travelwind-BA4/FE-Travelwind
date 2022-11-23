@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Homepage from "../pages/Homepage";
-import Resultpage from "../pages/Resultpage";
+import Resultpage from "../pages/resultPage/Resultpage";
 
 const index = () => {
   return (
