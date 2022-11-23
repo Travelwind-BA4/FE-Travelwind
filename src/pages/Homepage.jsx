@@ -18,9 +18,9 @@ const Homepage = () => {
           <Homeslider />
         </div>
         <div className="container mx-auto px-10 mt-8 mb-20">
-          <div className="border-2 rounded-xl shadow-md">
+          <div className="border-2 rounded-xl shadow-md bg-[#fff]">
             <div className="flex justify-center mt-7">
-              <div className="max-w-[300px]  bg-[#f1f5f5] border-2 rounded-full p-4">
+              <div className="max-w-[300px]  bg-[#fff] border-2 rounded-full p-4">
                 <form>
                   <button className="btn-active  py-3 px-6 rounded-full" onClick={(e) => test(e)}>
                     One Trip

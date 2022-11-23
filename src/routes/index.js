@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Footer from "../components/Footer/Footer";
 import Navbar from "../components/Navbar/Navbar";
+import Detailpage from "../pages/Detailpage";
 import Homepage from "../pages/Homepage";
 import Resultpage from "../pages/resultPage/Resultpage";
 
@@ -12,6 +13,7 @@ const index = () => {
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/result" element={<Resultpage />} />
+        <Route path="/flight" element={<Detailpage />} />
       </Routes>
       <Footer />
     </div>
