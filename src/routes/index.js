@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import Footer from "../components/Footer/Footer";
 import Navbar from "../components/Navbar/Navbar";
 import Homepage from "../pages/Homepage";
-import Resultpage from "../pages/resultPage/Resultpage";
+import Resultpage from "../pages/Resultpage";
 
 const index = () => {
   return (

@@ -21,44 +21,43 @@ const Resultpage = () => {
 
   return (
     <>
-      <div className="container">
-        <section className="py-5">
-          <div className="flight-header flex py-[10px] mx-[10rem] items-center">
-            <div className="flight-header-item flex flex-1">
-              <div className="icon pr-4 inline-flex relative items-center justify-center align-[-0.125rem]">
-                <GiAirplaneDeparture size="2rem" />
-              </div>
-              <div className="description">
-                <p className="text-lg font-medium">Select Departure Flight</p>
-                <p className="text-base font-light">
-                  <span>KNO -JKT</span>
-                  <span className="px-1"> | </span> Wed, 24 Nov
-                </p>
-              </div>
+      <section className="py-5 container mx-auto px-10">
+        <div className="flight-header flex py-[10px] mx-[10rem] items-center">
+          <div className="flight-header-item flex flex-1">
+            <div className="icon pr-4 inline-flex relative items-center justify-center align-[-0.125rem]">
+              <GiAirplaneDeparture size="2rem" />
             </div>
-            <div className="flight-header-item">
-              <button onClick={() => setShowForm(!showForm)} onCLi className="text-base text-blue-600 rounded-md border bg-transparent border-blue-600 border-solid flex w-full py-2 px-6 hover:bg-blue-700 hover:text-white">
-                Change Search
-              </button>
+            <div className="description">
+              <p className="text-lg font-medium">Select Departure Flight</p>
+              <p className="text-base font-light">
+                <span>KNO -JKT</span>
+                <span className="px-1"> | </span> Wed, 24 Nov
+              </p>
             </div>
           </div>
-          <div className={showForm ? "flight-form flex py-[10px] mx-[10rem]" : "hidden"}>
-            <div className="flight-header-form-item flex flex-1">
-              <div className="type-flight flex gap-3">
-                <button>One Way</button>
-                <button>Round Trip</button>
-              </div>
-            </div>
-            <form className="form-box">{/*//! Still Construction */}</form>
+          <div className="flight-header-item">
+            <button onClick={() => setShowForm(!showForm)} onCLi className="text-base text-blue-600 rounded-md border bg-transparent border-blue-600 border-solid flex w-full py-2 px-6 hover:bg-blue-700 hover:text-white">
+              Change Search
+            </button>
           </div>
-        </section>
-        <section className="container py-[10px] bg-gray-300">
+        </div>
+        <div className={showForm ? "flight-form flex py-[10px] mx-[10rem]" : "hidden"}>
+          <div className="flight-header-form-item flex flex-1">
+            <div className="type-flight flex gap-3">
+              <button>One Way</button>
+              <button>Round Trip</button>
+            </div>
+          </div>
+          <form className="form-box">{/*//! Still Construction */}</form>
+        </div>
+      </section>
+      <section className="bg-[#f1f5f5]">
+        <div className="container mx-auto p-10 ">
           <div className="flex flex-col py-[10px] mx-[15rem] bg-white rounded-md">
             <div className="flex flex-row justify-between items-center border-b border-gray-300">
               <div className="mx-5 py-2">
                 <p className="font-semibold text-xl mb-1">Departure Flight to Test</p>
                 <p className="text-base font-light pb-2">
-                  {" "}
                   Wed 24 Nov 2022 <span> | </span> 1 Traveler
                 </p>
               </div>
@@ -130,8 +129,8 @@ const Resultpage = () => {
               );
             })}
           </div>
-        </section>
-      </div>
+        </div>
+      </section>
     </>
   );
 };
