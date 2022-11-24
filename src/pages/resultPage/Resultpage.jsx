@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { GiAirplaneDeparture } from "react-icons/gi";
 import { SiChinasouthernairlines } from "react-icons/si";
-import { AiOutlineArrowRight } from "react-icons/ai";
+
+import { AiOutlineArrowRight, AiOutlineDown } from "react-icons/ai";
+
 import { RiSuitcase2Line } from "react-icons/ri";
 import axios from "axios";
 
@@ -10,10 +12,12 @@ const Resultpage = () => {
   const [showDate, setShowDate] = useState(false);
   const [dummy, setDummy] = useState([]);
 
+
   const getData = async () => {
     const dataMovies = await axios.get(`https://637dc00ecfdbfd9a639bbbab.mockapi.io/api/v1/flight`);
     setDummy(dataMovies.data);
   };
+
 
   useEffect(() => {
     getData();
@@ -74,21 +78,56 @@ const Resultpage = () => {
               </div>
             </div>
             {/* //! Holding feature  */}
-            {/* <div className='flex flex-1 justify-between items-center mt-2'>
-                    <div className='flex flex-row list-filter gap-2 mx-5 py-2'>
-                        <p>Filter :</p>
-                        <div className='flex button-filter gap-3'>
-                            <button>Price</button>
-                            <button>Stops</button>
-                            <button>Airlines</button>
-                            <button>Departure</button>
-                        </div>
-                        
+
+            <div className="flex flex-1 justify-between items-center mt-2">
+              <div className="flex flex-row items-center list-filter gap-2 mx-5 py-2">
+                <p>Filter: </p>
+                <div className="flex button-filter gap-3">
+                  <div className="button-filter flex bg-gray-200 rounded-md items-center px-2 py-1 gap-2">
+                    <button>Price</button>
+                    <AiOutlineDown />
+                  </div>
+                  <button>Stops</button>
+                  <button>Airlines</button>
+                  <button>Departure</button>
+                </div>
+              </div>
+              <div className="flex filter-sort gap-2 mx-5">
+                <p>Sort: </p>
+                <button>Sorting</button>
+              </div>
+            </div>
+          </div>
+          <div className="flex flex-col gap-y-6 py-[10px] mx-[15rem] mt-3">
+            {dummy.map((res) => {
+              return (
+                <div className="flex flex-row justify-between items-center gap-4 bg-white rounded-md" key={res.id}>
+                  <div className="wrapper-list-ticket flex items-center px-5 py-8">
+                    <div className="logo-maskapai mx-4">
+                      <SiChinasouthernairlines size="2.5rem" />
+                      <p className="text-sm">{res.maskapai}</p>
                     </div>
-                    <div className='flex filter-sort gap-2 mx-5'>
-                        <p>Sort: </p>
-                        <button>Sorting</button>
+                    <div className="departure mx-4 ml-12">
+                      <p className="font-semibold text-xl">{res.departure}</p>
+                      <p className="font-light text-sm">{res.loct}</p>
                     </div>
+                    <AiOutlineArrowRight size="1.2rem" className="text-gray-400 mx-2" />
+                    <div className="arrival mx-4">
+                      <p className="font-semibold text-xl">{res.arrival}</p>
+                      <p className="font-light text-sm">{res.dest}</p>
+                    </div>
+                    <div className="duration mx-8 ml-16">
+                      <p className="font-semibold text-xl">{res.durat}</p>
+                      <p className="font-light text-sm">Direct</p>
+                    </div>
+                    <div className="flex items-center mx-8">
+                      <RiSuitcase2Line size="1.2rem" />
+                      <p className="font-light">20kg</p>
+                    </div>
+                    <div className="price mx-8 ml-24">
+                      <p className="font-semibold text-xl">Rp {res.price}0</p>
+                    </div>
+
                 </div> */}
           </div>
           <div className="flex flex-col gap-y-6 py-[10px] mx-[15rem] mt-3">
@@ -120,6 +159,7 @@ const Resultpage = () => {
                     <div className="price mx-8 ml-24">
                       <p className="font-semibold text-xl">Rp {res.price}0</p>
                     </div>
+
                   </div>
                   <div className="button-choose mr-12">
                     <button className="bg-blue-700 text-sm font-medium text-white rounded-md py-2 px-2 hover:bg-blue-600">Choose Flight</button>
