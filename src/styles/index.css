@@ -4,6 +4,7 @@
 
 body {
   margin: 0;
+  background-color: #f1f5f5;
   font-family: "Montserrat";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
