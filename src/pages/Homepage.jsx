@@ -4,10 +4,11 @@ import { GiAirplaneArrival, GiAirplaneDeparture } from "react-icons/gi";
 import { AiOutlineUserAdd } from "react-icons/ai";
 import { BsCalendarDate, BsSearch, BsCalendar4Event, BsBookmarkCheck, BsCheckSquare } from "react-icons/bs";
 import { header_1, promotion_1 } from "../assets/images/home";
+import { useNavigate } from "react-router-dom";
 
 const Homepage = () => {
   const [active, setActive] = useState(false);
-
+  const navigate = useNavigate();
   const test = (e) => {
     e.preventDefault();
   };
@@ -18,9 +19,9 @@ const Homepage = () => {
           <Homeslider />
         </div>
         <div className="container mx-auto px-10 mt-8 mb-20">
-          <div className="border-2 rounded-xl shadow-md">
+          <div className="border-2 rounded-xl shadow-md bg-[#fff]">
             <div className="flex justify-center mt-7">
-              <div className="max-w-[300px]  bg-[#f1f5f5] border-2 rounded-full p-4">
+              <div className="max-w-[300px]  bg-[#fff] border-2 rounded-full p-4">
                 <form>
                   <button className="btn-active  py-3 px-6 rounded-full" onClick={(e) => test(e)}>
                     One Trip
@@ -90,7 +91,7 @@ const Homepage = () => {
                   </div>
                   <div className="pl-8">
                     <button className="btn-active p-4 rounded-full">
-                      <BsSearch className="text-[20px]" />
+                      <BsSearch className="text-[20px]" onClick={() => navigate("/results")} />
                     </button>
                   </div>
                 </div>
