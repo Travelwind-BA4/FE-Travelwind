@@ -3,7 +3,7 @@ import Button2 from "../components/Buttons/Button2";
 const Detailpage = () => {
   return (
     <div>
-      <div className="container mx-auto py-10 h-screen">
+      <div className="container mx-auto py-10 px-10 h-screen">
         <div className="grid grid-cols-3">
           <div className="col-span-2 bg-[#fff]  px-8">
             <div className="flex justify-between items-center">

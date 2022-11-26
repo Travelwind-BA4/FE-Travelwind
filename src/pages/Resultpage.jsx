@@ -164,6 +164,39 @@ const Resultpage = () => {
                 </button>
               </div>
             </div>
+            <div className="flex flex-row justify-between items-center gap-4 bg-white rounded-md">
+              <div className="wrapper-list-ticket flex items-center px-5 py-8">
+                <div className="logo-maskapai mx-4">
+                  <SiChinasouthernairlines size="2.5rem" />
+                  <p className="text-sm">brand air</p>
+                </div>
+                <div className="departure mx-4 ml-12">
+                  <p className="font-semibold text-xl">07.30</p>
+                  <p className="font-light text-sm">TD</p>
+                </div>
+                <AiOutlineArrowRight size="1.2rem" className="text-gray-400 mx-2" />
+                <div className="arrival mx-4">
+                  <p className="font-semibold text-xl">07.30</p>
+                  <p className="font-light text-sm">SASD</p>
+                </div>
+                <div className="duration mx-8 ml-16">
+                  <p className="font-semibold text-xl">1H 30M</p>
+                  <p className="font-light text-sm">Direct</p>
+                </div>
+                <div className="flex items-center mx-8">
+                  <RiSuitcase2Line size="1.2rem" />
+                  <p className="font-light">20kg</p>
+                </div>
+                <div className="price mx-8 ml-24">
+                  <p className="font-semibold text-xl">Rp 2220</p>
+                </div>
+              </div>
+              <div className="button-choose mr-12">
+                <button className="bg-blue-700 text-sm font-medium text-white rounded-md py-2 px-2 hover:bg-blue-600" onClick={() => navigate("/flight")}>
+                  Choose Flight
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </section>
