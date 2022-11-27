@@ -23,15 +23,15 @@ const Resultpage = () => {
   }, []);
 
   return (
-    <>
-      <section className="bg-[#dce2e5]">
+    <div className="h-screen">
+      <section className="bg-[#3d74eb]">
         <div className="py-5 container mx-auto px-10 ">
           <div className="flight-header flex items-center">
-            <div className="flight-header-item flex flex-1">
+            <div className="flight-header-item flex flex-1 text-white">
               <div className="icon pr-4 inline-flex relative items-center justify-center align-[-0.125rem]">
                 <GiAirplaneDeparture size="2rem" />
               </div>
-              <div className="description">
+              <div className="description ">
                 <p className="text-lg font-medium">Select Departure Flight</p>
                 <p className="text-base font-light">
                   <span>KNO -JKT</span>
@@ -40,7 +40,7 @@ const Resultpage = () => {
               </div>
             </div>
             <div className="flight-header-item">
-              <button onClick={() => setShowForm(!showForm)} onCLi className="text-base text-blue-600 rounded-md border bg-transparent border-blue-600 border-solid flex w-full py-2 px-6 hover:bg-blue-700 hover:text-white">
+              <button onClick={() => setShowForm(!showForm)} onCLi className="text-base text-white rounded-md border bg-transparent border-white border-solid flex w-full py-2 px-6 ">
                 Change Search
               </button>
             </div>
@@ -58,7 +58,7 @@ const Resultpage = () => {
       </section>
       <section>
         <div className="container mx-auto p-10 ">
-          <div className="flex flex-col  bg-white rounded-md">
+          <div className="flex flex-col  bg-[#f1f5f5] rounded-md ">
             <div className="flex flex-row justify-between items-center border-b border-gray-300">
               <div className="mx-5 py-2">
                 <p className="font-semibold text-xl mb-1">Departure Flight to Test</p>
@@ -73,7 +73,7 @@ const Resultpage = () => {
               </div>
             </div>
             <div className={showDate ? "flex justify-center my-2 pt-2" : "hidden"}>
-              <div className="bg-white">
+              <div className="bg-[#f1f5f5]">
                 <h1>Coming Soon</h1>
               </div>
             </div>
@@ -98,7 +98,7 @@ const Resultpage = () => {
             </div>
           </div>
           <div className="flex flex-col gap-y-6 mt-3">
-            <div className="flex flex-row justify-between items-center gap-4 bg-white rounded-md">
+            <div className="flex flex-row justify-between items-center gap-4 bg-[#f1f5f5] rounded-md">
               <div className="wrapper-list-ticket flex items-center px-5 py-8">
                 <div className="logo-maskapai mx-4">
                   <SiChinasouthernairlines size="2.5rem" />
@@ -131,7 +131,7 @@ const Resultpage = () => {
                 </button>
               </div>
             </div>
-            <div className="flex flex-row justify-between items-center gap-4 bg-white rounded-md">
+            <div className="flex flex-row justify-between items-center gap-4 bg-[#f1f5f5] rounded-md">
               <div className="wrapper-list-ticket flex items-center px-5 py-8">
                 <div className="logo-maskapai mx-4">
                   <SiChinasouthernairlines size="2.5rem" />
@@ -164,7 +164,7 @@ const Resultpage = () => {
                 </button>
               </div>
             </div>
-            <div className="flex flex-row justify-between items-center gap-4 bg-white rounded-md">
+            <div className="flex flex-row justify-between items-center gap-4 bg-[#f1f5f5] rounded-md">
               <div className="wrapper-list-ticket flex items-center px-5 py-8">
                 <div className="logo-maskapai mx-4">
                   <SiChinasouthernairlines size="2.5rem" />
@@ -200,7 +200,7 @@ const Resultpage = () => {
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 };
 

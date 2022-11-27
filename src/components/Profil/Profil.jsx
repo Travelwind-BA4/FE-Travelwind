@@ -1,7 +1,7 @@
 import { FiUser } from "react-icons/fi";
 const Profil = () => {
   return (
-    <div className="bg-[#fff] px-10 py-4 rounded-lg ">
+    <div className="bg-[#f1f5f5] px-10 py-4 rounded-lg ">
       <div>
         <h1 className="flex items-center text-2xl ">
           <FiUser className="mr-4" /> Profile

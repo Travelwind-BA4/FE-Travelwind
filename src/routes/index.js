@@ -12,10 +12,11 @@ import Profilpage from "../pages/Profilpage";
 const Index = () => {
   const { pathname } = useLocation();
 
-  if (pathname === "/login" || pathname === "/register") {
+  if (pathname === "/login" || pathname === "/register" || pathname === "/") {
     return (
       <div>
         <Routes>
+          <Route path="/" element={<Homepage />} />
           <Route path="/login" element={<Loginpage />} />
           <Route path="/register" element={<Registerpage />} />
         </Routes>
@@ -26,7 +27,6 @@ const Index = () => {
     <div>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Homepage />} />
         <Route path="/results" element={<Resultpage />} />
         <Route path="/flight" element={<Detailpage />} />
         <Route path="/account/profile" element={<Profilpage />} />

@@ -3,7 +3,7 @@ import { IoAirplaneOutline } from "react-icons/io5";
 const Orders = () => {
   return (
     <div>
-      <div className="bg-[#fff] px-10 py-4 rounded-lg ">
+      <div className="bg-[#f1f5f5] px-10 py-4 rounded-lg ">
         <div>
           <h1 className="flex items-center text-2xl ">
             <BsCalendar2Check className="mr-4" /> Orders
@@ -12,14 +12,14 @@ const Orders = () => {
           <div className="">
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
               <button className="px-4 py-3 bg-[#3e5cb8] rounded-full text-white">Confirmed</button>
-              <button className="px-4 py-3 bg-[#f1f5f5] rounded-full ">Complted</button>
-              <button className="px-4 py-3 bg-[#f1f5f5] rounded-full ">Waiting</button>
-              <button className="px-4 py-3 bg-[#f1f5f5] rounded-full ">Cancelled</button>
+              <button className="px-4 py-3 bg-[#fff] rounded-full ">Complted</button>
+              <button className="px-4 py-3 bg-[#fff] rounded-full ">Waiting</button>
+              <button className="px-4 py-3 bg-[#fff] rounded-full ">Cancelled</button>
             </div>
           </div>
         </div>
       </div>
-      <div className="bg-[#fff] px-10 py-4 mt-10 rounded-lg">
+      <div className="bg-[#f1f5f5] px-10 py-4 mt-10 rounded-lg">
         <h1 className="flex items-center text-xl ">
           <IoAirplaneOutline className="mr-4 text-[#7d7d7f]" /> Flight
         </h1>
@@ -45,7 +45,7 @@ const Orders = () => {
             <p>231302109</p>
             <button className="px-3 py-2 bg-[#DF9947] rounded-full text-white my-4">Need Payment</button>
             <p className="mb-2 text-[12px] xl:text-sm">Booked on 21 November 2002</p>
-            <div className="bg-[#dce2e5] rounded-lg text-[#7d7d7f]">
+            <div className="bg-[#3d74eb] rounded-lg text-[#fff]">
               <h1>Price</h1>
               <span>Rp 987.760</span>
             </div>
