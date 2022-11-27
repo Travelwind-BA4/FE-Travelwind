@@ -5,7 +5,7 @@ const Detailpage = () => {
     <div>
       <div className="container mx-auto py-10 px-10 h-screen">
         <div className="grid grid-cols-3">
-          <div className="col-span-2 bg-[#fff]  px-8">
+          <div className="col-span-2 bg-[#f1f5f5]  px-8">
             <div className="flex justify-between items-center">
               <div>
                 <p className="mt-4">Departure Flight</p>
