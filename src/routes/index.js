@@ -25,7 +25,7 @@ const Index = () => {
   }
   return (
     <div>
-      <Navbar />
+      <Navbar nav="bg-[#fff] shadow-xl" />
       <Routes>
         <Route path="/results" element={<Resultpage />} />
         <Route path="/flight" element={<Detailpage />} />

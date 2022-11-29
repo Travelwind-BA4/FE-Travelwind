@@ -1,19 +1,18 @@
-import React, { useState } from "react";
 import { Segmented } from "antd";
 
 import { GiAirplaneArrival, GiAirplaneDeparture } from "react-icons/gi";
 import { AiOutlineUserAdd } from "react-icons/ai";
 import { BsCalendarDate, BsSearch, BsCalendar4Event, BsBookmarkCheck, BsCheckSquare } from "react-icons/bs";
 import "../styles/Home.css";
-import { header_1, promotion_1 } from "../assets/images/home";
+import { header_2, promotion_1, promotion_2, promotion_3, promotion_4 } from "../assets/images/home";
 import { useNavigate } from "react-router-dom";
-import Navhome from "../components/Navbar/Navhome";
 import Footer from "../components/Footer/Footer";
 import Header from "../components/Input/Header";
 import Date from "../components/Input/Date";
+import Navbar from "../components/Navbar/Navbar";
+import Homeslider from "../components/Slider/Homeslider";
 
 const Homepage = () => {
-  const [active, setActive] = useState(false);
   const navigate = useNavigate();
 
   const trips = [
@@ -29,26 +28,31 @@ const Homepage = () => {
 
   return (
     <div>
-      <section className="relative ">
-        <Navhome />
-        <div className=" ">
-          <img src={header_1} className="" />
-          <div className="flex justify-center mt-40 ">
-            <div className="border-2 rounded-xl shadow-md bg-[#fff] absolute bottom-0 p-3">
+      <section className="relative sm:mb-[250px] mb-[450px]">
+        <Navbar nav="absolute top-0 w-full z-10 text-white" notif="text-white" />
+        <div className="h-[75vh] header">
+          <div className=" bg-header bg-cover brightness-[0.85] w-full h-full absolute top-0" style={{ backgroundImage: `url(${header_2})`, zIndex: "-2" }}></div>
+          <div className="flex flex-col justify-center h-full items-center text-white z-10 text-center">
+            <h2 className="font-medium text-4xl mb-4"> Experience Your</h2>
+            <h1 className="font-bold text-6xl  mb-6">Best Flight With Us</h1>
+            <p className="text-xl">We have more than 1 million happy customer arround the world</p>
+          </div>
+          <div className="flex justify-center">
+            <div className="border-2 rounded-xl shadow-md bg-[#fff] absolute sm:bottom-[-140px] bottom-[-400px] px-10 py-3 mx-5">
               <div className="flex justify-center mt-7">
                 <div>
                   <Segmented block={true} className="max-w-[300px]  bg-[#f0f0f0] rounded-full p-4" options={trips} />
                 </div>
               </div>
               <div className="flex justify-center">
-                <div className="grid lg:grid-cols-4 grid-cols-2 gap-5 my-8 px-2">
+                <div className="grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-5 my-8 px-2">
                   <div className=" flex items-center">
                     <div className="bg-[#f1f5f5] p-3 rounded-xl">
                       <GiAirplaneDeparture className="text-[30px]" />
                     </div>
                     <div className="pl-2">
                       <div>
-                        <h1 className="text-lg font-medium">Location From</h1>
+                        <h1 className="text-lg font-medium pl-3">Location From</h1>
                         <div className="">
                           <Header placeholder="Bali Denpasar (DPS)" />
                         </div>
@@ -62,7 +66,7 @@ const Homepage = () => {
                     </div>
                     <div className="pl-2">
                       <div>
-                        <h1 className="text-lg font-medium">Location To</h1>
+                        <h1 className="text-lg font-medium pl-3">Location To</h1>
                         <div className="">
                           <Header placeholder="Bali Denpasar (DPS)" />
                         </div>
@@ -76,7 +80,7 @@ const Homepage = () => {
                     </div>
                     <div className="pl-2">
                       <div>
-                        <h1 className="text-lg font-medium">Departure Date</h1>
+                        <h1 className="text-lg font-medium pl-3">Departure Date</h1>
                         <div className="">
                           <Date />
                         </div>
@@ -97,11 +101,16 @@ const Homepage = () => {
                       </div>
                       <div></div>
                     </div>
-                    <div className="pl-8">
+                    <div className="pl-8 hidden lg:block">
                       <button className="btn-active p-4 rounded-full" onClick={() => navigate("/results")}>
                         <BsSearch className="text-[20px]" />
                       </button>
                     </div>
+                  </div>
+                  <div className="col-span-1 sm:col-span-2 lg:hidden">
+                    <button className="btn-active w-full p-4 rounded-full" onClick={() => navigate("/results")}>
+                      Search
+                    </button>
                   </div>
                 </div>
               </div>
@@ -116,26 +125,21 @@ const Homepage = () => {
             <h1 className="text-5xl font-bold text-[#232730] leading-[60px]">Reccomended For You</h1>
             <p className="text-[#cfcfcf]">Here you will find all our luxorious tour packages in a reasonable range of cost</p>
           </div>
-          <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-4">
-            <div className="col-span-1 recomendation-image "></div>
-            <div className="col-span-1 recomendation-image"></div>
-            <div className="col-span-1 recomendation-image"></div>
-            <div className="col-span-1 recomendation-image"></div>
-            <div className="col-span-1 recomendation-image"></div>
-            <div className="col-span-1 recomendation-image"></div>
+          <div className="slider">
+            <Homeslider />
           </div>
         </div>
       </section>
 
       <section className="bg-[#DCE2E5] mt-20">
         <div className="container mx-auto py-20 px-10">
-          <div className="flex justify-between items-center mt-7">
+          <div className="block sm:flex justify-between items-center mt-7 text-center sm:text-start">
             <h1 className="text-5xl font-bold text-[#232730] leading-[60px]">
               Travel to make memories <br /> all around world
             </h1>
-            <button className="py-4 px-6 bg-[#f1f5f5] border-2 rounded-full">View All</button>
+            <button className="py-4 px-6 bg-[#f1f5f5] border-2 rounded-full mt-5 sm:mt-0">View All</button>
           </div>
-          <div className="grid lg:grid-cols-3 grid-cols-2 gap-x-5 gap-y-5 mt-10 justify-items-center max-w-[1300px] mx-auto">
+          <div className="sm:grid block lg:grid-cols-3 grid-cols-2 gap-x-5 gap-y-5 mt-10 justify-items-center max-w-[1300px] mx-auto">
             <div className="col-span-1 bg-[#fff]  flex justify-center items-center text-center rounded-3xl p-10 shadow-lg max-w-[400px]">
               <div>
                 <div className="flex justify-center">
@@ -147,7 +151,7 @@ const Homepage = () => {
                 <p className=" mt-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. In, eius. Ipsa in illum reiciendis sit.</p>
               </div>
             </div>
-            <div className="col-span-1 bg-[#fff]  flex justify-center items-center text-center rounded-3xl p-10 shadow-lg max-w-[400px]">
+            <div className="col-span-1 bg-[#fff]  flex justify-center items-center text-center rounded-3xl p-10 shadow-lg max-w-[400px] my-10 sm:my-0">
               <div>
                 <div className="flex justify-center">
                   <div className="flex justify-center bg-[#e98b6d] text-white p-10 rounded-full ">
@@ -185,21 +189,21 @@ const Homepage = () => {
             </div>
             <div className="col-span-1 text-center max-w-[300px]">
               <div className=" flex justify-center">
-                <img src={promotion_1} className="" />
+                <img src={promotion_2} className="" />
               </div>
               <h1 className="text-lg font-semibold mt-10 text-[#59595b]">Service You Can Trust</h1>
               <p className="mt-3 text-[#b4b4b7]">You get what you paid for – guaranteed.</p>
             </div>
             <div className="col-span-1 text-center max-w-[300px]">
               <div className=" flex justify-center">
-                <img src={promotion_1} className="" />
+                <img src={promotion_3} className="" />
               </div>
               <h1 className="text-lg font-semibold mt-10 text-[#59595b]">Various Payment Options</h1>
               <p className="mt-3 text-[#b4b4b7]">Be more flexible with various payment methods from ATM, Bank Transfer, Credit Card, and Internet Banking, to Cash.</p>
             </div>
-            <div className="lg:col-span-1 col-span-2 text-center max-w-[300px]">
+            <div className="col-span-1 text-center max-w-[300px]">
               <div className=" flex justify-center">
-                <img src={promotion_1} className="" />
+                <img src={promotion_4} className="" />
               </div>
               <h1 className="text-lg font-semibold mt-10 text-[#59595b]">Secure Transaction Guaranteed</h1>
               <p className="mt-3 text-[#b4b4b7]">Security and privacy of your online transaction are protected by RapidSSL authorized technology. Receive instant confirmation and e-ticket or voucher directly in your email.</p>

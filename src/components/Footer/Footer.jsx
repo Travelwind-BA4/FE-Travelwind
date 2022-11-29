@@ -4,7 +4,7 @@ import { FaFacebookF, FaTwitter, FaYoutube } from "react-icons/fa";
 const Footer = () => {
   return (
     <footer className="bg-[#dce2e5] pt-20">
-      <div className="container mx-auto grid grid-cols-5">
+      <div className="container mx-auto grid grid-cols-4 sm:grid-cols-5">
         <div></div>
         <div>
           <ul>
@@ -20,7 +20,7 @@ const Footer = () => {
             <li>Sign In</li>
           </ul>
         </div>
-        <div>
+        <div className="col-span-2">
           <p className="mb-3">Follow Us</p>
           <ul className="flex items-center gap-x-3">
             <li className="p-2 bg-[#c3c3c3] rounded-full text-[#fff] hover:bg-[#1c71b1] cursor-pointer">
