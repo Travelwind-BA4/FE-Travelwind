@@ -181,28 +181,28 @@ const Homepage = () => {
           <h1 className="text-center text-4xl font-semibold text-[#232730] mb-12">Why Flight Ticket</h1>
           <div className="grid lg:grid-cols-4 grid-cols-2 mt-20 gap-y-20 justify-items-center">
             <div className="col-span-1 text-center max-w-[300px]">
-              <div className=" flex justify-center">
+              <div className=" flex justify-center max-h-[140px]">
                 <img src={promotion_1} className="" />
               </div>
               <h1 className="text-lg font-semibold mt-10 text-[#59595b]">Hassle-Free</h1>
               <p className="mt-3 text-[#b4b4b7]">Make a transaction from anywhere at any time, from desktop, mobile app, or mobile web. </p>
             </div>
             <div className="col-span-1 text-center max-w-[300px]">
-              <div className=" flex justify-center">
+              <div className=" flex justify-center  max-h-[140px]">
                 <img src={promotion_2} className="" />
               </div>
               <h1 className="text-lg font-semibold mt-10 text-[#59595b]">Service You Can Trust</h1>
               <p className="mt-3 text-[#b4b4b7]">You get what you paid for – guaranteed.</p>
             </div>
             <div className="col-span-1 text-center max-w-[300px]">
-              <div className=" flex justify-center">
+              <div className=" flex justify-center  max-h-[140px]">
                 <img src={promotion_3} className="" />
               </div>
               <h1 className="text-lg font-semibold mt-10 text-[#59595b]">Various Payment Options</h1>
               <p className="mt-3 text-[#b4b4b7]">Be more flexible with various payment methods from ATM, Bank Transfer, Credit Card, and Internet Banking, to Cash.</p>
             </div>
             <div className="col-span-1 text-center max-w-[300px]">
-              <div className=" flex justify-center">
+              <div className=" flex justify-center  max-h-[140px]">
                 <img src={promotion_4} className="" />
               </div>
               <h1 className="text-lg font-semibold mt-10 text-[#59595b]">Secure Transaction Guaranteed</h1>
