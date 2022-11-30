@@ -22,7 +22,7 @@ const items = [
     ),
   },
 ];
-const Notification = () => {
+const Notification = ({ style }) => {
   return (
     <Dropdown
       menu={{
@@ -33,7 +33,7 @@ const Notification = () => {
     >
       <div className="mr-3 text-xl cursor-pointer">
         <Badge count={2} size="small" style={{ backgroundColor: "#3e5cb8" }}>
-          <IoMdNotificationsOutline className="text-lg" />
+          <IoMdNotificationsOutline className={`text-lg ${style}`} />
         </Badge>
       </div>
     </Dropdown>

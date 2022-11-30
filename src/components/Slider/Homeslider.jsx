@@ -1,39 +1,53 @@
-import React, { useRef, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
 import "swiper/css";
+import "swiper/css/grid";
 import "swiper/css/pagination";
-import "swiper/css/navigation";
 
 // import required modules
-import { Pagination, Navigation } from "swiper";
-import { header_1 } from "../../assets/images/home";
+import { FreeMode, Pagination } from "swiper";
+
 const Homeslider = () => {
   return (
     <div>
       <Swiper
-        slidesPerView={1}
+        slidesPerView={3}
         spaceBetween={30}
-        loop={true}
+        freeMode={true}
+        breakpoints={{
+          375: {
+            slidesPerView: 1,
+          },
+          768: {
+            slidesPerView: 2,
+          },
+          1024: {
+            slidesPerView: 3,
+          },
+        }}
         pagination={{
           clickable: true,
         }}
-        modules={[Navigation, Pagination]}
-        style={{ maxHeight: "400px" }}
-        className="homeSlider rounded-lg cursor-pointer"
+        modules={[FreeMode, Pagination]}
+        className="mySwiper"
       >
         <SwiperSlide>
-          <div className="">
-            <img src={header_1} alt="" className="" />
-          </div>
+          <div className="recomendation-image mb-6"></div>
+          <div className="recomendation-image"></div>
         </SwiperSlide>
         <SwiperSlide>
-          <img src={header_1} alt="" />
+          <div className="recomendation-image mb-6"></div>
+          <div className="recomendation-image"></div>
         </SwiperSlide>
         <SwiperSlide>
-          <img src={header_1} alt="" />
+          <div className="recomendation-image mb-6"></div>
+          <div className="recomendation-image"></div>
+        </SwiperSlide>
+        <SwiperSlide>
+          <div className="recomendation-image mb-6"></div>
+          <div className="recomendation-image"></div>
         </SwiperSlide>
       </Swiper>
     </div>
