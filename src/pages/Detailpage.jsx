@@ -12,7 +12,7 @@ const Detailpage = () => {
           <div className="col-span-2 bg-[#f1f5f5]  px-8 pb-8  rounded-md">
             <div className="flex  justify-between items-center ">
               <div>
-                <p className="mt-4 text-gray-400 text-base">Departure Flight</p>
+                <p className="mt-8 text-gray-400 text-base">Departure Flight</p>
                 <h6 className="flex items-center">
                   Jakarta (CGK) <BsArrowRight className="mx-5 my-3" /> Bali Denpasar (DPS)
                 </h6>
@@ -80,8 +80,8 @@ const Detailpage = () => {
             </div>
           </div>
           <div className="lg:ml-5 lg:col-span-1 col-span-2">
-            <div className="bg-[#f1f5f5] p-4 rounded-md">
-              <h1 className="font-medium text-xl">Total Price</h1>
+            <div className="bg-[#f1f5f5] p-4 rounded-md ">
+              <h1 className="font-medium text-xl mt-4">Total Price</h1>
               <div className="flex justify-between py-3  font-medium">
                 <p>Depart (CGK to DPS)</p>
                 <p>Rp. 2.137.740</p>
