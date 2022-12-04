@@ -3,6 +3,7 @@ import Select1 from "../components/Booking/Contact";
 import Title1 from "../components/Booking/Title1";
 import Country from "../components/Booking/Ctry";
 import Birth from "../components/Booking/DateBirth";
+import DocID from "../components/Booking/DocID";
 
 const BookingPage = () => {
   const navigate = useNavigate();
@@ -139,11 +140,12 @@ const BookingPage = () => {
           </div>
           <div className="border shadow-md py-5 px-3">
             <p className="font-semibold text-xl mb-3">
-              Traveler 1 <span>|</span> Dewasa
+              Traveler 1 <span className="text-3xl font-light pb-2">|</span>{" "}
+              Dewasa
             </p>
             <div className=" border-b border-gray-300"></div>
             <p className="mt-2 text-sm px-3 text-orange-400 font-semibold">
-              Nama sesuai KTP/Passpor tanpa gelar dan tanda baca
+              Name according to ID Card/Passport without title and punctuation
             </p>
             <form class="mt-3 w-full max-w-lg px-3">
               <div class="flex flex-wrap -mx-3 mb-6">
@@ -206,13 +208,13 @@ const BookingPage = () => {
                     class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                     for="grid-city"
                   >
-                    Phone Number <span className="text-red-500">*</span>
+                    Nationality <span className="text-red-500">*</span>
                   </label>
                   <input
                     class="appearance-none block w-full bg-[#f1f5f5] text-sm border-b-2 border-gray-300 text-gray-700 py-1.5 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                     id="grid-city"
                     type="text"
-                    placeholder="0"
+                    placeholder="Indonesia"
                   />
                 </div>
                 <div class="w-full px-3 mt-6">
@@ -220,13 +222,41 @@ const BookingPage = () => {
                     class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                     for="grid-password"
                   >
-                    Email <span className="text-red-500">*</span>
+                    Document Type <span className="text-red-500">*</span>
+                  </label>
+                  <DocID></DocID>
+                  <p class="text-gray-400 text-xs mb-3 italic mt-1">
+                    If you are a foreigner, please select a passport.
+                  </p>
+                </div>
+              </div>
+              <div class="flex flex-wrap -mx-3 mb-6">
+                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                  <label
+                    class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                    for="grid-first-name"
+                  >
+                    ID Card Number <span className="text-red-500">*</span>
                   </label>
                   <input
                     class="appearance-none block w-full bg-[#f1f5f5] text-sm border-b-2 border-gray-300 text-gray-700 py-1.5 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                     id="grid-city"
                     type="text"
-                    placeholder="Ex.Binar@Airsans.com"
+                    placeholder="ex. 1702192905990001"
+                  />
+                </div>
+                <div class="w-full md:w-1/2 px-3">
+                  <label
+                    class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                    for="grid-last-name"
+                  >
+                    ID Card Country <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    class="appearance-none block w-full bg-[#f1f5f5] text-sm border-b-2 border-gray-300 text-gray-700 py-1.5 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                    id="grid-city"
+                    type="text"
+                    placeholder="Indonesia"
                   />
                 </div>
               </div>
