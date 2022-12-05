@@ -13,7 +13,7 @@ const Country = ({ placeholder, item }) => {
       <Select
         defaultValue="Indonesia"
         showSearch
-        className="w-[170px] border-b-2 border-gray-300 text-xs"
+        className="w-[170px] border-b border-gray-300 text-xs"
         bordered={false}
         placeholder={placeholder}
         optionFilterProp="children"

@@ -50,7 +50,7 @@ const BookingPage = () => {
                     First Name <span className="text-red-500">*</span>
                   </label>
                   <input
-                    class="appearance-none block w-full bg-[#f1f5f5] text-sm border-b-2 border-gray-300 text-gray-700 py-1.5 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                    class="appearance-none block w-full bg-[#f1f5f5] text-sm border-b border-gray-300 text-gray-700 py-1.5 px-4 leading-tight focus:outline-none "
                     id="grid-city"
                     type="text"
                     placeholder="John"
@@ -64,7 +64,7 @@ const BookingPage = () => {
                     Last Name <span className="text-red-500">*</span>
                   </label>
                   <input
-                    class="appearance-none block w-full bg-[#f1f5f5] text-sm border-b-2 border-gray-300 text-gray-700 py-1.5 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                    class="appearance-none block w-full bg-[#f1f5f5] text-sm border-b border-gray-300 text-gray-700 py-1.5 px-4 leading-tight focus:outline-none "
                     id="grid-city"
                     type="text"
                     placeholder="Smith"
@@ -75,23 +75,12 @@ const BookingPage = () => {
                 <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                   <label
                     class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                    for="grid-state"
-                  >
-                    Country <span className="text-red-500">*</span>
-                  </label>
-                  <div class="relative">
-                    <Country></Country>
-                  </div>
-                </div>
-                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                  <label
-                    class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                     for="grid-city"
                   >
                     Phone Number <span className="text-red-500">*</span>
                   </label>
                   <input
-                    class="appearance-none block w-full bg-[#f1f5f5] text-sm border-b-2 border-gray-300 text-gray-700 py-1.5 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                    class="appearance-none block w-full bg-[#f1f5f5] text-sm border-b border-gray-300 text-gray-700 py-1.5 px-4 leading-tight focus:outline-none "
                     id="grid-city"
                     type="text"
                     placeholder="0"
@@ -105,7 +94,7 @@ const BookingPage = () => {
                     Email <span className="text-red-500">*</span>
                   </label>
                   <input
-                    class="appearance-none block w-full bg-[#f1f5f5] text-sm border-b-2 border-gray-300 text-gray-700 py-1.5 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                    class="appearance-none block w-full bg-[#f1f5f5] text-sm border-b border-gray-300 text-gray-700 py-1.5 px-4 leading-tight focus:outline-none"
                     id="grid-city"
                     type="text"
                     placeholder="Ex.Binar@Airsans.com"
@@ -141,7 +130,7 @@ const BookingPage = () => {
           <div className="border shadow-md py-5 px-3">
             <p className="font-semibold text-xl mb-3">
               Traveler 1 <span className="text-3xl font-light pb-2">|</span>{" "}
-              Dewasa
+              Adult
             </p>
             <div className=" border-b border-gray-300"></div>
             <p className="mt-2 text-sm px-3 text-orange-400 font-semibold">
@@ -170,7 +159,7 @@ const BookingPage = () => {
                     First Name <span className="text-red-500">*</span>
                   </label>
                   <input
-                    class="appearance-none block w-full bg-[#f1f5f5] text-sm border-b-2 border-gray-300 text-gray-700 py-1.5 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                    class="appearance-none block w-full bg-[#f1f5f5] text-sm border-b border-gray-300 text-gray-700 py-1.5 px-4 leading-tight focus:outline-none"
                     id="grid-city"
                     type="text"
                     placeholder="John"
@@ -184,7 +173,7 @@ const BookingPage = () => {
                     Last Name <span className="text-red-500">*</span>
                   </label>
                   <input
-                    class="appearance-none block w-full bg-[#f1f5f5] text-sm border-b-2 border-gray-300 text-gray-700 py-1.5 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                    class="appearance-none block w-full bg-[#f1f5f5] text-sm border-b border-gray-300 text-gray-700 py-1.5 px-4 leading-tight focus:outline-none"
                     id="grid-city"
                     type="text"
                     placeholder="Smith"
@@ -211,7 +200,7 @@ const BookingPage = () => {
                     Nationality <span className="text-red-500">*</span>
                   </label>
                   <input
-                    class="appearance-none block w-full bg-[#f1f5f5] text-sm border-b-2 border-gray-300 text-gray-700 py-1.5 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                    class="appearance-none block w-full bg-[#f1f5f5] text-sm border-b border-gray-300 text-gray-700 py-1.5 px-4 leading-tight focus:outline-none"
                     id="grid-city"
                     type="text"
                     placeholder="Indonesia"
@@ -239,7 +228,7 @@ const BookingPage = () => {
                     ID Card Number <span className="text-red-500">*</span>
                   </label>
                   <input
-                    class="appearance-none block w-full bg-[#f1f5f5] text-sm border-b-2 border-gray-300 text-gray-700 py-1.5 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                    class="appearance-none block w-full bg-[#f1f5f5] text-sm border-b border-gray-300 text-gray-700 py-1.5 px-4 leading-tight focus:outline-none"
                     id="grid-city"
                     type="text"
                     placeholder="ex. 1702192905990001"
@@ -253,7 +242,7 @@ const BookingPage = () => {
                     ID Card Country <span className="text-red-500">*</span>
                   </label>
                   <input
-                    class="appearance-none block w-full bg-[#f1f5f5] text-sm border-b-2 border-gray-300 text-gray-700 py-1.5 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                    class="appearance-none block w-full bg-[#f1f5f5] text-sm border-b border-gray-300 text-gray-700 py-1.5 px-4 leading-tight focus:outline-none"
                     id="grid-city"
                     type="text"
                     placeholder="Indonesia"

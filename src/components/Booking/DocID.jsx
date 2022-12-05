@@ -24,7 +24,7 @@ const DocID = ({ placeholder, item }) => {
       <Select
         showSearch
         defaultValue={"id"}
-        className="w-[100%] border-b-2 border-gray-300"
+        className="w-[100%] border-b border-gray-300"
         bordered={false}
         placeholder={placeholder}
         optionFilterProp="children"

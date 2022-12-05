@@ -23,7 +23,7 @@ const Title1 = ({ placeholder, item }) => {
     <div>
       <Select
         showSearch
-        className="w-[100px] border-b-2 border-gray-300"
+        className="w-[100px] border-b border-gray-300"
         bordered={false}
         placeholder={placeholder}
         optionFilterProp="children"
