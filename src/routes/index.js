@@ -3,6 +3,7 @@ import Footer from "../components/Footer/Footer";
 import Navbar from "../components/Navbar/Navbar";
 import Detailpage from "../pages/Detailpage";
 import Homepage from "../pages/Homepage";
+import BookingPage from "../pages/Bookingpage";
 
 import Loginpage from "../pages/loginPage/Loginpage";
 import Registerpage from "../pages/registerPage/Registerpage";
@@ -32,7 +33,9 @@ const Index = () => {
         <Route path="/results" element={<Resultpage />} />
         <Route path="/flight" element={<Detailpage />} />
         <Route path="/payment" element={<Paymentpage />} />
+        <Route path="/booking" element={<BookingPage />} />
         <Route path="/complete" element={<Completepage />} />
+
         <Route path="/account/profile" element={<Profilpage />} />
         <Route path="/account/orders" element={<Profilpage />} />
       </Routes>
