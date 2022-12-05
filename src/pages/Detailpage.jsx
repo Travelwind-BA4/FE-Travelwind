@@ -4,7 +4,9 @@ import { CiRollingSuitcase } from "react-icons/ci";
 import { BiCabinet } from "react-icons/bi";
 
 import Button2 from "../components/Buttons/Button2";
+import { useNavigate } from "react-router-dom";
 const Detailpage = () => {
+  const navigate = useNavigate();
   return (
     <div>
       <div className="container mx-auto py-10 px-10 h-screen">
@@ -88,7 +90,7 @@ const Detailpage = () => {
               </div>
             </div>
             <div className="mt-3">
-              <button className="bg-[#3e5cb8] w-full text-white p-4 rounded-md font-semibold">Continue Booking</button>
+              <button className="bg-[#3e5cb8] w-full text-white p-4 rounded-md font-semibold" onClick={() => navigate('/booking')}>Continue Booking</button>
             </div>
           </div>
         </div>
