@@ -25,7 +25,7 @@ const Navbar = ({ nav, notif }) => {
         </div>
         <div className="flex items-center hidden sm:flex">
           <div className="">
-            <Button1 name="Login" style="rounded-lg" style2="rounded-lg" />
+            <Button1 name="Login" style="rounded-lg" onclick={() => navigate("/login")} />
           </div>
           <div className="profil flex items-center hidden">
             <div className="relative">

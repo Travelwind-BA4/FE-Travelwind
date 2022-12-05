@@ -1,4 +1,7 @@
+import { useNavigate } from "react-router-dom";
+
 const Paymentpage = () => {
+  const navigate = useNavigate();
   return (
     <div>
       <div className="container mx-auto py-10 px-10 min-h-screen">
@@ -53,7 +56,9 @@ const Paymentpage = () => {
               </div>
             </div>
             <div className="mt-3">
-              <button className="bg-[#3e5cb8] w-full text-white p-4 rounded-md font-semibold">Continue Payment</button>
+              <button className="bg-[#3e5cb8] w-full text-white p-4 rounded-md font-semibold" onClick={() => navigate("/complete")}>
+                Continue Payment
+              </button>
             </div>
           </div>
         </div>

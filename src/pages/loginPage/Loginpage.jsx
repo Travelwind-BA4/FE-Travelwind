@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 import { Logos } from "../../assets/images/login/index_img";
 import "./login.css";
 
 const Loginpage = () => {
+  const navigate = useNavigate();
   const [showPass, setShowPass] = useState(false);
   return (
     <div className="" style={{ background: "linear-gradient(121.74deg, #2c4284 .97%, #3e5cb8 54.61%, #4a6fde 99.48%)" }}>
       <div className="wrapper-form-login flex flex-col items-center min-h-[100vh] container mx-auto">
-        <a href="/" className="cursor-pointer no-underline mb-[20px]">
-          <img className="w-64" src={Logos} alt="" />
-        </a>
+        <img className="w-[350px] cursor-pointer" src={Logos} alt="" onClick={() => navigate("/")} />
         <div className="login-form-box w-[590px] overflow-hidden text-base rounded-md">
           <div className="panel-1 p-[50px_50px_20px_50px] bg-white text-[#59595b] relative block">
             <form className="login-form">
@@ -57,7 +57,7 @@ const Loginpage = () => {
             <p className="text-[14px] leading-[20px] font-normal">
               Not an Airsanz member?{" "}
               <span className="ml-[3px]">
-                <a href="/" className="cursor-pointer text-[#59595b] font-bold">
+                <a className="cursor-pointer text-[#59595b] font-bold" onClick={() => navigate("/register")}>
                   Sign up now
                 </a>
               </span>
