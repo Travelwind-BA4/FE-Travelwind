@@ -25,11 +25,11 @@ const Traveler = () => {
         <div className="  flex justify-between items-center">
           <h1 className="text-base pr-8">Traveler</h1>
           <div>
-            <span className="border-2 px-1 border-[#3e5cb8] text-[#3e5cb8]" onClick={addTravler}>
+            <span className="border-[1px] px-1 border-[#3e5cb8] text-[#3e5cb8]" onClick={addTravler}>
               +
             </span>
             <span className="p-2">{traveler}</span>{" "}
-            <span className="border-2 px-1 border-[#3e5cb8] text-[#3e5cb8]" onClick={minTraveler}>
+            <span className="border-[1px] px-1 border-[#3e5cb8] text-[#3e5cb8]" onClick={minTraveler}>
               -
             </span>
           </div>
@@ -41,7 +41,7 @@ const Traveler = () => {
   return (
     <div>
       <Dropdown menu={{ items }} trigger={["click"]} open={open}>
-        <input type="button" className="border-none outline-0 text-gray-400" value={`${traveler} traveler`} onClick={() => setOpen(!open)} />
+        <input type="button" className="border-none outline-0 text-gray-400 cursor-pointer" value={`${traveler} traveler`} onClick={() => setOpen(!open)} />
       </Dropdown>
     </div>
   );

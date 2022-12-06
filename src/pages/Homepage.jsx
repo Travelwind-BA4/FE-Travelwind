@@ -1,5 +1,3 @@
-import { Segmented } from "antd";
-
 import { GiAirplaneArrival, GiAirplaneDeparture } from "react-icons/gi";
 import { AiOutlineUserAdd } from "react-icons/ai";
 import { BsCalendarDate, BsSearch, BsCalendar4Event, BsBookmarkCheck, BsCheckSquare } from "react-icons/bs";
@@ -12,23 +10,13 @@ import Date from "../components/Input/Date";
 import Navbar from "../components/Navbar/Navbar";
 import Homeslider from "../components/Slider/Homeslider";
 import Traveler from "../components/Input/Traveler";
+import Trip from "../components/Segmanted/Trip";
 
 const Homepage = () => {
   const navigate = useNavigate();
 
-  const trips = [
-    {
-      label: <button className=" py-3 px-6 rounded-full">One Trip</button>,
-      value: "user1",
-    },
-    {
-      label: <button className=" py-3 px-6 rounded-full">Round Trip</button>,
-      value: "user2",
-    },
-  ];
-
   return (
-    <div>
+    <>
       <section className="relative sm:mb-[250px] mb-[450px]">
         <Navbar nav="absolute top-0 w-full z-10 text-white" notif="text-white" />
         <div className="h-[75vh] header">
@@ -41,9 +29,7 @@ const Homepage = () => {
           <div className="flex justify-center">
             <div className="border-2 rounded-xl shadow-md bg-[#fff] absolute sm:bottom-[-140px] bottom-[-400px] px-10 py-3 mx-5">
               <div className="flex justify-center mt-7">
-                <div>
-                  <Segmented block={true} className="max-w-[300px]  bg-[#f0f0f0] rounded-full p-4" options={trips} />
-                </div>
+                <Trip />
               </div>
               <div className="flex justify-center">
                 <div className="grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-5 my-8 px-2">
@@ -54,11 +40,8 @@ const Homepage = () => {
                     <div className="pl-2">
                       <div>
                         <h1 className="text-lg font-medium pl-3">Location From</h1>
-                        <div className="">
-                          <Header placeholder="Bali Denpasar (DPS)" />
-                        </div>
+                        <Header placeholder="Bali Denpasar (DPS)" />
                       </div>
-                      <div></div>
                     </div>
                   </div>
                   <div className=" flex items-center">
@@ -68,11 +51,8 @@ const Homepage = () => {
                     <div className="pl-2">
                       <div>
                         <h1 className="text-lg font-medium pl-3">Location To</h1>
-                        <div className="">
-                          <Header placeholder="Bali Denpasar (DPS)" />
-                        </div>
+                        <Header placeholder="Bali Denpasar (DPS)" />
                       </div>
-                      <div></div>
                     </div>
                   </div>
                   <div className=" flex items-center">
@@ -82,11 +62,8 @@ const Homepage = () => {
                     <div className="pl-2">
                       <div>
                         <h1 className="text-lg font-medium pl-3">Departure Date</h1>
-                        <div className="">
-                          <Date />
-                        </div>
+                        <Date />
                       </div>
-                      <div></div>
                     </div>
                   </div>
                   <div className=" flex items-center">
@@ -96,11 +73,8 @@ const Homepage = () => {
                     <div className="pl-2">
                       <div>
                         <h1 className="text-lg font-medium">Traveler</h1>
-                        <div className="">
-                          <Traveler />
-                        </div>
+                        <Traveler />
                       </div>
-                      <div></div>
                     </div>
                     <div className="pl-8 hidden lg:block">
                       <button className="btn-active p-4 rounded-full" onClick={() => navigate("/results")}>
@@ -126,9 +100,7 @@ const Homepage = () => {
             <h1 className="text-5xl font-bold text-[#232730] leading-[60px]">Reccomended For You</h1>
             <p className="text-[#cfcfcf]">Here you will find all our luxorious tour packages in a reasonable range of cost</p>
           </div>
-          <div className="slider">
-            <Homeslider />
-          </div>
+          <Homeslider />
         </div>
       </section>
 
@@ -213,9 +185,8 @@ const Homepage = () => {
         </div>
       </section>
 
-      <section></section>
       <Footer />
-    </div>
+    </>
   );
 };
 
