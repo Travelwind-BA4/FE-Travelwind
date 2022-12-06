@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { BiChevronDown } from "react-icons/bi";
+import Date from "../components/Input/Date";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { logo_white, logo_mini } from "../../assets/images/logo/index";
 import { Select } from "antd";
-import "./register.css";
+
 import { useNavigate } from "react-router-dom";
 const Registerpage = () => {
   const navigate = useNavigate();
@@ -19,7 +19,8 @@ const Registerpage = () => {
           <div className="panel-1 p-[50px_50px_20px_50px] bg-white text-[#59595b] relative block">
             <form className="login-form">
               <h1 className="mb-[30px] text-[18px] leading-[25px] font-bold">Register</h1>
-              {/*//! Tittle */}
+              {/*//! Tittle/Gender */}
+              <label className="name-input text-[#59595b] text-[0.875rem] font-normal mb-[0.5em] block">Title</label>
               <Select
                 className="title-select max-w-[100px] mb-[20px] border-b"
                 placeholder="Mr"
@@ -39,29 +40,24 @@ const Registerpage = () => {
               {/* Name */}
               <div className="name-form mb-[20px] flex">
                 <div className="name-input-form flex-[1] mb-0">
-                  <label className="name-input text-[#59595b] text-[0.875rem] font-normal mb-[0.5em] block">Name</label>
+                  <label className="name-input text-[#59595b] text-[0.875rem] font-normal mb-[0.5em] block">Full Name</label>
                   <div className="name-input-control box-border clear-both text-base relative text-left">
                     <input
                       type="text"
                       maxLength
-                      placeholder="Gihon"
+                      placeholder="Ex. James Taco"
                       className="inline-flex items-center justify-start relative align-top pl-0 bg-transparent rounded-[0] border-b border-solid border-[#dedede] shadow-none h-[32px] text-[14px] leading-[20px] font-normal max-w-full w-full active:outline-none focus:outline-none"
                     />
                   </div>
                 </div>
-                <div className="surname-input-form ml-[20px] flex-[1] mb-0">
-                  <label className="surname-input text-[#59595b] text-[0.875rem] font-normal mb-[0.5em] block">Surname</label>
-                  <div className="surname-input-control box-border clear-both text-base relative text-left">
-                    <input
-                      type="text"
-                      maxLength
-                      placeholder="Cameroon"
-                      className="inline-flex items-center justify-start relative align-top pl-0 bg-transparent rounded-0 border-b border-solid border-[#dedede] text-[#59595b] text-[14px] leading-[20px] font-normal max-w-full w-full h-[32px] shadow-none active:outline-none focus:outline-none"
-                    />
-                  </div>
+                {/* BirthDate */}
+                <div className="birthDate-input-form ml-[20px] flex-[1] mb-0">
+                  <label className="birthDate-input px-3 text-[#59595b] text-[0.875rem] font-normal mb-[0.5em] block">Birth Date</label>
+                  <div className="birthDate-input-control box-border clear-both text-base relative text-left"></div>
+                  <Date></Date>
                 </div>
               </div>
-              {/* Country & Mobile NUmber */}
+              {/* Mobile Number */}
               <div className="country-phone flex mb-[20px]">
                 <div className="phone-number-box mb-0 flex-[1]">
                   <label className="label-phone text-[#59595b] font-normal text-[0.875rem] mb-[0.5em] block">Mobile Number</label>
