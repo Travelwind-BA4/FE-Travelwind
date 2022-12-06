@@ -11,6 +11,7 @@ import Header from "../components/Input/Header";
 import Date from "../components/Input/Date";
 import Navbar from "../components/Navbar/Navbar";
 import Homeslider from "../components/Slider/Homeslider";
+import Traveler from "../components/Input/Traveler";
 
 const Homepage = () => {
   const navigate = useNavigate();
@@ -96,7 +97,7 @@ const Homepage = () => {
                       <div>
                         <h1 className="text-lg font-medium">Traveler</h1>
                         <div className="">
-                          <input type="button" className="border-none outline-0" value="3 Travelers" />
+                          <Traveler />
                         </div>
                       </div>
                       <div></div>
