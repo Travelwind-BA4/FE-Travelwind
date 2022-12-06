@@ -53,7 +53,7 @@ const Registerpage = () => {
                     <input
                       type="text"
                       maxLength
-                      placeholder="Ex. Farhan Kebab"
+                      placeholder="Ex. James Taco"
                       className="inline-flex items-center justify-start relative align-top pl-0 bg-transparent rounded-[0] border-b border-solid border-[#dedede] shadow-none h-[32px] text-[14px] leading-[20px] font-normal max-w-full w-full active:outline-none focus:outline-none"
                     />
                   </div>
