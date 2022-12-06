@@ -34,7 +34,7 @@ const Navbar = ({ nav, notif }) => {
             <Dropdown1 />
           </div>
         </div>
-        <div className="block sm:hidden">
+        <div className="block sm:hidden relative">
           <Navphone />
         </div>
       </div>
