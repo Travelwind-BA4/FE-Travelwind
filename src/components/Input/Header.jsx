@@ -1,5 +1,5 @@
 import React from "react";
-import { Select } from "antd";
+import { Form, Select } from "antd";
 const onChange = (value) => {
   console.log(`selected ${value}`);
 };
@@ -7,25 +7,9 @@ const onSearch = (value) => {
   console.log("search:", value);
 };
 
-const items = [
-  {
-    className: "border-none outline-0 ",
-    value: "jack",
-    label: "Jack",
-  },
-  {
-    value: "lucy",
-    label: "Lucy",
-  },
-  {
-    value: "tom",
-    label: "Tom",
-  },
-];
-
-const Header = ({ placeholder, item }) => {
+const Header = ({ placeholder, items, name }) => {
   return (
-    <div>
+    <Form.Item name={name} className="mb-0">
       <Select
         showSearch
         className="w-[170px] "
@@ -35,9 +19,18 @@ const Header = ({ placeholder, item }) => {
         onChange={onChange}
         onSearch={onSearch}
         filterOption={(input, option) => (option?.label ?? "").toLowerCase().includes(input.toLowerCase())}
-        options={items}
-      />
-    </div>
+      >
+        {items.map((item, index) => {
+          return (
+            <Select.Option key={index} value={item.airportName}>
+              <div>
+                {item.airportName} ( {item.cityCode} )
+              </div>
+            </Select.Option>
+          );
+        })}
+      </Select>
+    </Form.Item>
   );
 };
 

@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { logo_white, logo_mini } from "../assets/images/logo/index";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import useAuth from "../services/api/useAuth";
+
 const Loginpage = () => {
   const navigate = useNavigate();
   const [showPass, setShowPass] = useState(false);
@@ -10,22 +11,11 @@ const Loginpage = () => {
   const [password, setPasword] = useState("");
   const [msg, setMsg] = useState("");
 
+  const { postLogin } = useAuth();
+
   const Auth = async (e) => {
     e.preventDefault();
-    try {
-      await axios.post("https://api-flight.up.railway.app/user/sign-in", {
-        email: email,
-        password: password,
-      }).then((response) => {
-        localStorage.setItem('token', JSON.stringify(response.data.data.token));
-        localStorage.setItem('user', JSON.stringify(response.data.data));
-        navigate('/');
-      });
-    } catch (error) {
-      if(error) {
-        setMsg("Login Fail");
-      }
-    }
+    postLogin({ email, password });
   }
 
   return (

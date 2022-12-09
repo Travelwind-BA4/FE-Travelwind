@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import Date from "../components/Input/Date";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { logo_white, logo_mini } from "../assets/images/logo/index";
-import { Select } from "antd";
-
+import { Select, DatePicker } from "antd";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import useAuth from "../services/api/useAuth";
+import dayjs from 'dayjs';
+
 const Registerpage = () => {
   const navigate = useNavigate();
   const [showPass, setShowPass] = useState(false);
@@ -16,23 +17,15 @@ const Registerpage = () => {
   const [birthDate, setBirthDate] = useState("");
   const [telephone, setTelephone] = useState("");
 
+  // const handleChange = (value) => {
+  //   setGender({gender: value})
+  // };
+
+  const { postRegister } = useAuth();
+
   const handleRegister = async (e) => {
-    console.log(gender)
     e.preventDefault();
-    try {
-      await axios.post(`https://api-flight.up.railway.app/user/sign-up`, {
-        fullName: fullName,
-        birthDate: birthDate,
-        telephone: telephone,
-        email: email,
-        password: password,
-        gender: gender,
-        rolesId: 2,
-      });
-      // navigate('/');
-    } catch (error) {
-      console.log(error);
-    }
+    postRegister({ fullName, birthDate, telephone, gender, email, password })
   }
 
   return (
@@ -63,8 +56,9 @@ const Registerpage = () => {
                     label: "Ms",
                   },
                 ]}
-                value={gender}
-                onChange={(e) => setGender(e.target.value)}
+                onChange={(value) => {
+                  setGender({gender: value})
+                }}
               />
               {/* Name */}
               <div className="name-form mb-[20px] flex">
@@ -74,6 +68,8 @@ const Registerpage = () => {
                     <input
                       type="text"
                       placeholder="Ex. James Taco"
+                      value={fullName}
+                      onChange={(e) => setFullName(e.target.value)}
                       className="inline-flex items-center justify-start relative align-top pl-0 bg-transparent rounded-[0] border-b border-solid border-[#dedede] shadow-none h-[32px] text-[14px] leading-[20px] font-normal max-w-full w-full active:outline-none focus:outline-none"
                     />
                   </div>
@@ -82,7 +78,12 @@ const Registerpage = () => {
                 <div className="birthDate-input-form ml-[20px] flex-[1] mb-0">
                   <label className="birthDate-input px-3 text-[#59595b] text-[0.875rem] font-normal mb-[0.5em] block">Birth Date</label>
                   <div className="birthDate-input-control box-border clear-both text-base relative text-left"></div>
-                  <Date></Date>
+                  <DatePicker
+                  defaultValue={dayjs("2022/12/17", "YYYY/MM/DD")} format={"YYYY/MM/DD"} bordered={false} picker="date"
+                  onChange={(date, dateString) => {
+                    setBirthDate({test: date, birthDate: dateString})
+                  }}/>
+                  {/* <Date name="birthDate"></Date> */}
                 </div>
               </div>
               {/* Mobile Number */}
@@ -93,6 +94,8 @@ const Registerpage = () => {
                     <input
                       type="text"
                       placeholder="e.g 81234567890"
+                      value={telephone}
+                      onChange={(e) => setTelephone(e.target.value)}
                       className="pl-0 bg-transparent rounded-none border-b border-solid border-[#dedede] shadow-none h-[32px] text-[14px] leading-[20px] font-normal max-w-full w-full inline-flex items-center justify-start relative align-top m-0 active:outline-none focus:outline-none"
                     />
                   </div>
@@ -105,6 +108,8 @@ const Registerpage = () => {
                   <input
                     type="email"
                     placeholder="james@gmail.com"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     className="pl-0 bg-transparent rounded-none border-b border-solid border-[#dedede] text-[#59595b] shadow-none h-[32px] text-[14px] leading-[20px] font-normal w-full max-w-full inline-flex items-center relative align-top active:outline-none focus:outline-none"
                   />
                 </div>
@@ -116,6 +121,8 @@ const Registerpage = () => {
                   <input
                     type={showPass ? "text" : "password"}
                     placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                     className="pl-0 bg-transparent rounded-none border-b border-solid border-[#dedede] text-[#59595b] shadow-none h-[32px] text-[14px] leading-[20px] font-normal w-full max-w-full inline-flex items-center relative align-top active:outline-none focus:outline-none"
                   />
                   <div onClick={() => setShowPass(!showPass)} className="pointer-events-auto cursor-pointer right-0 h-[32px] text-[#dbdbdb] absolute top-0 w-[32px] z-[4] inline-flex items-center justify-center align-[-0.125em]">
@@ -124,7 +131,7 @@ const Registerpage = () => {
                 </div>
               </div>
               {/* Button Sign Up */}
-              <button className="button-signup p-[15px_25px] text-[18px] leading-[25px] border-none rounded-md flex w-full bg-[#3e5cb8] text-white shadow-md mb-[20px] font-bold touch-manipulation transition-shadow duration-[0.25s] will-change-[box-shadow] relative cursor-pointer justify-center text-center whitespace-nowrap items-center align-top hover:shadow-none hover:bg-[#3855aa]">
+              <button type="submit" className="button-signup p-[15px_25px] text-[18px] leading-[25px] border-none rounded-md flex w-full bg-[#3e5cb8] text-white shadow-md mb-[20px] font-bold touch-manipulation transition-shadow duration-[0.25s] will-change-[box-shadow] relative cursor-pointer justify-center text-center whitespace-nowrap items-center align-top hover:shadow-none hover:bg-[#3855aa]">
                 <span className="text-[18px] leading-[25px] font-normal">Register</span>
               </button>
               {/* Button Google */}
