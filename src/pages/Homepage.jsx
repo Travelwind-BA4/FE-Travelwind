@@ -14,7 +14,7 @@ import Trip from "../components/Segmanted/Trip";
 
 import { useEffect } from "react";
 import useAirports from "../services/api/useAirports";
-import useSchedule from "../services/api/useSchedule";
+
 import { Form } from "antd";
 import timeConverter from "../utils/timeConverter";
 
@@ -27,7 +27,7 @@ const Homepage = () => {
   }, []);
 
   const searchFlight = ({ departureAirport, arrivalAirport, departureDate, traveler }) => {
-    navigate(`results/search?depDate=${timeConverter(departureDate)}&depAirport=${departureAirport}&arrAirport${arrivalAirport}&traveler=${traveler}`);
+    navigate(`results/search?depDate=${timeConverter(departureDate)}&depAirport=${departureAirport}&arrAirport=${arrivalAirport}&traveler=${traveler}`);
   };
 
   return (

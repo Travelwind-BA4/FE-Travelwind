@@ -30,8 +30,8 @@ const Index = () => {
     <>
       <Navbar nav="bg-[#fff] shadow-xl" />
       <Routes>
-        <Route path="/results" element={<Resultpage />} />
-        <Route path="/flight" element={<Detailpage />} />
+        <Route path="/results/search" element={<Resultpage />} />
+        <Route path="/flight/:id" element={<Detailpage />} />
         <Route path="/payment" element={<Paymentpage />} />
         <Route path="/booking" element={<BookingPage />} />
         <Route path="/complete" element={<Completepage />} />
