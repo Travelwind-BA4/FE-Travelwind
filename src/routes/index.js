@@ -17,17 +17,17 @@ const Index = () => {
 
   if (pathname === "/login" || pathname === "/register" || pathname === "/") {
     return (
-      <div>
+      <>
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/login" element={<Loginpage />} />
           <Route path="/register" element={<Registerpage />} />
         </Routes>
-      </div>
+      </>
     );
   }
   return (
-    <div>
+    <>
       <Navbar nav="bg-[#fff] shadow-xl" />
       <Routes>
         <Route path="/results" element={<Resultpage />} />
@@ -40,7 +40,7 @@ const Index = () => {
         <Route path="/account/orders" element={<Profilpage />} />
       </Routes>
       <Footer />
-    </div>
+    </>
   );
 };
 

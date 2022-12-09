@@ -1,5 +1,3 @@
-import { Segmented } from "antd";
-
 import { GiAirplaneArrival, GiAirplaneDeparture } from "react-icons/gi";
 import { AiOutlineUserAdd } from "react-icons/ai";
 import { BsCalendarDate, BsSearch, BsCalendar4Event, BsBookmarkCheck, BsCheckSquare } from "react-icons/bs";
@@ -11,23 +9,29 @@ import Header from "../components/Input/Header";
 import Date from "../components/Input/Date";
 import Navbar from "../components/Navbar/Navbar";
 import Homeslider from "../components/Slider/Homeslider";
+import Traveler from "../components/Input/Traveler";
+import Trip from "../components/Segmanted/Trip";
+
+import { useEffect } from "react";
+import useAirports from "../services/api/useAirports";
+import useSchedule from "../services/api/useSchedule";
+import { Form } from "antd";
+import timeConverter from "../utils/timeConverter";
 
 const Homepage = () => {
   const navigate = useNavigate();
+  const { getAirports, airports } = useAirports();
 
-  const trips = [
-    {
-      label: <button className=" py-3 px-6 rounded-full">One Trip</button>,
-      value: "user1",
-    },
-    {
-      label: <button className=" py-3 px-6 rounded-full">Round Trip</button>,
-      value: "user2",
-    },
-  ];
+  useEffect(() => {
+    getAirports();
+  }, []);
+
+  const searchFlight = ({ departureAirport, arrivalAirport, departureDate, traveler }) => {
+    navigate(`results/search?depDate=${timeConverter(departureDate)}&depAirport=${departureAirport}&arrAirport${arrivalAirport}&traveler=${traveler}`);
+  };
 
   return (
-    <div>
+    <>
       <section className="relative sm:mb-[250px] mb-[450px]">
         <Navbar nav="absolute top-0 w-full z-10 text-white" notif="text-white" />
         <div className="h-[75vh] header">
@@ -40,12 +44,10 @@ const Homepage = () => {
           <div className="flex justify-center">
             <div className="border-2 rounded-xl shadow-md bg-[#fff] absolute sm:bottom-[-140px] bottom-[-400px] px-10 py-3 mx-5">
               <div className="flex justify-center mt-7">
-                <div>
-                  <Segmented block={true} className="max-w-[300px]  bg-[#f0f0f0] rounded-full p-4" options={trips} />
-                </div>
+                <Trip />
               </div>
               <div className="flex justify-center">
-                <div className="grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-5 my-8 px-2">
+                <Form className="grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-5 my-8 px-2" onFinish={searchFlight}>
                   <div className=" flex items-center">
                     <div className="bg-[#f1f5f5] p-3 rounded-xl">
                       <GiAirplaneDeparture className="text-[30px]" />
@@ -53,11 +55,8 @@ const Homepage = () => {
                     <div className="pl-2">
                       <div>
                         <h1 className="text-lg font-medium pl-3">Location From</h1>
-                        <div className="">
-                          <Header placeholder="Bali Denpasar (DPS)" />
-                        </div>
+                        <Header placeholder="Bali Denpasar (DPS)" items={airports} name="departureAirport" />
                       </div>
-                      <div></div>
                     </div>
                   </div>
                   <div className=" flex items-center">
@@ -67,11 +66,8 @@ const Homepage = () => {
                     <div className="pl-2">
                       <div>
                         <h1 className="text-lg font-medium pl-3">Location To</h1>
-                        <div className="">
-                          <Header placeholder="Bali Denpasar (DPS)" />
-                        </div>
+                        <Header placeholder="Bali Denpasar (DPS)" items={airports} name="arrivalAirport" />
                       </div>
-                      <div></div>
                     </div>
                   </div>
                   <div className=" flex items-center">
@@ -81,11 +77,8 @@ const Homepage = () => {
                     <div className="pl-2">
                       <div>
                         <h1 className="text-lg font-medium pl-3">Departure Date</h1>
-                        <div className="">
-                          <Date />
-                        </div>
+                        <Date name="departureDate" />
                       </div>
-                      <div></div>
                     </div>
                   </div>
                   <div className=" flex items-center">
@@ -94,25 +87,22 @@ const Homepage = () => {
                     </div>
                     <div className="pl-2">
                       <div>
-                        <h1 className="text-lg font-medium">Traveler</h1>
-                        <div className="">
-                          <input type="button" className="border-none outline-0" value="3 Travelers" />
-                        </div>
+                        <h1 className="text-lg font-medium pl-2">Traveler</h1>
+                        <Traveler />
                       </div>
-                      <div></div>
                     </div>
                     <div className="pl-8 hidden lg:block">
-                      <button className="btn-active p-4 rounded-full" onClick={() => navigate("/results")}>
+                      <button className="btn-active p-4 rounded-full" type="submit">
                         <BsSearch className="text-[20px]" />
                       </button>
                     </div>
                   </div>
                   <div className="col-span-1 sm:col-span-2 lg:hidden">
-                    <button className="btn-active w-full p-4 rounded-full" onClick={() => navigate("/results")}>
+                    <button className="btn-active w-full p-4 rounded-full" type="submit">
                       Search
                     </button>
                   </div>
-                </div>
+                </Form>
               </div>
             </div>
           </div>
@@ -125,9 +115,7 @@ const Homepage = () => {
             <h1 className="text-5xl font-bold text-[#232730] leading-[60px]">Reccomended For You</h1>
             <p className="text-[#cfcfcf]">Here you will find all our luxorious tour packages in a reasonable range of cost</p>
           </div>
-          <div className="slider">
-            <Homeslider />
-          </div>
+          <Homeslider />
         </div>
       </section>
 
@@ -212,9 +200,8 @@ const Homepage = () => {
         </div>
       </section>
 
-      <section></section>
       <Footer />
-    </div>
+    </>
   );
 };
 

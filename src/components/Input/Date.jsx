@@ -1,11 +1,12 @@
-import { DatePicker } from "antd";
+import { DatePicker, Form } from "antd";
 import dayjs from "dayjs";
+
 const dateFormat = "YYYY/MM/DD";
-const Date = () => {
+const Date = ({ name }) => {
   return (
-    <div>
-      <DatePicker defaultValue={dayjs("2022/01/01", dateFormat)} format={dateFormat} bordered={false} />
-    </div>
+    <Form.Item name={name} className="mb-0">
+      <DatePicker defaultValue={dayjs("2022/12/17", dateFormat)} format={dateFormat} bordered={false} picker="date" />
+    </Form.Item>
   );
 };
 
