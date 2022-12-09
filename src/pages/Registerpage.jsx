@@ -4,7 +4,7 @@ import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { logo_white, logo_mini } from "../assets/images/logo/index";
 import { Select, DatePicker } from "antd";
 import { useNavigate } from "react-router-dom";
-import useAuth from "../services/api/useAuth";
+import useRegis from "../services/api/useRegis";
 import dayjs from 'dayjs';
 
 const Registerpage = () => {
@@ -21,7 +21,7 @@ const Registerpage = () => {
   //   setGender({gender: value})
   // };
 
-  const { postRegister } = useAuth();
+  const { postRegister } = useRegis();
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -57,7 +57,7 @@ const Registerpage = () => {
                   },
                 ]}
                 onChange={(value) => {
-                  setGender({gender: value})
+                  setGender(value)
                 }}
               />
               {/* Name */}
@@ -78,10 +78,17 @@ const Registerpage = () => {
                 <div className="birthDate-input-form ml-[20px] flex-[1] mb-0">
                   <label className="birthDate-input px-3 text-[#59595b] text-[0.875rem] font-normal mb-[0.5em] block">Birth Date</label>
                   <div className="birthDate-input-control box-border clear-both text-base relative text-left"></div>
+                  {/* <input
+                      type="text"
+                      placeholder="YYYY-MM-DD"
+                      value={birthDate}
+                      onChange={(e) => setBirthDate(e.target.value)}
+                      className="inline-flex items-center justify-start relative align-top pl-0 bg-transparent rounded-[0] border-b border-solid border-[#dedede] shadow-none h-[32px] text-[14px] leading-[20px] font-normal max-w-full w-full active:outline-none focus:outline-none"
+                    /> */}
                   <DatePicker
                   defaultValue={dayjs("2022/12/17", "YYYY/MM/DD")} format={"YYYY/MM/DD"} bordered={false} picker="date"
                   onChange={(date, dateString) => {
-                    setBirthDate({test: date, birthDate: dateString})
+                    setBirthDate(date)
                   }}/>
                   {/* <Date name="birthDate"></Date> */}
                 </div>

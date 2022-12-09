@@ -9,7 +9,7 @@ const useAuth = () => {
         try {
             console.log(email);
             console.log(password);
-            await axios.post(`${process.env.REACT_APP_URL_API}/user/sign-in`, {
+            await axios.post(`https://api-flight.up.railway.app/user/sign-in`, {
         email: email,
         password: password,
     }).then((response) => {
@@ -22,27 +22,9 @@ const useAuth = () => {
         }
     });
 
-    const postRegister = useCallback(async ({ fullName, birthDate, telephone, gender, email, password }) => {
-        try {
-            console.log(email);
-            await axios.post(`${process.env.REACT_APP_URL_API}/user/sign-up`, {
-                fullName: fullName,
-                birthDate: birthDate,
-                telephone: telephone,
-                email: email,
-                password: password,
-                gender: gender,
-                rolesId : 2,
-            }).then((res) => {
-                localStorage.setItem('idUser', JSON.stringify(res.data.data.userId));
-                navigate('/login')
-            })
-        } catch (error) {
-            console.log(error);
-        }
-    })
 
-    return { postLogin, postRegister };
+
+    return { postLogin };
 }
 
 export default useAuth;
