@@ -1,13 +1,40 @@
 import React, { useState } from "react";
 import Date from "../components/Input/Date";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
-import { logo_white, logo_mini } from "../../assets/images/logo/index";
+import { logo_white, logo_mini } from "../assets/images/logo/index";
 import { Select } from "antd";
 
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 const Registerpage = () => {
   const navigate = useNavigate();
   const [showPass, setShowPass] = useState(false);
+  const [fullName, setFullName] = useState("");
+  const [gender, setGender] = useState(true);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [birthDate, setBirthDate] = useState("");
+  const [telephone, setTelephone] = useState("");
+
+  const handleRegister = async (e) => {
+    console.log(gender)
+    e.preventDefault();
+    try {
+      await axios.post(`https://api-flight.up.railway.app/user/sign-up`, {
+        fullName: fullName,
+        birthDate: birthDate,
+        telephone: telephone,
+        email: email,
+        password: password,
+        gender: gender,
+        rolesId: 2,
+      });
+      // navigate('/');
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <div className="sm:bg-gradient-to-br from-[#2c4282] via-[#3e5cb8] to-[#4a6fde]">
       <div className="wrapper-form-login flex flex-col items-center min-h-[100vh] container mx-auto m-auto">
@@ -17,7 +44,7 @@ const Registerpage = () => {
         </a>
         <div className="login-form-box sm:w-[590px] w-auto overflow-hidden text-base rounded-md mx-auto my-14">
           <div className="panel-1 p-[50px_50px_20px_50px] bg-white text-[#59595b] relative block">
-            <form className="login-form">
+            <form className="login-form" onSubmit={handleRegister}>
               <h1 className="mb-[30px] text-[18px] leading-[25px] font-bold">Register</h1>
               {/*//! Tittle/Gender */}
               <label className="name-input text-[#59595b] text-[0.875rem] font-normal mb-[0.5em] block">Title</label>
@@ -28,14 +55,16 @@ const Registerpage = () => {
                 style={{ padding: "0" }}
                 options={[
                   {
-                    value: "Mr",
+                    value: true,
                     label: "Mr",
                   },
                   {
-                    value: "Ms",
+                    value: false,
                     label: "Ms",
                   },
                 ]}
+                value={gender}
+                onChange={(e) => setGender(e.target.value)}
               />
               {/* Name */}
               <div className="name-form mb-[20px] flex">
@@ -44,7 +73,6 @@ const Registerpage = () => {
                   <div className="name-input-control box-border clear-both text-base relative text-left">
                     <input
                       type="text"
-                      maxLength
                       placeholder="Ex. James Taco"
                       className="inline-flex items-center justify-start relative align-top pl-0 bg-transparent rounded-[0] border-b border-solid border-[#dedede] shadow-none h-[32px] text-[14px] leading-[20px] font-normal max-w-full w-full active:outline-none focus:outline-none"
                     />
@@ -64,7 +92,6 @@ const Registerpage = () => {
                   <div className="phone-number-control box-border clear-both text-base relative text-left">
                     <input
                       type="text"
-                      maxLength
                       placeholder="e.g 81234567890"
                       className="pl-0 bg-transparent rounded-none border-b border-solid border-[#dedede] shadow-none h-[32px] text-[14px] leading-[20px] font-normal max-w-full w-full inline-flex items-center justify-start relative align-top m-0 active:outline-none focus:outline-none"
                     />
@@ -77,7 +104,6 @@ const Registerpage = () => {
                 <div className="email-control box-border clear-both text-base relative text-left">
                   <input
                     type="email"
-                    maxLength
                     placeholder="james@gmail.com"
                     className="pl-0 bg-transparent rounded-none border-b border-solid border-[#dedede] text-[#59595b] shadow-none h-[32px] text-[14px] leading-[20px] font-normal w-full max-w-full inline-flex items-center relative align-top active:outline-none focus:outline-none"
                   />
@@ -89,7 +115,6 @@ const Registerpage = () => {
                 <div className="password-control box-border clear-both text-base relative text-left">
                   <input
                     type={showPass ? "text" : "password"}
-                    maxLength
                     placeholder="Password"
                     className="pl-0 bg-transparent rounded-none border-b border-solid border-[#dedede] text-[#59595b] shadow-none h-[32px] text-[14px] leading-[20px] font-normal w-full max-w-full inline-flex items-center relative align-top active:outline-none focus:outline-none"
                   />
