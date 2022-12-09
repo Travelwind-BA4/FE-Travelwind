@@ -17,6 +17,7 @@ const Resultpage = () => {
   const { schedule } = useSchedule();
   const navigate = useNavigate();
 
+
   return (
     <div className="h-screen">
       <section className="bg-[#3d74eb]">
@@ -35,7 +36,11 @@ const Resultpage = () => {
               </div>
             </div>
             <div className="flight-header-item">
-              <button onClick={() => setShowForm(!showForm)} onCLi className="text-base text-white rounded-md border bg-transparent border-white border-solid flex w-full py-2 px-6 ">
+              <button
+                onClick={() => setShowForm(!showForm)}
+                onCLi
+                className="text-base text-white rounded-md border bg-transparent border-white border-solid flex w-full py-2 px-6 "
+              >
                 Change Search
               </button>
             </div>
@@ -56,18 +61,25 @@ const Resultpage = () => {
           <div className="flex flex-col  bg-[#f1f5f5] rounded-md ">
             <div className="flex flex-row justify-between items-center border-b border-gray-300">
               <div className="mx-5 py-2">
-                <p className="font-semibold text-xl mb-1">Departure Flight to Test</p>
+                <p className="font-semibold text-xl mb-1">
+                  Departure Flight to Test
+                </p>
                 <p className="text-base font-light pb-2">
                   Wed 24 Nov 2022 <span> | </span> 1 Traveler
                 </p>
               </div>
               <div className="mx-8">
-                <button className="text-base font-medium text-gray-500 rounded-md w-full py-2 px-6 bg-gray-200 hover:bg-gray-100" onClick={() => setShowDate(!showDate)}>
+                <button
+                  className="text-base font-medium text-gray-500 rounded-md w-full py-2 px-6 bg-gray-200 hover:bg-gray-100"
+                  onClick={() => setShowDate(!showDate)}
+                >
                   Change Date
                 </button>
               </div>
             </div>
-            <div className={showDate ? "flex justify-center my-2 pt-2" : "hidden"}>
+            <div
+              className={showDate ? "flex justify-center my-2 pt-2" : "hidden"}
+            >
               <div className="bg-[#f1f5f5]">
                 <h1>Coming Soon</h1>
               </div>
@@ -103,7 +115,10 @@ const Resultpage = () => {
                   <p className="font-semibold text-xl">07.30</p>
                   <p className="font-light text-sm">TD</p>
                 </div>
-                <AiOutlineArrowRight size="1.2rem" className="text-gray-400 mx-2" />
+                <AiOutlineArrowRight
+                  size="1.2rem"
+                  className="text-gray-400 mx-2"
+                />
                 <div className="arrival mx-4">
                   <p className="font-semibold text-xl">07.30</p>
                   <p className="font-light text-sm">SASD</p>
@@ -121,7 +136,10 @@ const Resultpage = () => {
                 </div>
               </div>
               <div className="button-choose mr-12">
-                <button className="bg-blue-700 text-sm font-medium text-white rounded-md py-2 px-2 hover:bg-blue-600" onClick={() => navigate("/flight")}>
+                <button
+                  className="bg-blue-700 text-sm font-medium text-white rounded-md py-2 px-2 hover:bg-blue-600"
+                  onClick={() => navigate("/flight")}
+                >
                   Choose Flight
                 </button>
               </div>
@@ -136,7 +154,10 @@ const Resultpage = () => {
                   <p className="font-semibold text-xl">07.30</p>
                   <p className="font-light text-sm">TD</p>
                 </div>
-                <AiOutlineArrowRight size="1.2rem" className="text-gray-400 mx-2" />
+                <AiOutlineArrowRight
+                  size="1.2rem"
+                  className="text-gray-400 mx-2"
+                />
                 <div className="arrival mx-4">
                   <p className="font-semibold text-xl">07.30</p>
                   <p className="font-light text-sm">SASD</p>
@@ -154,7 +175,10 @@ const Resultpage = () => {
                 </div>
               </div>
               <div className="button-choose mr-12">
-                <button className="bg-blue-700 text-sm font-medium text-white rounded-md py-2 px-2 hover:bg-blue-600" onClick={() => navigate("/flight")}>
+                <button
+                  className="bg-blue-700 text-sm font-medium text-white rounded-md py-2 px-2 hover:bg-blue-600"
+                  onClick={() => navigate("/flight")}
+                >
                   Choose Flight
                 </button>
               </div>
@@ -169,7 +193,10 @@ const Resultpage = () => {
                   <p className="font-semibold text-xl">07.30</p>
                   <p className="font-light text-sm">TD</p>
                 </div>
-                <AiOutlineArrowRight size="1.2rem" className="text-gray-400 mx-2" />
+                <AiOutlineArrowRight
+                  size="1.2rem"
+                  className="text-gray-400 mx-2"
+                />
                 <div className="arrival mx-4">
                   <p className="font-semibold text-xl">07.30</p>
                   <p className="font-light text-sm">SASD</p>
@@ -187,7 +214,10 @@ const Resultpage = () => {
                 </div>
               </div>
               <div className="button-choose mr-12">
-                <button className="bg-blue-700 text-sm font-medium text-white rounded-md py-2 px-2 hover:bg-blue-600" onClick={() => navigate("/flight")}>
+                <button
+                  className="bg-blue-700 text-sm font-medium text-white rounded-md py-2 px-2 hover:bg-blue-600"
+                  onClick={() => navigate("/flight")}
+                >
                   Choose Flight
                 </button>
               </div>
