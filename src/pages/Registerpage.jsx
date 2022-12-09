@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import Date from "../components/Input/Date";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
-import { logo_white, logo_mini } from "../../assets/images/logo/index";
 import { Select } from "antd";
-
 import { useNavigate } from "react-router-dom";
+import { logo_mini, logo_white } from "../assets/images/logo";
+
 const Registerpage = () => {
   const navigate = useNavigate();
   const [showPass, setShowPass] = useState(false);

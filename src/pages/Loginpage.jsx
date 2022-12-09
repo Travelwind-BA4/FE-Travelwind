@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
-import { logo_white, logo_mini } from "../../assets/images/logo/index";
+
 import { useNavigate } from "react-router-dom";
+import { logo_mini, logo_white } from "../assets/images/logo";
 const Loginpage = () => {
   const navigate = useNavigate();
   const [showPass, setShowPass] = useState(false);
