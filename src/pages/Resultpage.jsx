@@ -5,22 +5,17 @@ import { SiChinasouthernairlines } from "react-icons/si";
 import { AiOutlineArrowRight, AiOutlineDown } from "react-icons/ai";
 
 import { RiSuitcase2Line } from "react-icons/ri";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
+
+import { useNavigate, useParams } from "react-router-dom";
+import useSchedule from "../services/api/useSchedule";
 
 const Resultpage = () => {
   const [showForm, setShowForm] = useState(false);
   const [showDate, setShowDate] = useState(false);
-  const [dummy, setDummy] = useState([]);
+  const params = useParams();
+  console.log(params);
+  const { schedule } = useSchedule();
   const navigate = useNavigate();
-  const getData = async () => {
-    const dataMovies = await axios.get(`https://637dc00ecfdbfd9a639bbbab.mockapi.io/api/v1/flight`);
-    setDummy(dataMovies.data);
-  };
-
-  useEffect(() => {
-    getData();
-  }, []);
 
   return (
     <div className="h-screen">

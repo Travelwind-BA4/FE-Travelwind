@@ -12,8 +12,23 @@ import Homeslider from "../components/Slider/Homeslider";
 import Traveler from "../components/Input/Traveler";
 import Trip from "../components/Segmanted/Trip";
 
+import { useEffect } from "react";
+import useAirports from "../services/api/useAirports";
+import useSchedule from "../services/api/useSchedule";
+import { Form } from "antd";
+import timeConverter from "../utils/timeConverter";
+
 const Homepage = () => {
   const navigate = useNavigate();
+  const { getAirports, airports } = useAirports();
+
+  useEffect(() => {
+    getAirports();
+  }, []);
+
+  const searchFlight = ({ departureAirport, arrivalAirport, departureDate, traveler }) => {
+    navigate(`results/search?depDate=${timeConverter(departureDate)}&depAirport=${departureAirport}&arrAirport${arrivalAirport}&traveler=${traveler}`);
+  };
 
   return (
     <>
@@ -32,7 +47,7 @@ const Homepage = () => {
                 <Trip />
               </div>
               <div className="flex justify-center">
-                <div className="grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-5 my-8 px-2">
+                <Form className="grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-5 my-8 px-2" onFinish={searchFlight}>
                   <div className=" flex items-center">
                     <div className="bg-[#f1f5f5] p-3 rounded-xl">
                       <GiAirplaneDeparture className="text-[30px]" />
@@ -40,7 +55,7 @@ const Homepage = () => {
                     <div className="pl-2">
                       <div>
                         <h1 className="text-lg font-medium pl-3">Location From</h1>
-                        <Header placeholder="Bali Denpasar (DPS)" />
+                        <Header placeholder="Bali Denpasar (DPS)" items={airports} name="departureAirport" />
                       </div>
                     </div>
                   </div>
@@ -51,7 +66,7 @@ const Homepage = () => {
                     <div className="pl-2">
                       <div>
                         <h1 className="text-lg font-medium pl-3">Location To</h1>
-                        <Header placeholder="Bali Denpasar (DPS)" />
+                        <Header placeholder="Bali Denpasar (DPS)" items={airports} name="arrivalAirport" />
                       </div>
                     </div>
                   </div>
@@ -62,7 +77,7 @@ const Homepage = () => {
                     <div className="pl-2">
                       <div>
                         <h1 className="text-lg font-medium pl-3">Departure Date</h1>
-                        <Date />
+                        <Date name="departureDate" />
                       </div>
                     </div>
                   </div>
@@ -72,22 +87,22 @@ const Homepage = () => {
                     </div>
                     <div className="pl-2">
                       <div>
-                        <h1 className="text-lg font-medium">Traveler</h1>
+                        <h1 className="text-lg font-medium pl-2">Traveler</h1>
                         <Traveler />
                       </div>
                     </div>
                     <div className="pl-8 hidden lg:block">
-                      <button className="btn-active p-4 rounded-full" onClick={() => navigate("/results")}>
+                      <button className="btn-active p-4 rounded-full" type="submit">
                         <BsSearch className="text-[20px]" />
                       </button>
                     </div>
                   </div>
                   <div className="col-span-1 sm:col-span-2 lg:hidden">
-                    <button className="btn-active w-full p-4 rounded-full" onClick={() => navigate("/results")}>
+                    <button className="btn-active w-full p-4 rounded-full" type="submit">
                       Search
                     </button>
                   </div>
-                </div>
+                </Form>
               </div>
             </div>
           </div>
