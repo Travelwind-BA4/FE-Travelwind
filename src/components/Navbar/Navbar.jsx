@@ -7,6 +7,9 @@ import Navphone from "./Navphone";
 import { logo_blue } from "../../assets/images/logo";
 const Navbar = ({ nav, notif }) => {
   const navigate = useNavigate();
+  const token = JSON.parse(localStorage.getItem('token'));
+  const user = JSON.parse(localStorage.getItem('user'))
+
   return (
     <nav className={`${nav}`}>
       <div className="flex justify-between container mx-auto px-10 h-20 items-center">
@@ -24,7 +27,19 @@ const Navbar = ({ nav, notif }) => {
           </ul>
         </div>
         <div className="flex items-center hidden sm:flex">
-          <div className="">
+          { !token ? 
+              <div className="">
+                <Button1 name="Login" style="rounded-lg" onclick={() => navigate("/login")} />
+              </div>
+            : 
+            <div className="profil flex items-center">
+              <div className="relative">
+                <Notification style={notif} />
+              </div>
+              <Dropdown1 name={user.fullName} />
+            </div>
+          }
+          {/* <div className="">
             <Button1 name="Login" style="rounded-lg" onclick={() => navigate("/login")} />
           </div>
           <div className="profil flex items-center hidden">
@@ -32,7 +47,7 @@ const Navbar = ({ nav, notif }) => {
               <Notification style={notif} />
             </div>
             <Dropdown1 />
-          </div>
+          </div> */}
         </div>
         <div className="block sm:hidden relative">
           <Navphone />

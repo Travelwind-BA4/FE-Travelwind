@@ -12,7 +12,7 @@ const items = [
   },
 ];
 
-const Dropdown1 = () => {
+const Dropdown1 = ({name}) => {
   return (
     <div>
       <Dropdown
@@ -24,7 +24,7 @@ const Dropdown1 = () => {
       >
         <div className="flex items-center ml-3 cursor-pointer">
           <FiUser className="text-lg" />
-          <span className="px-2">Nizar Fazari</span>
+          <span className="px-2">{name}</span>
         </div>
       </Dropdown>
     </div>

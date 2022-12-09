@@ -11,7 +11,6 @@ import Navbar from "../components/Navbar/Navbar";
 import Homeslider from "../components/Slider/Homeslider";
 import Traveler from "../components/Input/Traveler";
 import Trip from "../components/Segmanted/Trip";
-
 import { useEffect } from "react";
 import useAirports from "../services/api/useAirports";
 import useSchedule from "../services/api/useSchedule";
