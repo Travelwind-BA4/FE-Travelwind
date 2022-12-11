@@ -20,21 +20,9 @@ const items = [
 ];
 const Title1 = ({ placeholder, item }) => {
   return (
-    <div>
-      <Select
-        showSearch
-        className="w-[100px] border-b border-gray-300"
-        bordered={false}
-        placeholder={placeholder}
-        optionFilterProp="children"
-        onChange={onChange}
-        onSearch={onSearch}
-        filterOption={(input, option) =>
-          (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
-        }
-        options={items}
-      />
-    </div>
+    <>
+      <Select showSearch={false} className="w-[100px] border-b border-gray-300" bordered={false} placeholder={placeholder} onChange={onChange} options={items} />
+    </>
   );
 };
 

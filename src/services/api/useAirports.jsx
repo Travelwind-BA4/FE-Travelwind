@@ -12,9 +12,9 @@ const useAirports = () => {
     }
   });
 
-  const searchAirport = useCallback(async () => {
+  const searchAirport = useCallback(async (city) => {
     try {
-      const data = await axios.get(`${process.env.REACT_APP_URL_API}/airports/get-all`);
+      const data = await axios.get(`${process.env.REACT_APP_URL_API}/airports/city/${city}`);
 
       setAirports(data.data.data);
     } catch (error) {
@@ -22,7 +22,7 @@ const useAirports = () => {
     }
   });
 
-  return { getAirports, airports };
+  return { getAirports, airports, searchAirport };
 };
 
 export default useAirports;
