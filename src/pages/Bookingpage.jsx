@@ -12,33 +12,35 @@ import timeConverter from "../utils/timeConverter";
 
 const BookingPage = () => {
   const navigate = useNavigate();
-  const [datas, setDatas] = useState([]);
+  // const [datas, setDatas] = useState([]);
   const { addTravelerByOrder } = useTraveler();
 
-  useEffect(() => {
-    addTravelerByOrder(datas);
-  }, [datas]);
+  // useEffect(() => {
+
+  // }, [datas]);
 
   const bookTraveler = (value) => {
     const user = JSON.parse(localStorage.getItem("user"));
 
-    const payloads = {
-      type: "TRAVELER",
-      title: value.title,
-      firstName: value["First Name"],
-      lastName: value["Last Name"],
-      birthDate: timeConverter(value.dateBirth),
-      nationality: value.Nationality,
-      userId: user.userId,
-      idCardNumber: value["ID Card Number"],
-      idCardExpiry: value.cardExpired && timeConverter(value.cardExpired),
-      idCardCountry: value["Card Country"],
-      passportNumber: value["ID Passport"],
-      passportExpiry: timeConverter(value.passportExpired),
-      passportCardCountry: value["Passport Country"],
-    };
-
-    setDatas([...datas, payloads]);
+    const payloads = [
+      {
+        type: "TRAVELER",
+        title: value.title,
+        firstName: value["First Name"],
+        lastName: value["Last Name"],
+        birthDate: timeConverter(value.dateBirth),
+        nationality: value.Nationality,
+        userId: user.userId,
+        idCardNumber: value["ID Card Number"],
+        idCardExpiry: value.cardExpired && timeConverter(value.cardExpired),
+        idCardCountry: value["Card Country"],
+        passportNumber: value["ID Passport"],
+        passportExpiry: timeConverter(value.passportExpired),
+        passportCardCountry: value["Passport Country"],
+      },
+    ];
+    addTravelerByOrder(payloads);
+    navigate("/payment");
   };
   return (
     <div className="container mx-auto py-10 px-10">
