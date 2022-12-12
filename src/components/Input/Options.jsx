@@ -11,9 +11,16 @@ const Options = ({ placeholder, name, airports, styles, searchAirport }) => {
     //   searchAirport(value);
     // }
   };
+
+  const onChange = (val) => {
+    // onChangeCountry(val) {
+    //   const findCountry = this.allCountries.find((e) => e.name === val)
+    //   this.countryCode = findCountry.code
+    // },
+  };
   return (
     <Form.Item name={name} className="mb-0">
-      <Select showSearch={true} className={styles} bordered={false} placeholder={placeholder} onSearch={onSearch}>
+      <Select showSearch className={styles} bordered={false} placeholder={placeholder} onSearch={onSearch} onChange={onChange}>
         {airports &&
           airports.map((airport, index) => {
             return (
