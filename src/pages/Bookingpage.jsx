@@ -6,16 +6,39 @@ import Date from "../components/Input/Date";
 import Text from "../components/Input/Text";
 import { Form } from "antd";
 import Booking from "../components/Dropdown/Title";
-import Doctype from "../components/Dropdown/Doctype";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useTraveler from "../services/api/useTraveler";
+import timeConverter from "../utils/timeConverter";
 
 const BookingPage = () => {
   const navigate = useNavigate();
-  const [docType, setDoctype] = useState(false);
+  const [datas, setDatas] = useState([]);
   const { addTravelerByOrder } = useTraveler();
+
+  useEffect(() => {
+    addTravelerByOrder(datas);
+  }, [datas]);
+
   const bookTraveler = (value) => {
-    addTravelerByOrder(value);
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    const payloads = {
+      type: "TRAVELER",
+      title: value.title,
+      firstName: value["First Name"],
+      lastName: value["Last Name"],
+      birthDate: timeConverter(value.dateBirth),
+      nationality: value.Nationality,
+      userId: user.userId,
+      idCardNumber: value["ID Card Number"],
+      idCardExpiry: value.cardExpired && timeConverter(value.cardExpired),
+      idCardCountry: value["Card Country"],
+      passportNumber: value["ID Passport"],
+      passportExpiry: timeConverter(value.passportExpired),
+      passportCardCountry: value["Passport Country"],
+    };
+
+    setDatas([...datas, payloads]);
   };
   return (
     <div className="container mx-auto py-10 px-10">
@@ -44,12 +67,12 @@ const BookingPage = () => {
                         name="title"
                         items={[
                           {
-                            value: true,
+                            value: "Mr",
                             label: "Mr",
                           },
 
                           {
-                            value: false,
+                            value: "Mrs",
                             label: "Mrs",
                           },
                         ]}
@@ -77,60 +100,35 @@ const BookingPage = () => {
                   <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                     <Text name="Nationality" placeholder="Indonesia" />
                   </div>
-                  <div class="w-full px-3 mt-6">
-                    <label class="block  tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
-                      Document Type <span className="text-red-500">*</span>
+                </div>
+                <div class="flex flex-wrap -mx-3 mb-6">
+                  <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                    <Text name="ID Passport" placeholder="ex. 1702192905990001" />
+                  </div>
+                  <div class="w-full md:w-1/3 px-3">
+                    <Text name="Passport Country" placeholder="Indonesia" />
+                  </div>
+                  <div class="w-full md:w-1/3 px-3">
+                    <label class="block  tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
+                      Card Expiry <span className="text-red-500">*</span>
                     </label>
-                    <Doctype
-                      placeholder={"Id Card"}
-                      styles="w-[100%] border-b border-gray-300"
-                      setDoctype={setDoctype}
-                      items={[
-                        {
-                          value: false,
-                          label: "ID Card",
-                        },
-
-                        {
-                          value: true,
-                          label: "Passport",
-                        },
-                      ]}
-                    />
-                    <p class="text-gray-400 text-xs mb-3 italic mt-1">If you are a foreigner, please select a passport.</p>
+                    <Date style="border-b border-gray-300" name="passportExpired" />
                   </div>
                 </div>
-                {docType ? (
-                  <div class="flex flex-wrap -mx-3 mb-6">
-                    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-                      <Text name="ID Passport" placeholder="ex. 1702192905990001" />
-                    </div>
-                    <div class="w-full md:w-1/3 px-3">
-                      <Text name="Passport Country" placeholder="Indonesia" />
-                    </div>
-                    <div class="w-full md:w-1/3 px-3">
-                      <label class="block  tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
-                        Card Expiry <span className="text-red-500">*</span>
-                      </label>
-                      <Date style="border-b border-gray-300" name="passportExpired" />
-                    </div>
+                <div class="flex flex-wrap -mx-3 mb-6">
+                  <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                    <Text name="ID Card Number" placeholder="ex. 1702192905990001" />
                   </div>
-                ) : (
-                  <div class="flex flex-wrap -mx-3 mb-6">
-                    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-                      <Text name="ID Card Number" placeholder="ex. 1702192905990001" />
-                    </div>
-                    <div class="w-full md:w-1/3 px-3">
-                      <Text name="ID Card Country" placeholder="Indonesia" />
-                    </div>
-                    <div class="w-full md:w-1/3 px-3">
-                      <label class="block  tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
-                        Card Expiry <span className="text-red-500">*</span>
-                      </label>
-                      <Date style="border-b border-gray-300" name="cardExpired" />
-                    </div>
+                  <div class="w-full md:w-1/3 px-3">
+                    <Text name="Card Country" placeholder="Indonesia" />
                   </div>
-                )}
+                  <div class="w-full md:w-1/3 px-3">
+                    <label class="block  tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
+                      Card Expiry <span className="text-red-500">*</span>
+                    </label>
+                    <Date style="border-b border-gray-300" name="cardExpired" />
+                  </div>
+                </div>
               </div>
             </div>
           </div>

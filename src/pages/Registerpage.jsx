@@ -1,13 +1,33 @@
 import React, { useState } from "react";
 import Date from "../components/Input/Date";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
-import { Select } from "antd";
+import { logo_white, logo_mini } from "../assets/images/logo/index";
+import { Select, DatePicker } from "antd";
 import { useNavigate } from "react-router-dom";
-import { logo_mini, logo_white } from "../assets/images/logo";
+import useRegis from "../services/api/useRegis";
+import dayjs from 'dayjs';
 
 const Registerpage = () => {
   const navigate = useNavigate();
   const [showPass, setShowPass] = useState(false);
+  const [fullName, setFullName] = useState("");
+  const [gender, setGender] = useState(true);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [birthDate, setBirthDate] = useState("");
+  const [telephone, setTelephone] = useState("");
+
+  // const handleChange = (value) => {
+  //   setGender({gender: value})
+  // };
+
+  const { postRegister } = useRegis();
+
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    postRegister({ fullName, birthDate, telephone, gender, email, password })
+  }
+
   return (
     <div className="sm:bg-gradient-to-br from-[#2c4282] via-[#3e5cb8] to-[#4a6fde]">
       <div className="wrapper-form-login flex flex-col items-center min-h-[100vh] container mx-auto m-auto">
@@ -17,7 +37,7 @@ const Registerpage = () => {
         </a>
         <div className="login-form-box sm:w-[590px] w-auto overflow-hidden text-base rounded-md mx-auto my-14">
           <div className="panel-1 p-[50px_50px_20px_50px] bg-white text-[#59595b] relative block">
-            <form className="login-form">
+            <form className="login-form" onSubmit={handleRegister}>
               <h1 className="mb-[30px] text-[18px] leading-[25px] font-bold">Register</h1>
               {/*//! Tittle/Gender */}
               <label className="name-input text-[#59595b] text-[0.875rem] font-normal mb-[0.5em] block">Title</label>
@@ -28,14 +48,17 @@ const Registerpage = () => {
                 style={{ padding: "0" }}
                 options={[
                   {
-                    value: "Mr",
+                    value: true,
                     label: "Mr",
                   },
                   {
-                    value: "Ms",
+                    value: false,
                     label: "Ms",
                   },
                 ]}
+                onChange={(value) => {
+                  setGender(value)
+                }}
               />
               {/* Name */}
               <div className="name-form mb-[20px] flex">
@@ -44,8 +67,9 @@ const Registerpage = () => {
                   <div className="name-input-control box-border clear-both text-base relative text-left">
                     <input
                       type="text"
-                      maxLength
                       placeholder="Ex. James Taco"
+                      value={fullName}
+                      onChange={(e) => setFullName(e.target.value)}
                       className="inline-flex items-center justify-start relative align-top pl-0 bg-transparent rounded-[0] border-b border-solid border-[#dedede] shadow-none h-[32px] text-[14px] leading-[20px] font-normal max-w-full w-full active:outline-none focus:outline-none"
                     />
                   </div>
@@ -54,7 +78,19 @@ const Registerpage = () => {
                 <div className="birthDate-input-form ml-[20px] flex-[1] mb-0">
                   <label className="birthDate-input px-3 text-[#59595b] text-[0.875rem] font-normal mb-[0.5em] block">Birth Date</label>
                   <div className="birthDate-input-control box-border clear-both text-base relative text-left"></div>
-                  <Date></Date>
+                  {/* <input
+                      type="text"
+                      placeholder="YYYY-MM-DD"
+                      value={birthDate}
+                      onChange={(e) => setBirthDate(e.target.value)}
+                      className="inline-flex items-center justify-start relative align-top pl-0 bg-transparent rounded-[0] border-b border-solid border-[#dedede] shadow-none h-[32px] text-[14px] leading-[20px] font-normal max-w-full w-full active:outline-none focus:outline-none"
+                    /> */}
+                  <DatePicker
+                  defaultValue={dayjs("2022/12/17", "YYYY/MM/DD")} format={"YYYY/MM/DD"} bordered={false} picker="date"
+                  onChange={(date, dateString) => {
+                    setBirthDate(date)
+                  }}/>
+                  {/* <Date name="birthDate"></Date> */}
                 </div>
               </div>
               {/* Mobile Number */}
@@ -64,8 +100,9 @@ const Registerpage = () => {
                   <div className="phone-number-control box-border clear-both text-base relative text-left">
                     <input
                       type="text"
-                      maxLength
                       placeholder="e.g 81234567890"
+                      value={telephone}
+                      onChange={(e) => setTelephone(e.target.value)}
                       className="pl-0 bg-transparent rounded-none border-b border-solid border-[#dedede] shadow-none h-[32px] text-[14px] leading-[20px] font-normal max-w-full w-full inline-flex items-center justify-start relative align-top m-0 active:outline-none focus:outline-none"
                     />
                   </div>
@@ -77,8 +114,9 @@ const Registerpage = () => {
                 <div className="email-control box-border clear-both text-base relative text-left">
                   <input
                     type="email"
-                    maxLength
                     placeholder="james@gmail.com"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     className="pl-0 bg-transparent rounded-none border-b border-solid border-[#dedede] text-[#59595b] shadow-none h-[32px] text-[14px] leading-[20px] font-normal w-full max-w-full inline-flex items-center relative align-top active:outline-none focus:outline-none"
                   />
                 </div>
@@ -89,8 +127,9 @@ const Registerpage = () => {
                 <div className="password-control box-border clear-both text-base relative text-left">
                   <input
                     type={showPass ? "text" : "password"}
-                    maxLength
                     placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                     className="pl-0 bg-transparent rounded-none border-b border-solid border-[#dedede] text-[#59595b] shadow-none h-[32px] text-[14px] leading-[20px] font-normal w-full max-w-full inline-flex items-center relative align-top active:outline-none focus:outline-none"
                   />
                   <div onClick={() => setShowPass(!showPass)} className="pointer-events-auto cursor-pointer right-0 h-[32px] text-[#dbdbdb] absolute top-0 w-[32px] z-[4] inline-flex items-center justify-center align-[-0.125em]">
@@ -99,7 +138,7 @@ const Registerpage = () => {
                 </div>
               </div>
               {/* Button Sign Up */}
-              <button className="button-signup p-[15px_25px] text-[18px] leading-[25px] border-none rounded-md flex w-full bg-[#3e5cb8] text-white shadow-md mb-[20px] font-bold touch-manipulation transition-shadow duration-[0.25s] will-change-[box-shadow] relative cursor-pointer justify-center text-center whitespace-nowrap items-center align-top hover:shadow-none hover:bg-[#3855aa]">
+              <button type="submit" className="button-signup p-[15px_25px] text-[18px] leading-[25px] border-none rounded-md flex w-full bg-[#3e5cb8] text-white shadow-md mb-[20px] font-bold touch-manipulation transition-shadow duration-[0.25s] will-change-[box-shadow] relative cursor-pointer justify-center text-center whitespace-nowrap items-center align-top hover:shadow-none hover:bg-[#3855aa]">
                 <span className="text-[18px] leading-[25px] font-normal">Register</span>
               </button>
               {/* Button Google */}

@@ -11,7 +11,6 @@ import Navbar from "../components/Navbar/Navbar";
 import Homeslider from "../components/Slider/Homeslider";
 
 import Trip from "../components/Segmanted/Trip";
-
 import { Form } from "antd";
 import timeConverter from "../utils/timeConverter";
 import Number from "../components/Input/Number";
@@ -21,7 +20,7 @@ import Options from "../components/Input/Options";
 
 const Homepage = () => {
   const navigate = useNavigate();
-  const { getAirports, airports } = useAirports();
+  const { getAirports, airports, searchAirport } = useAirports();
 
   useEffect(() => {
     getAirports();
@@ -55,7 +54,7 @@ const Homepage = () => {
                     <div className="pl-2">
                       <div>
                         <h1 className="text-lg font-medium pl-3">Location From</h1>
-                        <Options placeholder="Soekarno Hatta ( JKT ) " name="departureAirport" styles="min-w-[170px]" airports={airports} />
+                        <Options placeholder="Soekarno Hatta ( JKT ) " name="departureAirport" styles="min-w-[170px]" airports={airports} searchAirport={searchAirport} />
                       </div>
                     </div>
                   </div>

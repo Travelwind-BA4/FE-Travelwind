@@ -1,7 +1,8 @@
 import { Form, Select } from "antd";
 
-const Options = ({ placeholder, name, airports, styles }) => {
+const Options = ({ placeholder, name, airports, styles, searchAirport }) => {
   const onSearch = (value) => {
+    searchAirport(value);
     console.log(value);
     // searchAirport(value);
     // if (value == "") {

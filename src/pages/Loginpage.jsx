@@ -1,11 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
-
+import { logo_white, logo_mini } from "../assets/images/logo/index";
 import { useNavigate } from "react-router-dom";
-import { logo_mini, logo_white } from "../assets/images/logo";
+import useAuth from "../services/api/useAuth";
+
 const Loginpage = () => {
   const navigate = useNavigate();
   const [showPass, setShowPass] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPasword] = useState("");
+  const [msg, setMsg] = useState("");
+
+  const { postLogin } = useAuth();
+
+  const Auth = async (e) => {
+    e.preventDefault();
+    postLogin({ email, password });
+  }
+
   return (
     <div className=" sm:bg-gradient-to-br from-[#2c4282] via-[#3e5cb8] to-[#4a6fde]">
       <div className="wrapper-form-login flex flex-col items-center min-h-[100vh] container m-auto">
@@ -15,7 +27,7 @@ const Loginpage = () => {
         </a>
         <div className="login-form-box sm:w-[590px] w-auto overflow-hidden text-base rounded-md mx-auto my-14">
           <div className="panel-1 p-[50px_50px_20px_50px] bg-white text-[#59595b] relative block">
-            <form className="login-form">
+            <form className="login-form" onSubmit={Auth}>
               <h1 className="mb-[30px] text-[18px] leading-[25px] font-bold">Login</h1>
               {/* Email */}
               <div className="email-form mb-[20px]">
@@ -23,8 +35,9 @@ const Loginpage = () => {
                 <div className="email-control box-border clear-both text-base relative text-left">
                   <input
                     type="email"
-                    maxLength
                     placeholder="james@gmail.com"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     className="pl-0 bg-transparent rounded-none border-b border-solid border-[#dedede] text-[#59595b] shadow-none h-[32px] text-[14px] leading-[20px] font-normal w-full max-w-full inline-flex items-center relative align-top active:outline-none focus:outline-none"
                   />
                 </div>
@@ -35,8 +48,9 @@ const Loginpage = () => {
                 <div className="password-control box-border clear-both text-base relative text-left">
                   <input
                     type={showPass ? "text" : "password"}
-                    maxLength
                     placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPasword(e.target.value)}
                     className="pl-0 bg-transparent rounded-none border-b border-solid border-[#dedede] text-[#59595b] shadow-none h-[32px] text-[14px] leading-[20px] font-normal w-full max-w-full inline-flex items-center relative align-top active:outline-none focus:outline-none"
                   />
                   <div onClick={() => setShowPass(!showPass)} className="pointer-events-auto cursor-pointer right-0 h-[32px] text-[#dbdbdb] absolute top-0 w-[32px] z-[4] inline-flex items-center justify-center align-[-0.125em]">
@@ -44,8 +58,8 @@ const Loginpage = () => {
                   </div>
                 </div>
               </div>
-              {/* Button Sign Up */}
-              <button className="button-signup p-[15px_25px] text-[18px] leading-[25px] border-none rounded-md flex w-full bg-[#3e5cb8] text-white shadow-md mb-[20px] font-bold touch-manipulation transition-shadow duration-[0.25s] will-change-[box-shadow] relative cursor-pointer justify-center text-center whitespace-nowrap items-center align-top hover:shadow-none hover:bg-[#3855aa]">
+              {/* Button Login */}
+              <button type="submit" className="button-signup p-[15px_25px] text-[18px] leading-[25px] border-none rounded-md flex w-full bg-[#3e5cb8] text-white shadow-md mb-[20px] font-bold touch-manipulation transition-shadow duration-[0.25s] will-change-[box-shadow] relative cursor-pointer justify-center text-center whitespace-nowrap items-center align-top hover:shadow-none hover:bg-[#3855aa]">
                 <span className="text-[18px] leading-[25px] font-normal">Log In</span>
               </button>
               {/* Button Google */}

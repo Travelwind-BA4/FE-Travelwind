@@ -10,8 +10,12 @@ const Doctype = ({ placeholder, styles, name, items, setDoctype }) => {
       <Form.Item name={name} className="mb-0">
         <Select showSearch={false} className={styles} bordered={false} placeholder={placeholder} onSelect={onSelect}>
           {items &&
-            items.map((item) => {
-              return <Select.Option value={item.value}>{item.label}</Select.Option>;
+            items.map((item, index) => {
+              return (
+                <Select.Option value={item.value} key={index}>
+                  {item.label}
+                </Select.Option>
+              );
             })}
         </Select>
       </Form.Item>

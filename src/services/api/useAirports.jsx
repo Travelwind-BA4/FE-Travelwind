@@ -3,6 +3,8 @@ import { useCallback, useState } from "react";
 
 const useAirports = () => {
   const [airports, setAirports] = useState([]);
+
+  console.log(airports);
   const getAirports = useCallback(async () => {
     try {
       const data = await axios.get(`${process.env.REACT_APP_URL_API}/airports/get-all`);
