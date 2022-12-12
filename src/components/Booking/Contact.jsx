@@ -29,9 +29,7 @@ const Contact = ({ placeholder, item }) => {
         optionFilterProp="children"
         onChange={onChange}
         onSearch={onSearch}
-        filterOption={(input, option) =>
-          (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
-        }
+        filterOption={(input, option) => (option?.label ?? "").toLowerCase().includes(input.toLowerCase())}
         options={items}
       />
     </div>

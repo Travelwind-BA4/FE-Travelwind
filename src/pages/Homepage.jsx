@@ -5,28 +5,28 @@ import "../styles/Home.css";
 import { header_2, promotion_1, promotion_2, promotion_3, promotion_4 } from "../assets/images/home";
 import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer/Footer";
-import Header from "../components/Input/Header";
+
 import Date from "../components/Input/Date";
 import Navbar from "../components/Navbar/Navbar";
 import Homeslider from "../components/Slider/Homeslider";
-import Traveler from "../components/Input/Traveler";
+
 import Trip from "../components/Segmanted/Trip";
-import { useEffect } from "react";
-import useAirports from "../services/api/useAirports";
-import useSchedule from "../services/api/useSchedule";
 import { Form } from "antd";
 import timeConverter from "../utils/timeConverter";
+import Number from "../components/Input/Number";
+import useAirports from "../services/api/useAirports";
+import { useEffect } from "react";
+import Options from "../components/Input/Options";
 
 const Homepage = () => {
   const navigate = useNavigate();
-  const { getAirports, airports } = useAirports();
+  const { getAirports, airports, searchAirport } = useAirports();
 
   useEffect(() => {
     getAirports();
   }, []);
-
   const searchFlight = ({ departureAirport, arrivalAirport, departureDate, traveler }) => {
-    navigate(`results/search?depDate=${timeConverter(departureDate)}&depAirport=${departureAirport}&arrAirport${arrivalAirport}&traveler=${traveler}`);
+    navigate(`results/search?depDate=${timeConverter(departureDate)}&depAirport=${departureAirport}&arrAirport=${arrivalAirport}&traveler=${traveler}`);
   };
 
   return (
@@ -54,7 +54,7 @@ const Homepage = () => {
                     <div className="pl-2">
                       <div>
                         <h1 className="text-lg font-medium pl-3">Location From</h1>
-                        <Header placeholder="Bali Denpasar (DPS)" items={airports} name="departureAirport" />
+                        <Options placeholder="Soekarno Hatta ( JKT ) " name="departureAirport" styles="min-w-[170px]" airports={airports} searchAirport={searchAirport} />
                       </div>
                     </div>
                   </div>
@@ -65,7 +65,7 @@ const Homepage = () => {
                     <div className="pl-2">
                       <div>
                         <h1 className="text-lg font-medium pl-3">Location To</h1>
-                        <Header placeholder="Bali Denpasar (DPS)" items={airports} name="arrivalAirport" />
+                        <Options placeholder="Soekarno Hatta ( JKT ) " name="arrivalAirport" airports={airports} styles="min-w-[170px]" />
                       </div>
                     </div>
                   </div>
@@ -87,7 +87,7 @@ const Homepage = () => {
                     <div className="pl-2">
                       <div>
                         <h1 className="text-lg font-medium pl-2">Traveler</h1>
-                        <Traveler />
+                        <Number />
                       </div>
                     </div>
                     <div className="pl-8 hidden lg:block">
