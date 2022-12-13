@@ -14,7 +14,7 @@ const Date = ({ name, style }) => {
         ]}
         hasFeedback
       >
-        <DatePicker format="YYYY-MM-DD" bordered={false} className />
+        <DatePicker format="YYYY-MM-DD" bordered={false} />
       </Form.Item>
     </div>
   );

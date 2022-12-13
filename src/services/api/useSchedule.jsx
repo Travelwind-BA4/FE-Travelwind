@@ -3,7 +3,6 @@ import { useCallback, useState } from "react";
 
 const useSchedule = () => {
   const [schedules, setSchedules] = useState([]);
-  const [schedule, setSchedule] = useState([]);
 
   const getSchedule = useCallback(
     async ({ departureAirport, arrivalAirport, departureDate }) => {
