@@ -4,7 +4,16 @@ import { Form, Select } from "antd";
 const Booking = ({ placeholder, styles, name, items }) => {
   return (
     <>
-      <Form.Item name={name} className="mb-0">
+      <Form.Item
+        name={name}
+        className="mb-0"
+        rules={[
+          {
+            required: true,
+          },
+        ]}
+        hasFeedback
+      >
         <Select showSearch={false} className={styles} bordered={false} placeholder={placeholder}>
           {items &&
             items.map((item, index) => {

@@ -1,0 +1,42 @@
+import { Form, Select } from "antd";
+import { useEffect } from "react";
+import useCountries from "../../services/api/useCountries";
+
+const Countries = ({ name, items }) => {
+  const { getCountries, countries } = useCountries();
+  useEffect(() => {
+    getCountries();
+  }, []);
+  return (
+    <>
+      <div>
+        <label className="block  tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-city">
+          {name} <span className="text-red-500">*</span>
+        </label>
+        <Form.Item
+          name={name}
+          className="mb-0"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+          hasFeedback
+        >
+          <Select showSearch={false} bordered={false} placeholder="Indonesia" className="border-b border-gray-300">
+            {countries &&
+              countries.map((country, index) => {
+                return (
+                  <Select.Option value={country.countryName} key={index}>
+                    {country.countryName}
+                  </Select.Option>
+                );
+              })}
+          </Select>
+        </Form.Item>
+      </div>
+    </>
+  );
+};
+
+export default Countries;

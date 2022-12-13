@@ -11,7 +11,7 @@ import Navbar from "../components/Navbar/Navbar";
 import Homeslider from "../components/Slider/Homeslider";
 
 import Trip from "../components/Segmanted/Trip";
-import { Form } from "antd";
+import { Form, notification } from "antd";
 import timeConverter from "../utils/timeConverter";
 import Number from "../components/Input/Number";
 import useAirports from "../services/api/useAirports";
@@ -22,16 +22,30 @@ const Homepage = () => {
   const navigate = useNavigate();
   const { getAirports, airports, searchAirport } = useAirports();
 
+  const [api, contextHolder] = notification.useNotification();
+  const openNotificationWithIcon = (type) => {
+    console.log(type);
+    api[type]({
+      message: "Warning Airports",
+      description: "Departure and Arrival Aiports must be different",
+    });
+  };
+
   useEffect(() => {
     getAirports();
   }, []);
   const searchFlight = ({ departureAirport, arrivalAirport, departureDate, traveler }) => {
-    navigate(`results/search?depDate=${timeConverter(departureDate)}&depAirport=${departureAirport}&arrAirport=${arrivalAirport}&traveler=${traveler}`);
+    if (departureAirport == arrivalAirport) {
+      openNotificationWithIcon("error");
+    } else {
+      navigate(`results/search?depDate=${timeConverter(departureDate)}&depAirport=${departureAirport}&arrAirport=${arrivalAirport}&traveler=${traveler}`);
+    }
   };
 
   return (
     <>
       <section className="relative sm:mb-[250px] mb-[450px]">
+        {contextHolder}
         <Navbar nav="absolute top-0 w-full z-10 text-white" notif="text-white" />
         <div className="h-[75vh] header">
           <div className=" bg-header bg-cover brightness-[0.85] w-full h-full absolute top-0" style={{ backgroundImage: `url(${header_2})`, zIndex: "-2" }}></div>
@@ -41,12 +55,12 @@ const Homepage = () => {
             <p className="text-xl">We have more than 1 million happy customer arround the world</p>
           </div>
           <div className="flex justify-center">
-            <div className="border-2 rounded-xl shadow-md bg-[#fff] absolute sm:bottom-[-140px] bottom-[-400px] px-10 py-3 mx-5">
+            <div className="border-2 rounded-xl shadow-md bg-[#fff] absolute sm:bottom-[-140px] bottom-[-400px] px-10 py-3 mx-5 lg:min-w-[800px] ">
               <div className="flex justify-center mt-7">
                 <Trip />
               </div>
               <div className="flex justify-center">
-                <Form className="grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-5 my-8 px-2" onFinish={searchFlight}>
+                <Form className="grid xl:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-5 my-8 px-2" onFinish={searchFlight}>
                   <div className=" flex items-center">
                     <div className="bg-[#f1f5f5] p-3 rounded-xl">
                       <GiAirplaneDeparture className="text-[30px]" />
@@ -54,7 +68,7 @@ const Homepage = () => {
                     <div className="pl-2">
                       <div>
                         <h1 className="text-lg font-medium pl-3">Location From</h1>
-                        <Options placeholder="Soekarno Hatta ( JKT ) " name="departureAirport" styles="min-w-[170px]" airports={airports} searchAirport={searchAirport} />
+                        <Options placeholder="Soekarno Hatta ( JKT ) " name="departureAirport" styles="min-w-[200px]" airports={airports} searchAirport={searchAirport} />
                       </div>
                     </div>
                   </div>
@@ -65,7 +79,7 @@ const Homepage = () => {
                     <div className="pl-2">
                       <div>
                         <h1 className="text-lg font-medium pl-3">Location To</h1>
-                        <Options placeholder="Soekarno Hatta ( JKT ) " name="arrivalAirport" airports={airports} styles="min-w-[170px]" />
+                        <Options placeholder="Soekarno Hatta ( JKT ) " name="arrivalAirport" airports={airports} styles="min-w-[200px]" />
                       </div>
                     </div>
                   </div>
@@ -76,7 +90,7 @@ const Homepage = () => {
                     <div className="pl-2">
                       <div>
                         <h1 className="text-lg font-medium pl-3">Departure Date</h1>
-                        <Date name="departureDate" />
+                        <Date name="departureDate" style="mb-0" />
                       </div>
                     </div>
                   </div>

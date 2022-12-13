@@ -6,18 +6,15 @@ import Date from "../components/Input/Date";
 import Text from "../components/Input/Text";
 import { Form } from "antd";
 import Booking from "../components/Dropdown/Title";
-import { useEffect, useState } from "react";
+
 import useTraveler from "../services/api/useTraveler";
 import timeConverter from "../utils/timeConverter";
+import Countries from "../components/Dropdown/Countries";
 
 const BookingPage = () => {
   const navigate = useNavigate();
-  // const [datas, setDatas] = useState([]);
+
   const { addTravelerByOrder } = useTraveler();
-
-  // useEffect(() => {
-
-  // }, [datas]);
 
   const bookTraveler = (value) => {
     const user = JSON.parse(localStorage.getItem("user"));
@@ -39,6 +36,7 @@ const BookingPage = () => {
         passportCardCountry: value["Passport Country"],
       },
     ];
+
     addTravelerByOrder(payloads);
     navigate("/payment");
   };
@@ -56,7 +54,7 @@ const BookingPage = () => {
               </p>
               <div className=" border-b border-gray-300"></div>
               <p className="mt-2 text-sm px-3 text-orange-400 font-semibold">Name according to ID Card/Passport without title and punctuation</p>
-              <div class="mt-3 w-full max-w-lg px-3">
+              <div class="mt-3 w-full max-w-2xl px-3">
                 <div class="flex flex-wrap -mx-3 mb-6">
                   <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
                     <label class="block  tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
@@ -90,7 +88,7 @@ const BookingPage = () => {
                     <Text name="Last Name" placeholder="Smith" />
                   </div>
                 </div>
-                <div class="flex flex-wrap -mx-3 mb-2">
+                <div class="flex flex-wrap -mx-3 mb-6">
                   <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                     <label class="block  tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
                       Date Birth <span className="text-red-500">*</span>
@@ -100,7 +98,7 @@ const BookingPage = () => {
                     </div>
                   </div>
                   <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                    <Text name="Nationality" placeholder="Indonesia" />
+                    <Countries name="Nationality" />
                   </div>
                 </div>
                 <div class="flex flex-wrap -mx-3 mb-6">
@@ -108,7 +106,7 @@ const BookingPage = () => {
                     <Text name="ID Passport" placeholder="ex. 1702192905990001" />
                   </div>
                   <div class="w-full md:w-1/3 px-3">
-                    <Text name="Passport Country" placeholder="Indonesia" />
+                    <Countries name="Passport Country" />
                   </div>
                   <div class="w-full md:w-1/3 px-3">
                     <label class="block  tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
@@ -122,7 +120,7 @@ const BookingPage = () => {
                     <Text name="ID Card Number" placeholder="ex. 1702192905990001" />
                   </div>
                   <div class="w-full md:w-1/3 px-3">
-                    <Text name="Card Country" placeholder="Indonesia" />
+                    <Countries name="Card Country" />
                   </div>
                   <div class="w-full md:w-1/3 px-3">
                     <label class="block  tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
