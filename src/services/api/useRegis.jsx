@@ -5,16 +5,16 @@ import timeConverter from "../../utils/timeConverter";
 
 const useRegis = () => {
     const navigate = useNavigate();
-    const postRegister = useCallback(async ({ fullName, birthDate, telephone, gender, email, password }) => {
+    const postRegister = useCallback(async (value) => {
         try {
-            console.log(email);
+            console.log(value.email);
             await axios.post(`https://api-flight.up.railway.app/user/sign-up`, {
-                fullName: fullName,
-                birthDate: timeConverter(birthDate),
-                telephone: telephone,
-                email: email,
-                password: password,
-                gender: gender,
+                fullName: value.fullName,
+                birthDate: timeConverter(value.birthDate),
+                telephone: value.telephone,
+                email: value.email,
+                password: value.password,
+                gender: value.gender,
                 rolesId : 2,
             }).then((res) => {
                 localStorage.setItem('idUser', JSON.stringify(res.data.data.userId));

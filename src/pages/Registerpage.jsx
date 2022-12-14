@@ -2,30 +2,28 @@ import React, { useState } from "react";
 import Date from "../components/Input/Date";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { logo_white, logo_mini } from "../assets/images/logo/index";
-import { Select, DatePicker } from "antd";
+import { Select, DatePicker, Form, Input } from "antd";
 import { useNavigate } from "react-router-dom";
 import useRegis from "../services/api/useRegis";
 import dayjs from 'dayjs';
 
 const Registerpage = () => {
   const navigate = useNavigate();
-  const [showPass, setShowPass] = useState(false);
-  const [fullName, setFullName] = useState("");
-  const [gender, setGender] = useState(true);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [birthDate, setBirthDate] = useState("");
-  const [telephone, setTelephone] = useState("");
-
-  // const handleChange = (value) => {
-  //   setGender({gender: value})
-  // };
+  const dataGender = [
+    {
+      value: true,
+      label: "Mr",
+    },
+    {
+      value: false,
+      label: "Ms",
+    },
+  ];
 
   const { postRegister } = useRegis();
 
-  const handleRegister = async (e) => {
-    e.preventDefault();
-    postRegister({ fullName, birthDate, telephone, gender, email, password })
+  const handleRegister = async (value) => {
+    postRegister(value)
   }
 
   return (
@@ -37,9 +35,122 @@ const Registerpage = () => {
         </a>
         <div className="login-form-box sm:w-[590px] w-auto overflow-hidden text-base rounded-md mx-auto my-14">
           <div className="panel-1 p-[50px_50px_20px_50px] bg-white text-[#59595b] relative block">
-            <form className="login-form" onSubmit={handleRegister}>
+            <Form
+            onFinish={handleRegister}
+            requiredMark={false}
+            layout="vertical"
+            name="basic"
+            initialValues={{
+              remember: true
+            }}
+            autoComplete="off"
+            >
+              <h1 className="login-form mb-[30px] text-[18px] leading-[25px] font-bold">
+                Create Account
+              </h1>
+              <Form.Item
+              label="Title"
+              name="gender"
+              style={{ borderBottom: "1px solid black", width: "100px" }}
+              >
+                <Select
+                placeholder="Mr"
+                bordered={false}
+                style={{ width: "100px", padding: "0" }}
+                options={dataGender}
+                />
+              </Form.Item>
+
+              <div className="wrapper-name flex gap-14">
+                  <Form.Item
+                  label="Full name"
+                  name="fullName"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please input your Full name"
+                    },
+                  ]}
+                  style={{ borderBottom: "1px solid black" }} 
+                  className="rounded-none"
+                  >
+                    <Input placeholder="James" bordered={false}/>
+                  </Form.Item>
+
+                  <Form.Item
+                  label="Birth Date"
+                  name="birthDate"
+                  style={{ borderBottom: "1px solid black" }} className="rounded-none"
+                  >
+                    <DatePicker
+                    format={"YYYY/MM/DD"} bordered={false} picker="date"
+                    />
+                  </Form.Item>
+              </div>
+
+              <Form.Item
+              label="Telephone Number"
+              name="telephone"
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your Telephone"
+                },
+              ]}
+              >
+                <Input placeholder="ex.81374234231" bordered={false} style={{ borderBottom: "1px solid black" }} className="rounded-none"/>
+              </Form.Item>
+
+              <Form.Item
+              label="Email"
+              name="email"
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your Email Address"
+                },
+              ]}
+              >
+                <Input placeholder="Enter Email Address" bordered={false} style={{ borderBottom: "1px solid black" }} className="rounded-none"/>
+              </Form.Item>
+
+              <Form.Item
+              label="Password"
+              name="password"
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your Password"
+                },
+              ]}
+              >
+                <Input.Password style={{ borderBottom: "1px solid black" }} className="rounded-none" placeholder="Enter Password" bordered={false}/>
+              </Form.Item>
+              <br></br>
+              <button type="submit" className="button-signup p-[15px_25px] text-[18px] leading-[25px] border-none rounded-md flex w-full bg-[#3e5cb8] text-white shadow-md mb-[20px] font-bold touch-manipulation transition-shadow duration-[0.25s] will-change-[box-shadow] relative cursor-pointer justify-center text-center whitespace-nowrap items-center align-top hover:shadow-none hover:bg-[#3855aa]">
+                <span className="text-[18px] leading-[25px] font-normal">Register</span>
+              </button>
+              
+              <button className="button-google p-[15px_25px] text-[18px] leading-[25px] border-none flex w-full shadow-md mt-[30px] font-bold touch-manipulation transition-shadow duration-[.25s] will-change-[box-shadow] relative text-[#9a9a9d] cursor-pointer justify-center text-center whitespace-nowrap bg-white items-center align-top hover:shadow-sm hover:text-[#59595b]">
+                <img src="https://cdn.airpaz.com/nuxt/8584e352a276fbbc255e780a7b081934.svg" alt="" className="icon-google w-[20px] mr-[5px] h-[1.5em] relative inline-flex items-center justify-center align-[-0.125em]" />
+                <span className="text-[18px] leading-[25px] font-bold ml-1">Register with Google</span>
+              </button>
+              
+              <div className="term-condition sm:px-[70px] py-[30px]">
+                <p className="leading-[20px] text-[#9a9a9d] text-center text-[12px] font-normal m-0 p-0">
+                  By clicking th "Sign Up" button, you have agreed to rules, restrictions and{" "}
+                  <span>
+                    <a href="/" className="text-[#9a9a9d] cursor-pointer text-[12px] leading-[17px] font-bold">
+                      Terms & Conditions
+                    </a>
+                  </span>
+                </p>
+              </div>
+
+            </Form>
+            {/* <form className="login-form" onSubmit={handleRegister}>
               <h1 className="mb-[30px] text-[18px] leading-[25px] font-bold">Register</h1>
-              {/*//! Tittle/Gender */}
+              
               <label className="name-input text-[#59595b] text-[0.875rem] font-normal mb-[0.5em] block">Title</label>
               <Select
                 className="title-select max-w-[100px] mb-[20px] border-b"
@@ -60,7 +171,7 @@ const Registerpage = () => {
                   setGender(value)
                 }}
               />
-              {/* Name */}
+              
               <div className="name-form mb-[20px] flex">
                 <div className="name-input-form flex-[1] mb-0">
                   <label className="name-input text-[#59595b] text-[0.875rem] font-normal mb-[0.5em] block">Full Name</label>
@@ -74,26 +185,21 @@ const Registerpage = () => {
                     />
                   </div>
                 </div>
-                {/* BirthDate */}
+                
                 <div className="birthDate-input-form ml-[20px] flex-[1] mb-0">
                   <label className="birthDate-input px-3 text-[#59595b] text-[0.875rem] font-normal mb-[0.5em] block">Birth Date</label>
                   <div className="birthDate-input-control box-border clear-both text-base relative text-left"></div>
-                  {/* <input
-                      type="text"
-                      placeholder="YYYY-MM-DD"
-                      value={birthDate}
-                      onChange={(e) => setBirthDate(e.target.value)}
-                      className="inline-flex items-center justify-start relative align-top pl-0 bg-transparent rounded-[0] border-b border-solid border-[#dedede] shadow-none h-[32px] text-[14px] leading-[20px] font-normal max-w-full w-full active:outline-none focus:outline-none"
-                    /> */}
+                  
                   <DatePicker
                   defaultValue={dayjs("2022/12/17", "YYYY/MM/DD")} format={"YYYY/MM/DD"} bordered={false} picker="date"
                   onChange={(date, dateString) => {
-                    setBirthDate(date)
+                    console.log(date, dateString);
+                    setBirthDate({birthDate: dateString, date})
                   }}/>
-                  {/* <Date name="birthDate"></Date> */}
+                  
                 </div>
               </div>
-              {/* Mobile Number */}
+              
               <div className="country-phone flex mb-[20px]">
                 <div className="phone-number-box mb-0 flex-[1]">
                   <label className="label-phone text-[#59595b] font-normal text-[0.875rem] mb-[0.5em] block">Mobile Number</label>
@@ -108,7 +214,7 @@ const Registerpage = () => {
                   </div>
                 </div>
               </div>
-              {/* Email */}
+              
               <div className="email-form mb-[20px]">
                 <label className="email-label text-[#59595b] text-[0.875rem] font-normal block">Email</label>
                 <div className="email-control box-border clear-both text-base relative text-left">
@@ -121,7 +227,7 @@ const Registerpage = () => {
                   />
                 </div>
               </div>
-              {/* Password */}
+              
               <div className="password-form mb-[50px]">
                 <label className="password-label text-[#59595b] text-[0.875rem] font-normal block">Password</label>
                 <div className="password-control box-border clear-both text-base relative text-left">
@@ -137,16 +243,16 @@ const Registerpage = () => {
                   </div>
                 </div>
               </div>
-              {/* Button Sign Up */}
+              
               <button type="submit" className="button-signup p-[15px_25px] text-[18px] leading-[25px] border-none rounded-md flex w-full bg-[#3e5cb8] text-white shadow-md mb-[20px] font-bold touch-manipulation transition-shadow duration-[0.25s] will-change-[box-shadow] relative cursor-pointer justify-center text-center whitespace-nowrap items-center align-top hover:shadow-none hover:bg-[#3855aa]">
                 <span className="text-[18px] leading-[25px] font-normal">Register</span>
               </button>
-              {/* Button Google */}
+              
               <button className="button-google p-[15px_25px] text-[18px] leading-[25px] border-none flex w-full shadow-md mt-[30px] font-bold touch-manipulation transition-shadow duration-[.25s] will-change-[box-shadow] relative text-[#9a9a9d] cursor-pointer justify-center text-center whitespace-nowrap bg-white items-center align-top hover:shadow-sm hover:text-[#59595b]">
                 <img src="https://cdn.airpaz.com/nuxt/8584e352a276fbbc255e780a7b081934.svg" alt="" className="icon-google w-[20px] mr-[5px] h-[1.5em] relative inline-flex items-center justify-center align-[-0.125em]" />
                 <span className="text-[18px] leading-[25px] font-bold ml-1">Register with Google</span>
               </button>
-              {/* Terms & Conditions */}
+              
               <div className="term-condition sm:px-[70px] py-[30px]">
                 <p className="leading-[20px] text-[#9a9a9d] text-center text-[12px] font-normal m-0 p-0">
                   By clicking th "Sign Up" button, you have agreed to rules, restrictions and{" "}
@@ -157,7 +263,7 @@ const Registerpage = () => {
                   </span>
                 </p>
               </div>
-            </form>
+            </form> */}
           </div>
           <div className="sm:bg-[#f7f7f7] border-b-0 border-r-0 border-l-0 p-[30px] rounded-b-md text-[#59595b] block text-center">
             <p className="text-[14px] leading-[20px] font-normal">

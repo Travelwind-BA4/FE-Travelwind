@@ -5,11 +5,11 @@ import timeConverter from "../../utils/timeConverter";
 
 const useAuth = () => {
     const navigate = useNavigate();
-    const postLogin = useCallback(async ({ email, password }) => {
+    const postLogin = useCallback(async (val) => {
         try {
             await axios.post(`https://api-flight.up.railway.app/user/sign-in`, {
-        email: email,
-        password: password,
+        email: val.email,
+        password: val.password,
     }).then((response) => {
         localStorage.setItem('token', JSON.stringify(response.data.data.token));
         localStorage.setItem('user', JSON.stringify(response.data.data));

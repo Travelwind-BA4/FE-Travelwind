@@ -38,6 +38,7 @@ const Index = () => {
 
         <Route path="/account/profile" element={<Profilpage />} />
         <Route path="/account/orders" element={<Profilpage />} />
+        <Route path="/account/changepass" element={<Profilpage />} />
       </Routes>
       <Footer />
     </>
