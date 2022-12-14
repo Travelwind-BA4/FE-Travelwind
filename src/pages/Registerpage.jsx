@@ -1,11 +1,8 @@
-import React, { useState } from "react";
-import Date from "../components/Input/Date";
-import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
+import React from "react";
 import { logo_white, logo_mini } from "../assets/images/logo/index";
 import { Select, DatePicker, Form, Input } from "antd";
 import { useNavigate } from "react-router-dom";
-import useRegis from "../services/api/useRegis";
-import dayjs from 'dayjs';
+import useAuth from "../services/api/useAuth";
 
 const Registerpage = () => {
   const navigate = useNavigate();
@@ -20,10 +17,11 @@ const Registerpage = () => {
     },
   ];
 
-  const { postRegister } = useRegis();
+  const { postRegister } = useAuth();
 
   const handleRegister = async (value) => {
-    postRegister(value)
+    postRegister(value);
+    
   }
 
   return (

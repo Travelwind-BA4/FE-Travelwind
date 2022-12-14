@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
+import React from "react";
 import { logo_white, logo_mini } from "../assets/images/logo/index";
 import { useNavigate } from "react-router-dom";
 import { Form, Input } from "antd";
