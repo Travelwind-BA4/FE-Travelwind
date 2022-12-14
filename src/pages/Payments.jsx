@@ -1,7 +1,19 @@
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import usePayments from "../services/api/usePayments";
 
-const Paymentpage = () => {
+const Payments = () => {
   const navigate = useNavigate();
+  const { getPayments,payments } = usePayments()
+
+  useEffect(() =>{
+    getPayments()
+  },[])
+
+  const methodPayment = (name) => {
+    navigate(`/payment?method=${name}`)
+  }
+
   return (
     <div>
       <div className="container mx-auto py-10 px-10 min-h-screen">
@@ -11,21 +23,16 @@ const Paymentpage = () => {
             <div className="mt-10">
               <h2>Virtual Account</h2>
               <div className="grid xl:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8">
-                <div className=" mt-4 rounded-lg">
-                  <img className="w-72 h-36 bg-white" />
-                </div>
-                <div className=" mt-4 rounded-lg">
-                  <img className="w-72 h-36 bg-white" />
-                </div>
-                <div className=" mt-4 rounded-lg">
-                  <img className="w-72 h-36 bg-white" />
-                </div>
-                <div className=" mt-4 rounded-lg">
-                  <img className="w-72 h-36 bg-white" />
-                </div>
+                {payments.map(payment => {
+                  return (
+                    <div className=" mt-4 rounded-lg">
+                    <img className="w-72 h-36 bg-white" src={payment.imagePath} onClick={() => methodPayment(payment.paymentName)}  />
+                  </div>
+                  )
+                })}
               </div>
             </div>
-            <div className="mt-10">
+            {/* <div className="mt-10">
               <h2>Instant Payment</h2>
               <div className="grid xl:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8">
                 <div className=" mt-4 rounded-lg">
@@ -35,7 +42,7 @@ const Paymentpage = () => {
                   <img className="w-72 h-36 bg-white" />
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
           <div className="lg:ml-5 lg:col-span-1 col-span-2">
             <div className="bg-[#f1f5f5] p-4 rounded-md mt-10 lg:mt-0">
@@ -55,11 +62,11 @@ const Paymentpage = () => {
                 <p>Rp. 2.137.740</p>
               </div>
             </div>
-            <div className="mt-3">
+            {/* <div className="mt-3">
               <button className="bg-[#3e5cb8] w-full text-white p-4 rounded-md font-semibold" onClick={() => navigate("/complete")}>
                 Continue Payment
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
@@ -67,4 +74,4 @@ const Paymentpage = () => {
   );
 };
 
-export default Paymentpage;
+export default Payments;

@@ -9,8 +9,9 @@ import Loginpage from "../pages/Loginpage";
 import Registerpage from "../pages/Registerpage";
 import Resultpage from "../pages/Resultpage";
 import Profilpage from "../pages/Profilpage";
-import Paymentpage from "../pages/Paymentpage";
 import Completepage from "../pages/Completepage";
+import Payment from "../pages/Payment";
+import Payments from "../pages/Payments";
 
 const Index = () => {
   const { pathname } = useLocation();
@@ -32,9 +33,10 @@ const Index = () => {
       <Routes>
         <Route path="/results/search" element={<Resultpage />} />
         <Route path="/flight/:id" element={<Detailpage />} />
-        <Route path="/payment" element={<Paymentpage />} />
+        <Route path="/payments" element={<Payments />} />
         <Route path="/booking" element={<BookingPage />} />
         <Route path="/complete" element={<Completepage />} />
+        <Route path="/payment" element={<Payment />} />
 
         <Route path="/account/profile" element={<Profilpage />} />
         <Route path="/account/orders" element={<Profilpage />} />
