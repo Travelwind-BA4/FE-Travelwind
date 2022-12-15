@@ -4,15 +4,15 @@ import usePayments from "../services/api/usePayments";
 
 const Payments = () => {
   const navigate = useNavigate();
-  const { getPayments,payments } = usePayments()
+  const { getPayments, payments } = usePayments();
 
-  useEffect(() =>{
-    getPayments()
-  },[])
+  useEffect(() => {
+    getPayments();
+  }, []);
 
   const methodPayment = (name) => {
-    navigate(`/payment?method=${name}`)
-  }
+    navigate(`/payment?method=${name}`);
+  };
 
   return (
     <div>
@@ -23,12 +23,13 @@ const Payments = () => {
             <div className="mt-10">
               <h2>Virtual Account</h2>
               <div className="grid xl:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8">
-                {payments.map(payment => {
+                {console.log(payments)}
+                {payments.map((payment) => {
                   return (
                     <div className=" mt-4 rounded-lg">
-                    <img className="w-72 h-36 bg-white" src={payment.imagePath} onClick={() => methodPayment(payment.paymentName)}  />
-                  </div>
-                  )
+                      <img className="w-72 h-36 bg-white cursor-pointer" src={payment.imagePath} onClick={() => methodPayment(payment.paymentName)} />
+                    </div>
+                  );
                 })}
               </div>
             </div>

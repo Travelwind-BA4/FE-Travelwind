@@ -19,6 +19,7 @@ const useSchedule = () => {
   const getScheduleById = useCallback(async (idSchedule) => {
     try {
       const data = await axios.get(`${process.env.REACT_APP_URL_API}/schedule/id/${idSchedule}`);
+      localStorage.setItem("Schedule", JSON.stringify(data.data.data));
       setSchedules(data.data.data);
     } catch (error) {
       return error;
