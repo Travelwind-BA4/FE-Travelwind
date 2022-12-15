@@ -131,7 +131,9 @@ const Registerpage = () => {
                   required: true,
                   message: "Please input your Email Address"
                 },
-                { type: "email" }
+                { type: "email",
+                  message: "Your Email not valid"
+                }
               ]}
               hasFeedback
               >

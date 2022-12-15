@@ -1,7 +1,7 @@
 import React from "react";
 import { logo_white, logo_mini } from "../assets/images/logo/index";
 import { useNavigate } from "react-router-dom";
-import { Form, Input, Alert } from "antd";
+import { Form, Input, Alert, message } from "antd";
 import useUsers from "../services/api/useUsers";
 
 const Loginpage = () => {
@@ -46,7 +46,9 @@ const Loginpage = () => {
                     message: "Please input your Email!"
                   },
                   { whitespace: true },
-                  { type: "email" }
+                  { type: "email",
+                    message: "Your Email not valid"
+                  }
                 ]}
                 hasFeedback
                 className="email-label text-[#59595b] text-[0.875rem] font-normal block border-b border-gray-400"
