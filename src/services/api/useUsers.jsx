@@ -3,8 +3,9 @@ import { useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import timeConverter from "../../utils/timeConverter";
 
-const useAuth = () => {
+const useUsers = () => {
     const navigate = useNavigate();
+    const [msgError, setMsgError] = useState(false)
     const postLogin = useCallback(async (value) => {
         try {
             await axios.post(`https://api-flight.up.railway.app/user/sign-in`, {
@@ -16,7 +17,10 @@ const useAuth = () => {
         navigate('/');
     });
         } catch (error) {
-            console.log(error)
+            console.log(error.response.status);
+            if(error.response.status == 401) {
+                alert("User not found , Please check your email and password again!")
+            }
         }
     });
 
@@ -40,7 +44,29 @@ const useAuth = () => {
         }
     })
 
-    return { postLogin, postRegister };
+    const ChangePassword = useCallback(async (value) => {
+        try {
+            const user = JSON.parse(localStorage.getItem('user'));
+            const token = JSON.parse(localStorage.getItem('token'));
+            // console.log(token);
+            const config = { headers: `Bearer ${token}` }
+            const payload = { 
+                fullName : user.fullName,
+                email: user.email,
+                password: value.password,
+                telephone: user.telephone,
+                birthDate: user.birthDate,
+                gender: user.gender,
+                rolesId: 2,
+            }
+            console.log(payload)
+            await axios.put(`https://api-flight.up.railway.app/user/update/${user.fullName}`, payload, config )
+        } catch (error) {
+            console.log("error");
+        }
+    })
+
+    return { postLogin, msgError, postRegister, ChangePassword };
 }
 
-export default useAuth;
+export default useUsers;

@@ -2,17 +2,10 @@ import { Form, Input } from 'antd';
 import React from 'react';
 import { useState } from 'react';
 import { VscKey } from 'react-icons/vsc';
-import usePass from '../../services/api/usePass';
+import useUsers from '../../services/api/useUsers';
 
 const ChangePass = () => {
-  const { changePass } = usePass();
-  const user = JSON.parse(localStorage.getItem('user'));
-  const fullName = user.fullName;
-  const email = user.email;
-  const telephone = user.telephone;
-  const birthDate = user.telephone;
-  const gender = user.gender;
-
+  const { ChangePassword } = useUsers();
   const onFinish = (values) => {
     console.log('Success:', values);
   };
@@ -20,11 +13,9 @@ const ChangePass = () => {
     console.log('Failed:', errorInfo);
   };
 
-  const handleChange = (values) => {
-    const password = values.password;
-    console.log("Data", password)
-    console.log(user);
-    changePass({ fullName, email, password, telephone, birthDate, gender })
+  const handleChange = (value) => {
+    // const password = value.password;
+    ChangePassword(value)
     
   }
   return (

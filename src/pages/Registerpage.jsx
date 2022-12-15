@@ -1,8 +1,8 @@
 import React from "react";
-import { logo_white, logo_mini } from "../assets/images/logo/index";
-import { Select, DatePicker, Form, Input } from "antd";
+import { logo_white, logo_mini, logo_mini_white } from "../assets/images/logo/index";
+import { Select, DatePicker, Form, Input, message } from "antd";
 import { useNavigate } from "react-router-dom";
-import useAuth from "../services/api/useAuth";
+import useUsers from "../services/api/useUsers";
 
 const Registerpage = () => {
   const navigate = useNavigate();
@@ -17,7 +17,7 @@ const Registerpage = () => {
     },
   ];
 
-  const { postRegister } = useAuth();
+  const { postRegister } = useUsers();
 
   const handleRegister = async (value) => {
     postRegister(value);
@@ -25,11 +25,11 @@ const Registerpage = () => {
   }
 
   return (
-    <div className="sm:bg-gradient-to-br from-[#2c4282] via-[#3e5cb8] to-[#4a6fde]">
+    <div className="sm:bg-gradient-to-br from-[#2c4282] via-[#3e5cb8] to-[#4a6fde] bg-gradient-to-br from-[#2c4282] via-[#3e5cb8] to-[#4a6fde]">
       <div className="wrapper-form-login flex flex-col items-center min-h-[100vh] container mx-auto m-auto">
         <a onClick={() => navigate("/")} className="cursor-pointer no-underline sm:m-auto sm:pt-10 mt-14">
           <img className="w-64 hidden sm:block" src={logo_white} alt="" />
-          <img className="w-24 sm:hidden" src={logo_mini} alt="" />
+          <img className="w-24 sm:hidden" src={logo_mini_white} alt="" />
         </a>
         <div className="login-form-box sm:w-[590px] w-auto overflow-hidden text-base rounded-md mx-auto my-14">
           <div className="panel-1 p-[50px_50px_20px_50px] bg-white text-[#59595b] relative block">
@@ -49,12 +49,19 @@ const Registerpage = () => {
               <Form.Item
               label="Title"
               name="gender"
-              style={{ borderBottom: "1px solid black", width: "100px" }}
+              className="border-b w-[100px]"
+              rules={[
+                {
+                  required: true,
+                  message: "Please select your tittle"
+                }
+              ]}
+              hasFeedback
+              // style={{ borderBottom: "1px solid black", width: "100px" }}
               >
                 <Select
                 placeholder="Mr"
                 bordered={false}
-                style={{ width: "100px", padding: "0" }}
                 options={dataGender}
                 />
               </Form.Item>
@@ -68,9 +75,16 @@ const Registerpage = () => {
                       required: true,
                       message: "Please input your Full name"
                     },
+                    {
+                      whitespace: true,
+                      message: "can not empty"
+                    },
+                    { min: 5 ,
+                      message:"Must be at least 5 characters"
+                    }
                   ]}
-                  style={{ borderBottom: "1px solid black" }} 
-                  className="rounded-none"
+                  hasFeedback
+                  className="border-b rounded-none"
                   >
                     <Input placeholder="James" bordered={false}/>
                   </Form.Item>
@@ -78,7 +92,14 @@ const Registerpage = () => {
                   <Form.Item
                   label="Birth Date"
                   name="birthDate"
-                  style={{ borderBottom: "1px solid black" }} className="rounded-none"
+                  className="rounded-none border-b"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please input your birth date"
+                    }
+                  ]}
+                  hasFeedback
                   >
                     <DatePicker
                     format={"YYYY/MM/DD"} bordered={false} picker="date"
@@ -89,40 +110,48 @@ const Registerpage = () => {
               <Form.Item
               label="Telephone Number"
               name="telephone"
+              className="border-b rounded-none"
               rules={[
                 {
                   required: true,
                   message: "Please input your Telephone"
                 },
               ]}
+              hasFeedback
               >
-                <Input placeholder="ex.81374234231" bordered={false} style={{ borderBottom: "1px solid black" }} className="rounded-none"/>
+                <Input placeholder="ex.81374234231" bordered={false} />
               </Form.Item>
 
               <Form.Item
               label="Email"
               name="email"
+              className="border-b rounded-none"
               rules={[
                 {
                   required: true,
                   message: "Please input your Email Address"
                 },
+                { type: "email" }
               ]}
+              hasFeedback
               >
-                <Input placeholder="Enter Email Address" bordered={false} style={{ borderBottom: "1px solid black" }} className="rounded-none"/>
+                <Input placeholder="Enter Email Address" bordered={false}/>
               </Form.Item>
 
               <Form.Item
               label="Password"
               name="password"
+              className="border-b rounded-none"
               rules={[
                 {
                   required: true,
                   message: "Please input your Password"
                 },
+                { min: 8 }
               ]}
+              hasFeedback
               >
-                <Input.Password style={{ borderBottom: "1px solid black" }} className="rounded-none" placeholder="Enter Password" bordered={false}/>
+                <Input.Password placeholder="Enter Password" bordered={false}/>
               </Form.Item>
               <br></br>
               <button type="submit" className="button-signup p-[15px_25px] text-[18px] leading-[25px] border-none rounded-md flex w-full bg-[#3e5cb8] text-white shadow-md mb-[20px] font-bold touch-manipulation transition-shadow duration-[0.25s] will-change-[box-shadow] relative cursor-pointer justify-center text-center whitespace-nowrap items-center align-top hover:shadow-none hover:bg-[#3855aa]">
@@ -144,6 +173,17 @@ const Registerpage = () => {
                   </span>
                 </p>
               </div>
+
+              <div className="sm:bg-[#f7f7f7] border-b-0 border-r-0 border-l-0 p-[30px] rounded-b-md text-[#59595b] block text-center">
+            <p className="text-[14px] leading-[20px] font-normal">
+              Already an Airsanz member?{" "}
+              <span className="ml-[3px]">
+                <a onClick={() => navigate("/login")} className="cursor-pointer text-[#59595b] font-bold">
+                  Login
+                </a>
+              </span>
+            </p>
+          </div>
 
             </Form>
             {/* <form className="login-form" onSubmit={handleRegister}>
@@ -263,16 +303,7 @@ const Registerpage = () => {
               </div>
             </form> */}
           </div>
-          <div className="sm:bg-[#f7f7f7] border-b-0 border-r-0 border-l-0 p-[30px] rounded-b-md text-[#59595b] block text-center">
-            <p className="text-[14px] leading-[20px] font-normal">
-              Already an Airsanz member?{" "}
-              <span className="ml-[3px]">
-                <a onClick={() => navigate("/login")} className="cursor-pointer text-[#59595b] font-bold">
-                  Login
-                </a>
-              </span>
-            </p>
-          </div>
+          
         </div>
       </div>
     </div>
