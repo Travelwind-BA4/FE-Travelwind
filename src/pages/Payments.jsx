@@ -26,24 +26,13 @@ const Payments = () => {
                 {console.log(payments)}
                 {payments.map((payment) => {
                   return (
-                    <div className=" mt-4 rounded-lg">
-                      <img className="w-72 h-36 bg-white cursor-pointer" src={payment.imagePath} onClick={() => methodPayment(payment.paymentName)} />
+                    <div className=" mt-4 w-50 h-36 bg-white rounded-lg grid">
+                      <img className="justify-self-center self-center cursor-pointer" src={payment.imagePath} onClick={() => methodPayment(payment.paymentName)} />
                     </div>
                   );
                 })}
               </div>
             </div>
-            {/* <div className="mt-10">
-              <h2>Instant Payment</h2>
-              <div className="grid xl:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8">
-                <div className=" mt-4 rounded-lg">
-                  <img className="w-72 h-36 bg-white" />
-                </div>
-                <div className=" mt-4 rounded-lg">
-                  <img className="w-72 h-36 bg-white" />
-                </div>
-              </div>
-            </div> */}
           </div>
           <div className="lg:ml-5 lg:col-span-1 col-span-2">
             <div className="bg-[#f1f5f5] p-4 rounded-md mt-10 lg:mt-0">

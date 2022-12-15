@@ -41,15 +41,15 @@ const Payment = () => {
           </div>
           <hr className="my-4" />
           <h1 className="mt-5">
-            {payments.paymentName} {payments.paymentType}
+            {payments.paymentName} | {payments.paymentType}
           </h1>
           <hr className="my-4" />
           <ul>
             <li>Payment Instruction : </li>
-            <li>asdasdsa</li>
-            <li>asdasdsa</li>
-            <li>asdasdsa</li>
-            <li>asdasdsa</li>
+            <li className="mt-3">1. Login to your virtual account.</li>
+            <li className="mt-1">2. Open virtual account mobile application.</li>
+            <li className="mt-1">3. Copy the payment code.</li>
+            <li className="mt-1">4. Click pay</li>
           </ul>
           <hr className="my-4" />
           <div className="flex justify-between">
