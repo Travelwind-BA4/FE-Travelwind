@@ -6,7 +6,7 @@ const useAirports = () => {
 
   const getAirports = useCallback(async () => {
     try {
-      const data = await axios.get(`${process.env.REACT_APP_URL_API}/airports/get-all`);
+      const data = await axios.get(`https://api-flight.up.railway.app/airports/get-all`);
       setAirports(data.data.data);
     } catch (error) {
       return error;
@@ -15,7 +15,7 @@ const useAirports = () => {
 
   const searchAirport = useCallback(async (city) => {
     try {
-      const data = await axios.get(`${process.env.REACT_APP_URL_API}/airports/city/${city}`);
+      const data = await axios.get(`https://api-flight.up.railway.app/airports/city/${city}`);
 
       setAirports(data.data.data);
     } catch (error) {

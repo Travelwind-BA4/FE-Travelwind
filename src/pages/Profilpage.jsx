@@ -25,11 +25,6 @@ const Profilpage = () => {
               <FiUser className="mr-3" /> Profile
             </h2>
           </div>
-          <div className="bg-[#f1f5f5] text-[#000] lg:max-w-[300px] rounded-lg cursor-pointer" onClick={() => navigate("/account/changepass")}>
-            <h2 className="flex items-center pl-10  h-full min-h-[50px]">
-              <VscKey className="mr-3" /> Change Password
-            </h2>
-          </div>
           <div className="bg-[#f1f5f5] text-[#000] lg:max-w-[300px] rounded-lg cursor-pointer" onClick={() => navigate("/account/orders")}>
             <h2 className="flex items-center pl-10  h-full min-h-[50px]">
               <BsCalendar2Check className="mr-3" /> Orders
@@ -53,9 +48,6 @@ const profileChange = (params) => {
   }
   if (params === "orders") {
     return <Orders />;
-  }
-  if (params === "changepass") {
-    return <ChangePass />
   }
 };
 
