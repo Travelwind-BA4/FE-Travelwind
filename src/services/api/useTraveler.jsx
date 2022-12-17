@@ -25,7 +25,7 @@ const useTraveler = () => {
       const config = {
         headers: { Authorization: `Bearer ${token}` },
       };
-      const res = await axios.get(`https://api-flight.up.railway.app/traveler-list/get-all/user/${user.userId}`, config);
+      const res = await axios.get(`${process.env.REACT_APP_URL_API}/traveler-list/get-all/user/${user.userId}`, config);
       setTravelers(res.data.data);
       console.log(res.data.data);
     } catch (error) {

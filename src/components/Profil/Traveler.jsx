@@ -16,7 +16,7 @@ const Traveler = () => {
 
   return (
     <div className="bg-[#f1f5f5] px-10 py-4 rounded-lg ">
-      <div>
+      <div >
         <h1 className="flex items-center text-2xl ">
           <BsCardList className="mr-4" /> Traveler List
         </h1>
@@ -36,12 +36,12 @@ const Traveler = () => {
                       
                     } 
               extra={
-                  <div key={traveler.travelerId} className='border rounded-lg bg-gray-200 p-2 hover:shadow-lg' onClick={() => setShow(true)}>
+                  <div key={traveler.travelerId} className='hidden border rounded-lg bg-gray-200 p-2 hover:shadow-lg' onClick={() => setShow(true)}>
                     <BsPencil/>
                   </div>
               }
               > 
-                <div className='flex justify-between'>
+                <div className='sm:flex-row sm:justify-between flex flex-col gap-2'>
                   <div>
                     <p className='text-gray-400 font-medium'>Fullname</p>
                     <h1 className='text-lg font-semibold'>{traveler.lastName}, {traveler.firstName}</h1>

@@ -37,7 +37,7 @@ const Profilpage = () => {
   }
 
   return (
-    <div className="h-screen">
+    <div className="h-auto pb-20">
       <div className="container mx-auto px-10 lg:grid grid-cols-4 block mt-20 gap-x-10">
         <aside className="col-span-1 flex flex-col gap-y-4 mb-5">
           <div className="bg-[#3e5cb8] text-white lg:max-w-[300px] rounded-lg cursor-pointer" onClick={() => navigate("/account/profile")}>
