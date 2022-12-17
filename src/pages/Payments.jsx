@@ -1,7 +1,19 @@
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import usePayments from "../services/api/usePayments";
 
-const Paymentpage = () => {
+const Payments = () => {
   const navigate = useNavigate();
+  const { getPayments, payments } = usePayments();
+
+  useEffect(() => {
+    getPayments();
+  }, []);
+
+  const methodPayment = (name) => {
+    navigate(`/payment?method=${name}`);
+  };
+
   return (
     <div>
       <div className="container mx-auto py-10 px-10 min-h-screen">
@@ -11,29 +23,14 @@ const Paymentpage = () => {
             <div className="mt-10">
               <h2>Virtual Account</h2>
               <div className="grid xl:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8">
-                <div className=" mt-4 rounded-lg">
-                  <img className="w-72 h-36 bg-white" />
-                </div>
-                <div className=" mt-4 rounded-lg">
-                  <img className="w-72 h-36 bg-white" />
-                </div>
-                <div className=" mt-4 rounded-lg">
-                  <img className="w-72 h-36 bg-white" />
-                </div>
-                <div className=" mt-4 rounded-lg">
-                  <img className="w-72 h-36 bg-white" />
-                </div>
-              </div>
-            </div>
-            <div className="mt-10">
-              <h2>Instant Payment</h2>
-              <div className="grid xl:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8">
-                <div className=" mt-4 rounded-lg">
-                  <img className="w-72 h-36 bg-white" />
-                </div>
-                <div className=" mt-4 rounded-lg">
-                  <img className="w-72 h-36 bg-white" />
-                </div>
+                {console.log(payments)}
+                {payments.map((payment) => {
+                  return (
+                    <div className=" mt-4 w-50 h-36 bg-white rounded-lg grid">
+                      <img className="justify-self-center self-center cursor-pointer" src={payment.imagePath} onClick={() => methodPayment(payment.paymentName)} />
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </div>
@@ -55,11 +52,11 @@ const Paymentpage = () => {
                 <p>Rp. 2.137.740</p>
               </div>
             </div>
-            <div className="mt-3">
+            {/* <div className="mt-3">
               <button className="bg-[#3e5cb8] w-full text-white p-4 rounded-md font-semibold" onClick={() => navigate("/complete")}>
                 Continue Payment
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
@@ -67,4 +64,4 @@ const Paymentpage = () => {
   );
 };
 
-export default Paymentpage;
+export default Payments;

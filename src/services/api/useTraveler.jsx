@@ -1,4 +1,5 @@
 import axios from "axios";
+import React, { useCallback, useState } from "react";
 
 const useTraveler = () => {
   const addTravelerByOrder = async (payloads) => {
@@ -15,7 +16,24 @@ const useTraveler = () => {
     }
   };
 
-  return { addTravelerByOrder };
+  const [travelers, setTravelers] = useState([]);
+
+  const getTraveler = useCallback(async () => {
+    try {
+      const user = JSON.parse(localStorage.getItem('user'));
+      const token = JSON.parse(localStorage.getItem('token'));
+      const config = {
+        headers: { Authorization: `Bearer ${token}` },
+      };
+      const res = await axios.get(`https://api-flight.up.railway.app/traveler-list/get-all/user/${user.userId}`, config);
+      setTravelers(res.data.data);
+      console.log(res.data.data);
+    } catch (error) {
+      
+    }
+  })
+
+  return { addTravelerByOrder, getTraveler, travelers };
 };
 
 export default useTraveler;
