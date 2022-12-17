@@ -35,19 +35,6 @@ const Homeslider = () => {
       >
         <SwiperSlide>
           <div className="recomendation-image mb-6"></div>
-          <div className="recomendation-image"></div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="recomendation-image mb-6"></div>
-          <div className="recomendation-image"></div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="recomendation-image mb-6"></div>
-          <div className="recomendation-image"></div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="recomendation-image mb-6"></div>
-          <div className="recomendation-image"></div>
         </SwiperSlide>
       </Swiper>
     </div>

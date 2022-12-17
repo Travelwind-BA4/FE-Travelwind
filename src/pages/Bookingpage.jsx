@@ -38,7 +38,7 @@ const BookingPage = () => {
     ];
 
     addTravelerByOrder(payloads);
-    navigate("/payment");
+    navigate("/payments");
   };
   return (
     <div className="container mx-auto py-10 px-10">
