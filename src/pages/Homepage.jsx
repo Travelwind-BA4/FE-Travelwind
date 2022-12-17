@@ -11,7 +11,7 @@ import Navbar from "../components/Navbar/Navbar";
 import Homeslider from "../components/Slider/Homeslider";
 
 import Trip from "../components/Segmanted/Trip";
-import { Form, notification } from "antd";
+import { Form } from "antd";
 import timeConverter from "../utils/timeConverter";
 import Number from "../components/Input/Number";
 import useAirports from "../services/api/useAirports";
@@ -22,30 +22,16 @@ const Homepage = () => {
   const navigate = useNavigate();
   const { getAirports, airports, searchAirport } = useAirports();
 
-  const [api, contextHolder] = notification.useNotification();
-  const openNotificationWithIcon = (type) => {
-    console.log(type);
-    api[type]({
-      message: "Warning Airports",
-      description: "Departure and Arrival Aiports must be different",
-    });
-  };
-
   useEffect(() => {
     getAirports();
   }, []);
   const searchFlight = ({ departureAirport, arrivalAirport, departureDate, traveler }) => {
-    if (departureAirport == arrivalAirport) {
-      openNotificationWithIcon("error");
-    } else {
-      navigate(`results/search?depDate=${timeConverter(departureDate)}&depAirport=${departureAirport}&arrAirport=${arrivalAirport}&traveler=${traveler}`);
-    }
+    navigate(`results/search?depDate=${timeConverter(departureDate)}&depAirport=${departureAirport}&arrAirport=${arrivalAirport}&traveler=${traveler}`);
   };
 
   return (
     <>
       <section className="relative sm:mb-[250px] mb-[450px]">
-        {contextHolder}
         <Navbar nav="absolute top-0 w-full z-10 text-white" notif="text-white" />
         <div className="h-[75vh] header">
           <div className=" bg-header bg-cover brightness-[0.85] w-full h-full absolute top-0" style={{ backgroundImage: `url(${header_2})`, zIndex: "-2" }}></div>

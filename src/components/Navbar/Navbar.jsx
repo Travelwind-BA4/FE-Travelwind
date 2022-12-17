@@ -5,10 +5,16 @@ import Dropdown1 from "../Dropdown/Dropdown1";
 import Notification from "../Dropdown/Notification";
 import Navphone from "./Navphone";
 import { logo_blue } from "../../assets/images/logo";
+import { useEffect } from "react";
+import useNotification from "../../services/api/useNotification";
 const Navbar = ({ nav, notif }) => {
   const navigate = useNavigate();
-  const token = JSON.parse(localStorage.getItem('token'));
-  const user = JSON.parse(localStorage.getItem('user'))
+  const token = JSON.parse(localStorage.getItem("token"));
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  // useEffect(() => {
+  //   postNotification(user.userId);
+  // }, [user.userId]);
 
   return (
     <nav className={`${nav}`}>
@@ -27,18 +33,18 @@ const Navbar = ({ nav, notif }) => {
           </ul>
         </div>
         <div className="flex items-center hidden sm:flex">
-          { !token ? 
-              <div className="">
-                <Button1 name="Login" style="rounded-lg" onclick={() => navigate("/login")} />
-              </div>
-            : 
+          {!token ? (
+            <div className="">
+              <Button1 name="Login" style="rounded-lg" onclick={() => navigate("/login")} />
+            </div>
+          ) : (
             <div className="profil flex items-center">
               <div className="relative">
                 <Notification style={notif} />
               </div>
               <Dropdown1 name={user.fullName} />
             </div>
-          }
+          )}
           {/* <div className="">
             <Button1 name="Login" style="rounded-lg" onclick={() => navigate("/login")} />
           </div>

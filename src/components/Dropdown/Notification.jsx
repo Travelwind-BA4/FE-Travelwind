@@ -1,5 +1,7 @@
-import { Avatar, Badge, Dropdown } from "antd";
+import { Badge, Divider, Dropdown } from "antd";
+
 import { IoMdNotificationsOutline, IoMdAirplane } from "react-icons/io";
+import useNotification from "../../services/api/useNotification";
 const items = [
   {
     key: "1",
@@ -23,16 +25,33 @@ const items = [
   },
 ];
 const Notification = ({ style }) => {
+  const user = JSON.parse(localStorage.getItem("user"));
+  const { postNotification, notif } = useNotification();
+
+  const getNotif = () => {
+    postNotification(user.userId);
+  };
+
   return (
     <Dropdown
-      menu={{
-        items,
-      }}
+      dropdownRender={() => (
+        <div className="dropdown-content rounded-md">
+          {notif.map((e, i) => {
+            return (
+              <div className=" bg-[#f1f5f5] p-3 rounded-md min-w-[100px]" key={i}>
+                <h1 className="">{e.title}</h1>
+                <p>{e.content}</p>
+              </div>
+            );
+          })}
+        </div>
+      )}
       trigger={["click"]}
       placement="bottom"
+      onOpenChange={getNotif}
     >
       <div className="mr-3 text-xl cursor-pointer">
-        <Badge count={2} size="small" style={{ backgroundColor: "#3e5cb8" }}>
+        <Badge size="small" style={{ backgroundColor: "#3e5cb8" }}>
           <IoMdNotificationsOutline className={`text-lg ${style}`} />
         </Badge>
       </div>
