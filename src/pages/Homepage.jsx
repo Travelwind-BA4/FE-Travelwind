@@ -47,7 +47,7 @@ const Homepage = () => {
               </div>
               <div className="flex justify-center">
                 <Form className="grid xl:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-5 my-8 px-2" onFinish={searchFlight}>
-                  <div className=" flex items-center">
+                  <div className="flex items-center">
                     <div className="bg-[#f1f5f5] p-3 rounded-xl">
                       <GiAirplaneDeparture className="text-[30px]" />
                     </div>

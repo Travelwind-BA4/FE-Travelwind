@@ -1,4 +1,5 @@
 import { Form, Select } from "antd";
+import { GiCommercialAirplane } from "react-icons/gi";
 
 const Options = ({ placeholder, name, airports, styles }) => {
   const onSearch = (value) => {
@@ -25,7 +26,7 @@ const Options = ({ placeholder, name, airports, styles }) => {
         ({ getFieldValue }) => ({
           validator(_, value) {
             if (!value || getFieldValue("departureAirport") === getFieldValue("arrivalAirport")) {
-              return Promise.reject("must be different location from and to");
+              return Promise.reject("Location city is same");
             }
             return Promise.resolve();
           },
@@ -39,7 +40,12 @@ const Options = ({ placeholder, name, airports, styles }) => {
             return (
               <Select.Option key={index} value={airport.airportName}>
                 <div>
-                  {airport.airportName} ( {airport.cityCode} )
+                  <h1>
+                    {airport.airportName} ( {airport.cityCode} )
+                  </h1>
+                  <p className="text-gray-400 text-xs">
+                    {airport.cityName},{airport.countryName}
+                  </p>
                 </div>
               </Select.Option>
             );
