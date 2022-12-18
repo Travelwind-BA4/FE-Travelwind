@@ -7,7 +7,7 @@ const useSchedule = () => {
   const getSchedule = useCallback(
     async ({ departureAirport, arrivalAirport, departureDate }) => {
       try {
-        const data = await axios.get(`${process.env.REACT_APP_URL_API}/schedule/get-all/airport/${departureAirport}/${arrivalAirport}/date/${departureDate}`);
+        const data = await axios.get(`https://api-flight.up.railway.app/schedule/get-all/airport/${departureAirport}/${arrivalAirport}/date/${departureDate}`);
         setSchedules(data.data.data);
       } catch (error) {
         return error;

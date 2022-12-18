@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { GiAirplaneDeparture } from "react-icons/gi";
 import { SiChinasouthernairlines } from "react-icons/si";
-
 import { AiOutlineArrowRight, AiOutlineDown } from "react-icons/ai";
-
 import { RiSuitcase2Line } from "react-icons/ri";
-
 import { useLocation, useNavigate, useParams, useSearchParams } from "react-router-dom";
 import useSchedule from "../services/api/useSchedule";
 
@@ -41,8 +38,8 @@ const Resultpage = () => {
                 </p>
               </div>
             </div>
-            <div className="flight-header-item">
-              <button onClick={() => setShowForm(!showForm)} onCLi className="text-base text-white rounded-md border bg-transparent border-white border-solid flex w-full py-2 px-6 ">
+            <div className="flight-header-item sm:block hidden">
+              <button onClick={() => setShowForm(!showForm)} className="text-base text-white rounded-md border bg-transparent border-white border-solid flex w-full py-2 px-6 ">
                 Change Search
               </button>
             </div>
@@ -59,8 +56,8 @@ const Resultpage = () => {
         </div>
       </section>
       <section>
-        <div className="container mx-auto p-10 ">
-          <div className="flex flex-col  bg-[#f1f5f5] rounded-md ">
+        <div className="container sm:mx-auto sm:p-10 mt-4 ">
+          <div className="flex flex-col  bg-[#f1f5f5] rounded-md hidden">
             <div className="flex flex-row justify-between items-center border-b border-gray-300">
               <div className="mx-5 py-2">
                 <p className="font-semibold text-xl mb-1">Departure Flight to Test</p>
@@ -99,11 +96,12 @@ const Resultpage = () => {
               </div>
             </div>
           </div>
-          <div className="flex flex-col gap-y-6 mt-3">
+          <div className="flex flex-col sm:gap-y-6 gap-y-2 mt-3">
             {schedules.map((schedule) => {
               console.log(schedule);
               return (
-                <div className="flex flex-row justify-between items-center gap-4 bg-[#f1f5f5] rounded-md">
+                <>
+                  <div className="sm:flex sm:flex-row justify-between items-center gap-4 bg-[#f1f5f5] rounded-md hidden">
                   <div className="wrapper-list-ticket flex items-center px-5 py-8">
                     <div className="logo-maskapai mx-4">
                       <SiChinasouthernairlines size="2.5rem" />
@@ -136,6 +134,17 @@ const Resultpage = () => {
                     </button>
                   </div>
                 </div>
+                  <div className="border sm:hidden">
+                    <h1 className="flex items-center"><SiChinasouthernairlines/> {schedule.airplaneName}</h1>
+                    <div className="flex justify-between items-center">
+                      <p>{`${schedule.departureTime}`.slice(0, 5)} -  {`${schedule.arrivalTime}`.slice(0, 5)}</p>
+                      <p>RP. <span>{schedule.price}</span></p>
+                    </div>
+                    <div></div>
+                    <div></div>
+                  </div>
+                </>
+                
               );
             })}
           </div>
@@ -146,3 +155,4 @@ const Resultpage = () => {
 };
 
 export default Resultpage;
+                

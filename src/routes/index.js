@@ -39,7 +39,9 @@ const Index = () => {
         <Route path="/payment" element={<Payment />} />
 
         <Route path="/account/profile" element={<Profilpage />} />
+        <Route path="/account/traveler" element={<Profilpage />} />
         <Route path="/account/orders" element={<Profilpage />} />
+        <Route path="/account/orders/:order" element={<Profilpage />} />
         <Route path="/account/changepass" element={<Profilpage />} />
       </Routes>
       <Footer />
