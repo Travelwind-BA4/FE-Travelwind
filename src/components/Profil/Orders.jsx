@@ -1,8 +1,13 @@
+import { useEffect } from "react";
 import { BsCalendar2Check } from "react-icons/bs";
 import { IoAirplaneOutline } from "react-icons/io5";
 import useOrder from "../../services/api/useOrder";
 const Orders = () => {
-  const { getOrderUser, OrdersUser } = useOrder();
+  const { getOrderUser, ordersUser } = useOrder();
+
+  useEffect(() => {
+    getOrderUser();
+  }, [])
 
   return (
     <div>
@@ -22,7 +27,9 @@ const Orders = () => {
           </div>
         </div>
       </div>
-      <div className="bg-[#f1f5f5] px-10 py-4 mt-10 rounded-lg">
+      { ordersUser.map((item) => {
+        return (
+          <div key={item.orderId} className="bg-[#f1f5f5] px-10 py-4 mt-10 rounded-lg cursor-pointer" >
         <h1 className="flex items-center text-xl ">
           <IoAirplaneOutline className="mr-4 text-[#7d7d7f]" /> Flight
         </h1>
@@ -50,11 +57,14 @@ const Orders = () => {
             <p className="mb-2 text-[12px] xl:text-sm">Booked on 21 November 2002</p>
             <div className="bg-[#3d74eb] rounded-lg text-[#fff]">
               <h1>Price</h1>
-              <span>Rp 987.760</span>
+              <span>Rp {item.totalPrice}</span>
             </div>
           </div>
         </div>
       </div>
+        )
+      }) }
+      
     </div>
   );
 };

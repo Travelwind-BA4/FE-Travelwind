@@ -22,7 +22,7 @@ const Traveler = () => {
         </h1>
         <hr className="my-4" />
         <div className='flex flex-col gap-y-3'>
-        { travelers.slice(0, 3).map((traveler) => {
+        { travelers.map((traveler) => {
           return(
               <Card
               key={traveler.travelerId}

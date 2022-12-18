@@ -11,7 +11,6 @@ import useTraveler from "../services/api/useTraveler";
 const Profilpage = () => {
   const navigate = useNavigate();
   const params = useLocation().pathname.split("/")[2];
-
   const { getOrderUser, OrdersUser } = useOrder();
   const { getTraveler} = useTraveler();
 
@@ -67,6 +66,7 @@ const Profilpage = () => {
   );
 };
 
+
 const profileChange = (params) => {
   if (params === "profile") {
     return <Profil />;
@@ -78,5 +78,7 @@ const profileChange = (params) => {
     return <Orders />;
   }
 };
+
+
 
 export default Profilpage;
