@@ -12,6 +12,7 @@ import Profilpage from "../pages/Profilpage";
 import Completepage from "../pages/Completepage";
 import Payment from "../pages/Payment";
 import Payments from "../pages/Payments";
+import Error from "../pages/Error";
 
 const Index = () => {
   const { pathname } = useLocation();
@@ -43,6 +44,7 @@ const Index = () => {
         <Route path="/account/orders" element={<Profilpage />} />
         <Route path="/account/orders/:order" element={<Profilpage />} />
         <Route path="/account/changepass" element={<Profilpage />} />
+        <Route path="*" element={<Error />} />
       </Routes>
       <Footer />
     </>
