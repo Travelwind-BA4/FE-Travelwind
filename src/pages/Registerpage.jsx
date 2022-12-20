@@ -21,7 +21,7 @@ const Registerpage = () => {
 
   const handleRegister = async (value) => {
     postRegister(value);
-    
+    navigate('/login')
   }
 
   return (

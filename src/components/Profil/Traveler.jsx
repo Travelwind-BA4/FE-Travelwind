@@ -44,7 +44,7 @@ const Traveler = () => {
                 <div className='sm:flex-row sm:justify-between flex flex-col gap-2'>
                   <div>
                     <p className='text-gray-400 font-medium'>Fullname</p>
-                    <h1 className='text-lg font-semibold'>{traveler.lastName}, {traveler.firstName}</h1>
+                    <h1 className='text-lg font-semibold'>{traveler.lastName}, {traveler.firstName} | {traveler.type}</h1>
                   </div>
                   <div>
                     <p className='text-gray-400 font-medium'>Birthdate</p>

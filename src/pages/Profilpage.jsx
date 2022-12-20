@@ -1,12 +1,11 @@
 import { FiUser, FiLogOut } from "react-icons/fi";
 import { BsCalendar2Check, BsCardList } from "react-icons/bs";
 import Profil from "../components/Profil/Profil";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import Traveler from "../components/Profil/Traveler";
 import Orders from "../components/Profil/Orders";
 import useOrder from "../services/api/useOrder";
 import useTraveler from "../services/api/useTraveler";
-
 
 const Profilpage = () => {
   const navigate = useNavigate();
@@ -14,6 +13,7 @@ const Profilpage = () => {
   const { getOrderUser, OrdersUser } = useOrder();
   const { getTraveler} = useTraveler();
 
+  const { orderId } = useParams();
 
   const handleOrder = (e) => {
     e.preventDefault();
@@ -26,8 +26,6 @@ const Profilpage = () => {
     getTraveler();
     navigate('/account/traveler');
   }
-
-
 
   const handleLogOut = () => {
     localStorage.removeItem('user');
