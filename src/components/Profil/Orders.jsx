@@ -1,13 +1,16 @@
 import { useEffect } from "react";
 import { BsCalendar2Check } from "react-icons/bs";
 import { IoAirplaneOutline } from "react-icons/io5";
+import { useNavigate } from "react-router-dom";
 import useOrder from "../../services/api/useOrder";
 const Orders = () => {
-  const { getOrderUser, ordersUser } = useOrder();
+  const { getOrderUser, getByStatus, ordersUser } = useOrder();
+  const navigate = useNavigate();
 
   useEffect(() => {
     getOrderUser();
   }, [])
+  console.log(ordersUser)
 
   return (
     <div>
@@ -19,17 +22,17 @@ const Orders = () => {
           <hr className="my-4" />
           <div className="">
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
-              <button className="px-4 py-3 bg-[#3e5cb8] rounded-full text-white">Confirmed</button>
-              <button className="px-4 py-3 bg-[#fff] rounded-full ">Complted</button>
-              <button className="px-4 py-3 bg-[#fff] rounded-full ">Waiting</button>
-              <button className="px-4 py-3 bg-[#fff] rounded-full ">Cancelled</button>
+              <button className="px-4 py-3 bg-[#3e5cb8] rounded-full text-white" onClick={() => getByStatus("ACCEPT")}>Confirmed</button>
+              <button className="px-4 py-3 bg-[#fff] rounded-full "  onClick={() => getOrderUser()} >Completed</button>
+              <button className="px-4 py-3 bg-[#fff] rounded-full "  onClick={() => getByStatus("WAITING")} >Waiting</button>
+              <button className="px-4 py-3 bg-[#fff] rounded-full " onClick={() => getByStatus("CANCELED")}>Cancelled</button>
             </div>
           </div>
         </div>
       </div>
       { ordersUser.map((item) => {
         return (
-          <div key={item.orderId} className="bg-[#f1f5f5] px-10 py-4 mt-10 rounded-lg cursor-pointer" >
+          <div key={item.orderId} className="bg-[#f1f5f5] px-10 py-4 mt-10 rounded-lg cursor-pointer" onClick={() => navigate(`/account/orders/${item.orderId}`)} >
         <h1 className="flex items-center text-xl ">
           <IoAirplaneOutline className="mr-4 text-[#7d7d7f]" /> Flight
         </h1>

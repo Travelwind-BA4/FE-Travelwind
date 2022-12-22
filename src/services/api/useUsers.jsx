@@ -9,8 +9,8 @@ const useUsers = () => {
     const postLogin = useCallback(async (value) => {
         try {
             await axios.post(`https://api-flight.up.railway.app/user/sign-in`, {
-        email: value.email,
-        password: value.password,
+            email: value.email,
+            password: value.password,
     }).then((response) => {
         localStorage.setItem('token', JSON.stringify(response.data.data.token));
         localStorage.setItem('user', JSON.stringify(response.data.data));

@@ -12,6 +12,7 @@ import Profilpage from "../pages/Profilpage";
 import Completepage from "../pages/Completepage";
 import Payment from "../pages/Payment";
 import Payments from "../pages/Payments";
+import DetailOrder from "../pages/DetailOrder";
 import Error from "../pages/Error";
 import AdminPage from "../pages/AdminPage";
 import UserAdmin from "../components/Admin/UserAdmin";
@@ -57,7 +58,7 @@ const Index = () => {
         <Route path="/account/profile" element={<Profilpage />} />
         <Route path="/account/traveler" element={<Profilpage />} />
         <Route path="/account/orders" element={<Profilpage />} />
-        <Route path="/account/orders/:order" element={<Profilpage />} />
+        <Route path="/account/orders/:orderId" element={<DetailOrder/>} />
         <Route path="/account/changepass" element={<Profilpage />} />
         <Route path="*" element={<Error />} />
       </Routes>

@@ -59,7 +59,7 @@ const Resultpage = () => {
       </section>
       <section>
         <div className="container sm:mx-auto sm:p-10 mt-4 ">
-          <div className="flex flex-col  bg-[#f1f5f5] rounded-md hidden">
+          <div className="flex flex-col  bg-[#f1f5f5] rounded-md">
             <div className="flex flex-row justify-between items-center border-b border-gray-300">
               <div className="mx-5 py-2">
                 <p className="font-semibold text-xl mb-1">Departure Flight to Test</p>
@@ -135,21 +135,6 @@ const Resultpage = () => {
                         Choose Flight
                       </button>
                     </div>
-                  </div>
-                  <div className="border sm:hidden">
-                    <h1 className="flex items-center">
-                      <SiChinasouthernairlines /> {schedule.airplaneName}
-                    </h1>
-                    <div className="flex justify-between items-center">
-                      <p>
-                        {`${schedule.departureTime}`.slice(0, 5)} - {`${schedule.arrivalTime}`.slice(0, 5)}
-                      </p>
-                      <p>
-                        RP. <span>{schedule.price}</span>
-                      </p>
-                    </div>
-                    <div></div>
-                    <div></div>
                   </div>
                 </>
               );

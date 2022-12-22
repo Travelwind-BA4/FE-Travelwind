@@ -17,7 +17,6 @@ const Payment = () => {
     const schedule = JSON.parse(localStorage.getItem("schedule"));
 
     const payload = {
-      status: "PENDING",
       userId: user.userId,
       paymentId: payments.paymentId,
       scheduleId: [schedule.scheduleId],
