@@ -42,7 +42,7 @@ const Index = () => {
         <Route path="/account/profile" element={<Profilpage />} />
         <Route path="/account/traveler" element={<Profilpage />} />
         <Route path="/account/orders" element={<Profilpage />} />
-        <Route path="/account/orders/:order" element={<DetailOrder/>} />
+        <Route path="/account/orders/:orderId" element={<DetailOrder/>} />
         <Route path="/account/changepass" element={<Profilpage />} />
       </Routes>
       <Footer />

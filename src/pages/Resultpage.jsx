@@ -134,15 +134,6 @@ const Resultpage = () => {
                     </button>
                   </div>
                 </div>
-                  <div className="border sm:hidden">
-                    <h1 className="flex items-center"><SiChinasouthernairlines/> {schedule.airplaneName}</h1>
-                    <div className="flex justify-between items-center">
-                      <p>{`${schedule.departureTime}`.slice(0, 5)} -  {`${schedule.arrivalTime}`.slice(0, 5)}</p>
-                      <p>RP. <span>{schedule.price}</span></p>
-                    </div>
-                    <div></div>
-                    <div></div>
-                  </div>
                 </>
                 
               );
