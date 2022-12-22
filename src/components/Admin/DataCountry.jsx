@@ -33,7 +33,7 @@ const items = [
   getItem("Sign Out", "/login", <LogoutOutlined />),
 ];
 
-const SideBar = () => {
+const DataCountry = () => {
   const navigate = useNavigate();
   const [collapsed, setCollapsed] = useState(false);
   const {
@@ -117,4 +117,4 @@ const SideBar = () => {
     </Layout>
   );
 };
-export default SideBar;
+export default DataCountry;

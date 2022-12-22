@@ -14,6 +14,7 @@ import Payment from "../pages/Payment";
 import Payments from "../pages/Payments";
 import AdminPage from "../pages/AdminPage";
 import UserAdmin from "../components/Admin/UserAdmin";
+import DataCountry from "../components/Admin/DataCountry";
 
 
 const Index = () => {
@@ -31,12 +32,13 @@ const Index = () => {
     );
   }
 
-  if (pathname === "/admin/dashboard" || pathname === "/admin/user"){
+  if (pathname === "/admin" || pathname === "/admin/user" || pathname === "/admin/data/country"){
     return (
       <>
         <Routes>
-          <Route path="/admin/dashboard" element={<AdminPage/>} />
+          <Route path="/admin" element={<AdminPage/>} />
           <Route path="/admin/user" element={<UserAdmin />} />
+          <Route path="/admin/data/country" element={<DataCountry />} />
         </Routes>
       </>
     );
