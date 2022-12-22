@@ -1,6 +1,5 @@
 import { DatePicker, Form } from "antd";
-import dayjs from "dayjs";
-const dateFormat = "YYYY-MM-DD";
+
 const Date = ({ name, style }) => {
   return (
     <div>
