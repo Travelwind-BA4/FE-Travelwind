@@ -35,3 +35,7 @@ code {
   background-color: #3e5cb8;
   border-radius: 999px;
 }
+
+.ant-select-dropdown {
+  min-width: 250px !important;
+}

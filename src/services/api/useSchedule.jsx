@@ -1,13 +1,13 @@
 import axios from "axios";
 import { useCallback, useState } from "react";
-
+import qs from "qs";
 const useSchedule = () => {
   const [schedules, setSchedules] = useState([]);
 
   const getSchedule = useCallback(
-    async ({ departureAirport, arrivalAirport, departureDate }) => {
+    async (payload) => {
       try {
-        const data = await axios.get(`https://api-flight.up.railway.app/schedule/get-all/airport/${departureAirport}/${arrivalAirport}/date/${departureDate}`);
+        const data = await axios.get(`${process.env.REACT_APP_URL_API}/schedule/search?${qs.stringify(payload)}`);
         setSchedules(data.data.data);
       } catch (error) {
         return error;
@@ -18,8 +18,8 @@ const useSchedule = () => {
 
   const getScheduleById = useCallback(async (idSchedule) => {
     try {
-      const data = await axios.get(`${process.env.REACT_APP_URL_API}/schedule/id/${idSchedule}`);
-      localStorage.setItem("Schedule", JSON.stringify(data.data.data));
+      const data = await axios.get(`${process.env.REACT_APP_URL_API}/schedule/id?id=${idSchedule}`);
+      localStorage.setItem("scheduleId", JSON.stringify(data.data.data));
       setSchedules(data.data.data);
     } catch (error) {
       return error;

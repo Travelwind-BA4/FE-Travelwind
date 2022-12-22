@@ -13,6 +13,9 @@ import Completepage from "../pages/Completepage";
 import Payment from "../pages/Payment";
 import Payments from "../pages/Payments";
 import Error from "../pages/Error";
+import AdminPage from "../pages/AdminPage";
+import UserAdmin from "../components/Admin/UserAdmin";
+import DataCountry from "../components/Admin/DataCountry";
 
 const Index = () => {
   const { pathname } = useLocation();
@@ -24,6 +27,18 @@ const Index = () => {
           <Route path="/" element={<Homepage />} />
           <Route path="/login" element={<Loginpage />} />
           <Route path="/register" element={<Registerpage />} />
+        </Routes>
+      </>
+    );
+  }
+
+  if (pathname === "/admin" || pathname === "/admin/user" || pathname === "/admin/data/country") {
+    return (
+      <>
+        <Routes>
+          <Route path="/admin" element={<AdminPage />} />
+          <Route path="/admin/user" element={<UserAdmin />} />
+          <Route path="/admin/data/country" element={<DataCountry />} />
         </Routes>
       </>
     );
