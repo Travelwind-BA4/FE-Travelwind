@@ -17,14 +17,24 @@ import AdminPage from "../pages/AdminPage";
 const Index = () => {
   const { pathname } = useLocation();
 
-  if (pathname === "/login" || pathname === "/register" || pathname === "/admin"  || pathname === "/") {
+  if (pathname === "/login" || pathname === "/register" || pathname === "/") {
     return (
       <>
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/login" element={<Loginpage />} />
-          <Route path="/register" element={<Registerpage />} />
-          <Route path="/admin" element={<AdminPage />} />
+          <Route path="/register" element={<Registerpage />} />          
+        </Routes>
+      </>
+    );
+  }
+
+  if (pathname === "/admin"){
+    return (
+      <>
+        <Routes>
+          <Route path="/admin" element={<AdminPage/>} />
+          <Route path="/admin/user" element={<AdminPage  />} />
         </Routes>
       </>
     );
