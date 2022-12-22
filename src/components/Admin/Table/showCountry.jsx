@@ -5,7 +5,6 @@ const columns = [
     title: "Country Code",
     dataIndex: "countryCD",
     key: "countryCD",
-    render: (text) => <a>{text}</a>,
   },
   {
     title: "Country Name",
