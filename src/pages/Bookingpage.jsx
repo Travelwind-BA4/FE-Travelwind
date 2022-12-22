@@ -13,7 +13,7 @@ import Countries from "../components/Dropdown/Countries";
 
 const BookingPage = () => {
   const navigate = useNavigate();
-
+  const qty = localStorage.getItem("traveler");
   const { addTravelerByOrder } = useTraveler();
 
   const bookTraveler = (value) => {
@@ -54,13 +54,13 @@ const BookingPage = () => {
               </p>
               <div className=" border-b border-gray-300"></div>
               <p className="mt-2 text-sm px-3 text-orange-400 font-semibold">Name according to ID Card/Passport without title and punctuation</p>
-              <div class="mt-3 w-full max-w-2xl px-3">
-                <div class="flex flex-wrap -mx-3 mb-6">
-                  <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-                    <label class="block  tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
+              <div className="mt-3 w-full max-w-2xl px-3">
+                <div className="flex flex-wrap -mx-3 mb-6">
+                  <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                    <label className="block  tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
                       Title <span className="text-red-500">*</span>
                     </label>
-                    <div class="relative">
+                    <div className="relative">
                       <Booking
                         placeholder={"Mr/Mrs"}
                         styles="w-[100px] border-b border-gray-300"
@@ -80,50 +80,50 @@ const BookingPage = () => {
                     </div>
                   </div>
                 </div>
-                <div class="flex flex-wrap -mx-3 mb-6">
-                  <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <div className="flex flex-wrap -mx-3 mb-6">
+                  <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                     <Text name="First Name" placeholder="Jhon" />
                   </div>
-                  <div class="w-full md:w-1/2 px-3">
+                  <div className="w-full md:w-1/2 px-3">
                     <Text name="Last Name" placeholder="Smith" />
                   </div>
                 </div>
-                <div class="flex flex-wrap -mx-3 mb-6">
-                  <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                    <label class="block  tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
+                <div className="flex flex-wrap -mx-3 mb-6">
+                  <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                    <label className="block  tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
                       Date Birth <span className="text-red-500">*</span>
                     </label>
-                    <div class="relative">
+                    <div className="relative">
                       <Date style="border-b border-gray-300" name="dateBirth" />
                     </div>
                   </div>
-                  <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                  <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                     <Countries name="Nationality" />
                   </div>
                 </div>
-                <div class="flex flex-wrap -mx-3 mb-6">
-                  <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                <div className="flex flex-wrap -mx-3 mb-6">
+                  <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
                     <Text name="ID Passport" placeholder="ex. 1702192905990001" />
                   </div>
-                  <div class="w-full md:w-1/3 px-3">
+                  <div className="w-full md:w-1/3 px-3">
                     <Countries name="Passport Country" />
                   </div>
-                  <div class="w-full md:w-1/3 px-3">
-                    <label class="block  tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
+                  <div className="w-full md:w-1/3 px-3">
+                    <label className="block  tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
                       Card Expiry <span className="text-red-500">*</span>
                     </label>
                     <Date style="border-b border-gray-300" name="passportExpired" />
                   </div>
                 </div>
-                <div class="flex flex-wrap -mx-3 mb-6">
-                  <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                <div className="flex flex-wrap -mx-3 mb-6">
+                  <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
                     <Text name="ID Card Number" placeholder="ex. 1702192905990001" />
                   </div>
-                  <div class="w-full md:w-1/3 px-3">
+                  <div className="w-full md:w-1/3 px-3">
                     <Countries name="Card Country" />
                   </div>
-                  <div class="w-full md:w-1/3 px-3">
-                    <label class="block  tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
+                  <div className="w-full md:w-1/3 px-3">
+                    <label className="block  tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
                       Card Expiry <span className="text-red-500">*</span>
                     </label>
                     <Date style="border-b border-gray-300" name="cardExpired" />

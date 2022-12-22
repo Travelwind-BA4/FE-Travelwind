@@ -23,10 +23,9 @@ const Payments = () => {
             <div className="mt-10">
               <h2>Virtual Account</h2>
               <div className="grid xl:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8">
-                {console.log(payments)}
                 {payments.map((payment) => {
                   return (
-                    <div className=" mt-4 w-50 h-36 bg-white rounded-lg grid">
+                    <div className=" mt-4 w-50 h-36 bg-white rounded-lg grid cursor-pointer">
                       <img className="justify-self-center self-center cursor-pointer" src={payment.imagePath} onClick={() => methodPayment(payment.paymentName)} />
                     </div>
                   );

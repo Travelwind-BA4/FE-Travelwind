@@ -10,15 +10,15 @@ const Resultpage = () => {
   const [showForm, setShowForm] = useState(false);
   const [showDate, setShowDate] = useState(false);
   let [searchParams, setSearchParams] = useSearchParams();
-  const departureAirport = searchParams.get("depAirport");
-  const arrivalAirport = searchParams.get("arrAirport");
-  const departureDate = searchParams.get("depDate");
+  const depAirport = searchParams.get("depAirport");
+  const arrAirport = searchParams.get("arrAirport");
+  const depDate = searchParams.get("depDate");
   const traveler = searchParams.get("traveler");
   const { schedules, getSchedule } = useSchedule();
   const navigate = useNavigate();
 
   useEffect(() => {
-    getSchedule({ departureAirport, arrivalAirport, departureDate });
+    getSchedule({ depAirport, arrAirport, depDate });
   }, []);
 
   return (
@@ -33,7 +33,9 @@ const Resultpage = () => {
               <div className="description ">
                 <p className="text-lg font-medium">Select Departure Flight</p>
                 <p className="text-base font-light">
-                  <span>KNO -JKT</span>
+                  <span>
+                    {depAirport} - {arrAirport}
+                  </span>
                   <span className="px-1"> | </span> Wed, 24 Nov
                 </p>
               </div>
@@ -57,7 +59,7 @@ const Resultpage = () => {
       </section>
       <section>
         <div className="container sm:mx-auto sm:p-10 mt-4 ">
-          <div className="flex flex-col  bg-[#f1f5f5] rounded-md hidden">
+          <div className="flex flex-col  bg-[#f1f5f5] rounded-md">
             <div className="flex flex-row justify-between items-center border-b border-gray-300">
               <div className="mx-5 py-2">
                 <p className="font-semibold text-xl mb-1">Departure Flight to Test</p>
@@ -102,40 +104,39 @@ const Resultpage = () => {
               return (
                 <>
                   <div className="sm:flex sm:flex-row justify-between items-center gap-4 bg-[#f1f5f5] rounded-md hidden">
-                  <div className="wrapper-list-ticket flex items-center px-5 py-8">
-                    <div className="logo-maskapai mx-4">
-                      <SiChinasouthernairlines size="2.5rem" />
-                      <p className="text-sm">{schedule.airplaneName}</p>
+                    <div className="wrapper-list-ticket flex items-center px-5 py-8">
+                      <div className="logo-maskapai mx-4">
+                        <SiChinasouthernairlines size="2.5rem" />
+                        <p className="text-sm">{schedule.airplaneName}</p>
+                      </div>
+                      <div className="departure mx-4 ml-12">
+                        <p className="font-semibold text-xl">{schedule.departureTime}</p>
+                        <p className="font-light text-sm">{schedule.departureCity}</p>
+                      </div>
+                      <AiOutlineArrowRight size="1.2rem" className="text-gray-400 mx-2" />
+                      <div className="arrival mx-4">
+                        <p className="font-semibold text-xl">{schedule.arrivalTime}</p>
+                        <p className="font-light text-sm">{schedule.arrivalCity}</p>
+                      </div>
+                      <div className="duration mx-8 ml-16">
+                        <p className="font-semibold text-xl">1H 30M</p>
+                        <p className="font-light text-sm">{schedule.status}</p>
+                      </div>
+                      <div className="flex items-center mx-8">
+                        <RiSuitcase2Line size="1.2rem" />
+                        <p className="font-light">20kg</p>
+                      </div>
+                      <div className="price mx-8 ml-24">
+                        <p className="font-semibold text-xl">{`Rp. ${schedule.price}`}</p>
+                      </div>
                     </div>
-                    <div className="departure mx-4 ml-12">
-                      <p className="font-semibold text-xl">{schedule.departureTime}</p>
-                      <p className="font-light text-sm">{schedule.departureCity}</p>
-                    </div>
-                    <AiOutlineArrowRight size="1.2rem" className="text-gray-400 mx-2" />
-                    <div className="arrival mx-4">
-                      <p className="font-semibold text-xl">{schedule.arrivalTime}</p>
-                      <p className="font-light text-sm">{schedule.arrivalCity}</p>
-                    </div>
-                    <div className="duration mx-8 ml-16">
-                      <p className="font-semibold text-xl">1H 30M</p>
-                      <p className="font-light text-sm">{schedule.status}</p>
-                    </div>
-                    <div className="flex items-center mx-8">
-                      <RiSuitcase2Line size="1.2rem" />
-                      <p className="font-light">20kg</p>
-                    </div>
-                    <div className="price mx-8 ml-24">
-                      <p className="font-semibold text-xl">{`Rp. ${schedule.price}`}</p>
+                    <div className="button-choose mr-12">
+                      <button className="bg-blue-700 text-sm font-medium text-white rounded-md py-2 px-2 hover:bg-blue-600" onClick={() => navigate(`/flight/${schedule.scheduleId}`)}>
+                        Choose Flight
+                      </button>
                     </div>
                   </div>
-                  <div className="button-choose mr-12">
-                    <button className="bg-blue-700 text-sm font-medium text-white rounded-md py-2 px-2 hover:bg-blue-600" onClick={() => navigate(`/flight/${schedule.scheduleId}`)}>
-                      Choose Flight
-                    </button>
-                  </div>
-                </div>
                 </>
-                
               );
             })}
           </div>
@@ -146,4 +147,3 @@ const Resultpage = () => {
 };
 
 export default Resultpage;
-                

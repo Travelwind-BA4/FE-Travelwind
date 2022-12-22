@@ -10,13 +10,13 @@ import useOrder from '../services/api/useOrder';
 const DetailOrder = () => {
   const  { orderId } = useParams();
   console.log(orderId)
-  const { getByOrderId, ordersUser } = useOrder()
+  const { getByOrderId, ordersUser, generateInvoice } = useOrder()
   const navigate = useNavigate();
 
   useEffect(() => {
     getByOrderId(orderId)
   }, [orderId])
-
+  console.log(ordersUser);
 
   return (
     <div className="h-auto pb-20">
@@ -32,7 +32,7 @@ const DetailOrder = () => {
               <BsCardList className="mr-3" /> Traveler List
             </h2>
           </div>
-          <div className="bg-[#f1f5f5] text-[#000] lg:max-w-[300px] rounded-lg cursor-pointer" onClick={() => navigate("/account/order")} >
+          <div className="bg-[#f1f5f5] text-[#000] lg:max-w-[300px] rounded-lg cursor-pointer" onClick={() => navigate("/account/orders")} >
             <h2 className="flex items-center pl-10  h-full min-h-[50px]">
               <BsCalendar2Check className="mr-3" /> Orders
             </h2>
@@ -91,6 +91,7 @@ const DetailOrder = () => {
           <p>Rp. {order.totalPrice}</p>
         </div>
       </div>
+      { order.status === "ACCEPT" ? <h1 className='text-end text-base mt-7 text-blue-700 underline cursor-pointer' onClick={() => generateInvoice(order.orderId)}>Generate Invoice</h1> : ""}
         </div>
           )
         }) }

@@ -1,3 +1,4 @@
+import { Alert } from "antd";
 import { useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import useOrder from "../services/api/useOrder";
@@ -5,8 +6,7 @@ import usePayments from "../services/api/usePayments";
 
 const Payment = () => {
   const { getPayment, payments } = usePayments();
-  const { addOrder } = useOrder();
-  const navigate = useNavigate();
+  const { addOrder, status } = useOrder();
 
   let [searchParams, setSearchParams] = useSearchParams();
   const methodPay = searchParams.get("method");
@@ -14,17 +14,15 @@ const Payment = () => {
   const paymentOrder = (e) => {
     e.preventDefault();
     const user = JSON.parse(localStorage.getItem("user"));
-    const schedule = JSON.parse(localStorage.getItem("Schedule"));
+    const schedule = JSON.parse(localStorage.getItem("schedule"));
 
     const payload = {
-      status: "PENDING",
       userId: user.userId,
       paymentId: payments.paymentId,
       scheduleId: [schedule.scheduleId],
     };
 
     addOrder(payload);
-    navigate("/complete");
   };
 
   useEffect(() => {
@@ -34,6 +32,7 @@ const Payment = () => {
   return (
     <div>
       <form className="container mx-auto py-10 px-10 min-h-screen" onSubmit={(e) => paymentOrder(e)}>
+        {status ? <Alert message={status.message} type="error" className="mb-7" /> : ""}
         <div className="bg-[#f1f5f5] px-8 py-8 rounded-md shadow-md">
           <h1 className="text-3xl mt-8 font-medium text-gray-600 ">Payment Methods</h1>
           <div className=" mt-4 rounded-lg mt-8">
