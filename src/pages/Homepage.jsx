@@ -26,6 +26,7 @@ const Homepage = () => {
     getAirports();
   }, []);
   const searchFlight = ({ departureAirport, arrivalAirport, departureDate, traveler }) => {
+    localStorage.setItem("traveler", JSON.stringify(traveler));
     navigate(`results/search?depDate=${timeConverter(departureDate)}&depAirport=${departureAirport}&arrAirport=${arrivalAirport}&traveler=${traveler}`);
   };
 
