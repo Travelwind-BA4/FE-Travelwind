@@ -20,10 +20,12 @@ const columns = [
   {
     title: "Action",
     key: "action",
-    render: (_, record) => (
+    render: (_) => (
       <Space size="middle">
-        <a>Add</a>
-        <a>Delete</a>
+        <Button type="primary">Add</Button>
+        <Button type="primary" danger>
+          Delete
+        </Button>
       </Space>
     ),
   },
