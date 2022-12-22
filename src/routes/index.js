@@ -13,6 +13,8 @@ import Completepage from "../pages/Completepage";
 import Payment from "../pages/Payment";
 import Payments from "../pages/Payments";
 import AdminPage from "../pages/AdminPage";
+import UserAdmin from "../components/Admin/UserAdmin";
+
 
 const Index = () => {
   const { pathname } = useLocation();
@@ -29,12 +31,12 @@ const Index = () => {
     );
   }
 
-  if (pathname === "/admin"){
+  if (pathname === "/admin/dashboard" || pathname === "/admin/user"){
     return (
       <>
         <Routes>
-          <Route path="/admin" element={<AdminPage/>} />
-          <Route path="/admin/user" element={<AdminPage  />} />
+          <Route path="/admin/dashboard" element={<AdminPage/>} />
+          <Route path="/admin/user" element={<UserAdmin />} />
         </Routes>
       </>
     );

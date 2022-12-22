@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import {
   DesktopOutlined,
   PieChartOutlined,
@@ -6,7 +7,6 @@ import {
   LogoutOutlined,
 } from "@ant-design/icons";
 import { Breadcrumb, Layout, Menu, theme } from "antd";
-import { useNavigate } from "react-router-dom";
 
 const { Header, Content, Footer, Sider } = Layout;
 function getItem(label, key, icon, children) {
@@ -19,7 +19,7 @@ function getItem(label, key, icon, children) {
 }
 
 const items = [
-  getItem("Dashboard", "/admin", <PieChartOutlined />),
+  getItem("Dashboard", "/admin/dashboard", <PieChartOutlined />),
   getItem("Users", "/admin/user", <UserOutlined />),
   getItem("Data", "sub1", <DesktopOutlined />, [
     getItem("Country", "data/country"),
