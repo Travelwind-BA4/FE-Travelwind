@@ -3,16 +3,7 @@ import { GiCommercialAirplane } from "react-icons/gi";
 
 const Options = ({ placeholder, name, airports, styles }) => {
   const onSearch = (value) => {
-    // searchAirport(value);
-
     airports.find((e) => e.name === value);
-
-    // searchAirport(value);
-    // if (value == "") {
-    //   getAirports();
-    // } else {
-    //   searchAirport(value);
-    // }
   };
 
   return (
