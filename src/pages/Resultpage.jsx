@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { GiAirplaneDeparture } from "react-icons/gi";
 import { SiChinasouthernairlines } from "react-icons/si";
-import { AiOutlineArrowRight, AiOutlineDown } from "react-icons/ai";
+import { AiOutlineArrowRight } from "react-icons/ai";
 import { RiSuitcase2Line } from "react-icons/ri";
-import { useLocation, useNavigate, useParams, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import useSchedule from "../services/api/useSchedule";
+import Sorting from "../components/Dropdown/Sorting";
 
 const Resultpage = () => {
   const [showForm, setShowForm] = useState(false);
@@ -16,13 +17,13 @@ const Resultpage = () => {
   const traveler = searchParams.get("traveler");
   const { schedules, getSchedule } = useSchedule();
   const navigate = useNavigate();
-
+  const { byPrices } = Sorting();
   useEffect(() => {
     getSchedule({ depAirport, arrAirport, depDate });
   }, []);
 
   return (
-    <div className="h-screen">
+    <div className="min-h-screen">
       <section className="bg-[#3d74eb]">
         <div className="py-5 container mx-auto px-10 ">
           <div className="flight-header flex items-center">
@@ -36,7 +37,7 @@ const Resultpage = () => {
                   <span>
                     {depAirport} - {arrAirport}
                   </span>
-                  <span className="px-1"> | </span> Wed, 24 Nov
+                  <span className="px-1"> | </span> {new Date(depDate).toDateString()}
                 </p>
               </div>
             </div>
@@ -64,7 +65,7 @@ const Resultpage = () => {
               <div className="mx-5 py-2">
                 <p className="font-semibold text-xl mb-1">Departure Flight to Test</p>
                 <p className="text-base font-light pb-2">
-                  Wed 24 Nov 2022 <span> | </span> {`${traveler} Traveler`}
+                  {new Date(depDate).toDateString()} <span> | </span> {`${traveler} Traveler`}
                 </p>
               </div>
               <div className="mx-8">
@@ -83,13 +84,10 @@ const Resultpage = () => {
               <div className="flex flex-row items-center list-filter gap-2 mx-5 py-2">
                 <p>Filter: </p>
                 <div className="flex button-filter gap-3">
-                  <div className="button-filter flex bg-gray-200 rounded-md items-center px-2 py-1 gap-2">
-                    <button>Price</button>
-                    <AiOutlineDown />
-                  </div>
-                  <button>Stops</button>
-                  <button>Airlines</button>
-                  <button>Departure</button>
+                  {byPrices()}
+                  <button className="bg-gray-200 rounded-md px-5 py-1">Stops</button>
+                  <button className="bg-gray-200 rounded-md px-5 py-1">Airlines</button>
+                  <button className="bg-gray-200 rounded-md px-5 py-1">Departure</button>
                 </div>
               </div>
               <div className="flex filter-sort gap-2 mx-5">
@@ -100,7 +98,6 @@ const Resultpage = () => {
           </div>
           <div className="flex flex-col sm:gap-y-6 gap-y-2 mt-3">
             {schedules.map((schedule) => {
-              console.log(schedule);
               return (
                 <>
                   <div className="sm:flex sm:flex-row justify-between items-center gap-4 bg-[#f1f5f5] rounded-md hidden">
@@ -139,6 +136,37 @@ const Resultpage = () => {
                 </>
               );
             })}
+            <div className="flex justify-between items-center gap-4 bg-[#f1f5f5] rounded-md  px-5 py-8">
+              <div className="flex items-center">
+                <div className="mx-8">
+                  <SiChinasouthernairlines size="2.5rem" />
+                  <p className="text-sm">asdasd</p>
+                </div>
+                <div>
+                  <p className="font-semibold text-xl">asdasd</p>
+                  <p className="font-light text-sm">asdasd</p>
+                </div>
+                <AiOutlineArrowRight size="1.4rem" className="text-gray-400 mx-5" />
+                <div>
+                  <p className="font-semibold text-xl">asdasd</p>
+                  <p className="font-light text-sm">asdasd</p>
+                </div>
+                <div className="duration mx-8  lg:block hidden">
+                  <p className="font-semibold text-xl">1H 30M</p>
+                  <p className="font-light text-sm">sadasd</p>
+                </div>
+                <div className="items-center mx-8 lg:flex hidden">
+                  <RiSuitcase2Line size="1.2rem" className="mr-4" />
+                  <p className="font-light">20kg</p>
+                </div>
+                <div className="price mx-8">
+                  <p className="font-semibold text-xl">Rp. 1925000</p>
+                </div>
+              </div>
+              <div className="button-choose mr-12 md:block hidden">
+                <button className="bg-blue-700 text-sm font-medium text-white rounded-md py-2 px-2 hover:bg-blue-600">Choose Flight</button>
+              </div>
+            </div>
           </div>
         </div>
       </section>

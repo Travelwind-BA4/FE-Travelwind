@@ -26,7 +26,17 @@ const useSchedule = () => {
     }
   }, []);
 
-  return { getSchedule, getScheduleById, schedules };
+  const byLowerPrice = useCallback(async (payload) => {
+    try {
+      const data = await axios.get(`${process.env.REACT_APP_URL_API}/schedule/higher-price?${qs.stringify(payload)}`);
+      localStorage.setItem("schedule", JSON.stringify(data.data.data));
+      setSchedules(data.data.data);
+    } catch (error) {
+      return error;
+    }
+  }, []);
+
+  return { getSchedule, getScheduleById, schedules, byLowerPrice };
 };
 
 export default useSchedule;

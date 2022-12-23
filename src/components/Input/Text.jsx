@@ -1,8 +1,6 @@
 import { Form, Input } from "antd";
-import { useState } from "react";
 
 const Text = ({ name, placeholder }) => {
-  const [input, setInput] = useState("");
   return (
     <Form.Item
       name={name}

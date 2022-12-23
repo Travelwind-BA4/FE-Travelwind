@@ -1,21 +1,21 @@
-import { useNavigate } from "react-router-dom";
-
-import DocID from "../components/Booking/DocID";
-
 import Date from "../components/Input/Date";
 import Text from "../components/Input/Text";
-import { Form } from "antd";
+import { Alert, Form } from "antd";
 import Booking from "../components/Dropdown/Title";
 
 import useTraveler from "../services/api/useTraveler";
 import timeConverter from "../utils/timeConverter";
 import Countries from "../components/Dropdown/Countries";
+import useCountries from "../services/api/useCountries";
+import { useEffect } from "react";
 
 const BookingPage = () => {
-  const navigate = useNavigate();
   const qty = localStorage.getItem("traveler");
-  const { addTravelerByOrder } = useTraveler();
-
+  const { addTravelerByOrder, status } = useTraveler();
+  const { getCountries, countries } = useCountries();
+  useEffect(() => {
+    getCountries();
+  }, []);
   const bookTraveler = (value) => {
     const user = JSON.parse(localStorage.getItem("user"));
 
@@ -38,7 +38,6 @@ const BookingPage = () => {
     ];
 
     addTravelerByOrder(payloads);
-    navigate("/payments");
   };
   return (
     <div className="container mx-auto py-10 px-10">
@@ -47,6 +46,7 @@ const BookingPage = () => {
           <div className="col-span-2 bg-[#f1f5f5]  px-8 pb-8  rounded-md">
             <div className="border-b border-gray-300 mt-5">
               <p className="font-semibold text-xl mb-5">Traveler Information</p>
+              {status ? <Alert message={status.message} type="error" className="mb-7" /> : ""}
             </div>
             <div className="border shadow-md py-5 px-3">
               <p className="font-semibold text-xl mb-3">
@@ -98,7 +98,7 @@ const BookingPage = () => {
                     </div>
                   </div>
                   <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                    <Countries name="Nationality" />
+                    <Countries name="Nationality" items={countries} />
                   </div>
                 </div>
                 <div className="flex flex-wrap -mx-3 mb-6">
@@ -106,7 +106,7 @@ const BookingPage = () => {
                     <Text name="ID Passport" placeholder="ex. 1702192905990001" />
                   </div>
                   <div className="w-full md:w-1/3 px-3">
-                    <Countries name="Passport Country" />
+                    <Countries name="Passport Country" items={countries} />
                   </div>
                   <div className="w-full md:w-1/3 px-3">
                     <label className="block  tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">

@@ -39,20 +39,19 @@ const useOrder = () => {
     }
   }, [ordersUser]);
 
-
   const getByOrderId = useCallback(async (orderId) => {
     try {
       console.log(orderId);
-      const token = JSON.parse(localStorage.getItem('token'));
+      const token = JSON.parse(localStorage.getItem("token"));
       const config = {
         headers: { Authorization: `Bearer ${token}` },
       };
-      const res = await axios.get(`${process.env.REACT_APP_URL_API}/order/id/${orderId}`, config)
-      setOrdersUser(res.data.data)
+      const res = await axios.get(`${process.env.REACT_APP_URL_API}/order/id/${orderId}`, config);
+      setOrdersUser(res.data.data);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }, [])
+  }, []);
 
   const getByStatus = useCallback(async (status) => {
     try {
@@ -61,12 +60,12 @@ const useOrder = () => {
       const config = {
         headers: { Authorization: `Bearer ${token}` },
       };
-      const res = await axios.get(`${process.env.REACT_APP_URL_API}/order/get-all/user/${user.userId}/status/${status}`, config)
-      setOrdersUser(res.data.data)
+      const res = await axios.get(`${process.env.REACT_APP_URL_API}/order/get-all/user/${user.userId}/status/${status}`, config);
+      setOrdersUser(res.data.data);
     } catch (error) {
       return error;
     }
-  }, [])
+  }, []);
 
   const generateInvoice = useCallback(async (orderId) => {
     try {
@@ -74,13 +73,13 @@ const useOrder = () => {
       const config = {
         headers: { Authorization: `Bearer ${token}` },
       };
-      await axios.get(`${process.env.REACT_APP_URL_API}/invoice/generate/${orderId}`, config)
+      await axios.get(`${process.env.REACT_APP_URL_API}/invoice/generate/${orderId}`, config);
     } catch (error) {
-      return(error)
+      return error;
     }
-  })
+  });
 
-  return { addOrder, getOrderUser, getByOrderId, getByStatus, generateInvoice, ordersUser };
+  return { addOrder, getOrderUser, getByOrderId, getByStatus, generateInvoice, ordersUser, status };
 };
 
 export default useOrder;

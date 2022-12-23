@@ -35,10 +35,11 @@ const Notification = ({ style }) => {
   return (
     <Dropdown
       dropdownRender={() => (
-        <div className="dropdown-content rounded-md">
+        <div className="dropdown-content rounded-md bg-[#f1f5f5] p-3 rounded-md min-w-[100px]">
+          <h1 className="mb-1">Notification</h1>
           {notif.map((e, i) => {
             return (
-              <div className=" bg-[#f1f5f5] p-3 rounded-md min-w-[100px]" key={i}>
+              <div className="border-t-2 pt-2" key={i}>
                 <h1 className="">{e.title}</h1>
                 <p>{e.content}</p>
               </div>
