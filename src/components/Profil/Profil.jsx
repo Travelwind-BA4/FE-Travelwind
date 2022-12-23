@@ -20,7 +20,7 @@ const Profil = () => {
             </div>
             <div className="col-span-1">
               <h1 className="text-[#a5a5a8] mb-1">Email</h1>
-              <p>{user.email}</p>
+              <p>{user.birthDate}</p>
             </div>
           </div>
           <div className="grid grid-cols-2">
