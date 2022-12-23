@@ -6,6 +6,8 @@ import timeConverter from "../../utils/timeConverter";
 const useUsers = () => {
   const navigate = useNavigate();
   const [msgError, setMsgError] = useState(false);
+  const [users, setUsers] = useState([]);
+
   const postLogin = useCallback(async (value) => {
     try {
       await axios
@@ -70,7 +72,19 @@ const useUsers = () => {
     }
   });
 
-  return { postLogin, msgError, postRegister, ChangePassword };
+  const getMe = useCallback(async (id, token) => {
+    try {
+      const config = {
+        headers: { Authorization: `Bearer ${token}` },
+      };
+      const { data } = await axios.get(`https://api-flight.up.railway.app/user/findby-id?userId=${id}`, config);
+      setUsers(data.data);
+    } catch (error) {
+      console.log("error");
+    }
+  });
+
+  return { postLogin, msgError, postRegister, ChangePassword, getMe, users };
 };
 
 export default useUsers;
