@@ -32,7 +32,7 @@ const useOrder = () => {
       const config = {
         headers: { Authorization: `Bearer ${token}` },
       };
-      const res = await axios.get(`${process.env.REACT_APP_URL_API}/order/get-all/user/${user.userId}`, config);
+      const res = await axios.get(`${process.env.REACT_APP_URL_API}/order/findby-user?userId=${user.userId}`, config);
       setOrdersUser(res.data.data);
     } catch (error) {
       return error;
@@ -46,7 +46,7 @@ const useOrder = () => {
       const config = {
         headers: { Authorization: `Bearer ${token}` },
       };
-      const res = await axios.get(`${process.env.REACT_APP_URL_API}/order/id/${orderId}`, config);
+      const res = await axios.get(`${process.env.REACT_APP_URL_API}/order/detail?orderId=${orderId}`, config);
       setOrdersUser(res.data.data);
     } catch (error) {
       console.log(error);
@@ -60,7 +60,7 @@ const useOrder = () => {
       const config = {
         headers: { Authorization: `Bearer ${token}` },
       };
-      const res = await axios.get(`${process.env.REACT_APP_URL_API}/order/get-all/user/${user.userId}/status/${status}`, config);
+      const res = await axios.get(`${process.env.REACT_APP_URL_API}/order/get-status?userId=${user.userId}&status=${status}`, config);
       setOrdersUser(res.data.data);
     } catch (error) {
       return error;

@@ -50,25 +50,23 @@ const useUsers = () => {
     }
   });
 
-  const ChangePassword = useCallback(async (value) => {
+  const editUser = useCallback(async (value, userId, token) => {
     try {
-      const user = JSON.parse(localStorage.getItem("user"));
-      const token = JSON.parse(localStorage.getItem("token"));
-      // console.log(token);
-      const config = { headers: `Bearer ${token}` };
-      const payload = {
-        fullName: user.fullName,
-        email: user.email,
-        password: value.password,
-        telephone: user.telephone,
-        birthDate: user.birthDate,
-        gender: user.gender,
-        rolesId: 2,
+
+      const config = {
+        headers: { Authorization: `Bearer ${token}` },
       };
+      const payload = {
+        fullName: value.fullName,
+        email: value.email,
+        telephone: value.telephone,
+        birthDate: timeConverter(value.birthDate),
+        gender: value.gender,
+      }
+      const res = await axios.put(`${process.env.REACT_APP_URL_API}/user/update?userId=${userId}`, payload, config)
       console.log(payload);
-      await axios.put(`https://api-flight.up.railway.app/user/update/${user.fullName}`, payload, config);
     } catch (error) {
-      console.log("error");
+      return error;
     }
   });
 
@@ -84,7 +82,7 @@ const useUsers = () => {
     }
   });
 
-  return { postLogin, msgError, postRegister, ChangePassword, getMe, users };
+  return { postLogin, msgError, postRegister, editUser, getMe, users };
 };
 
 export default useUsers;

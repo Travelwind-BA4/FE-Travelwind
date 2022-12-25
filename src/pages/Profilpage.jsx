@@ -6,6 +6,7 @@ import Traveler from "../components/Profil/Traveler";
 import Orders from "../components/Profil/Orders";
 import useOrder from "../services/api/useOrder";
 import useTraveler from "../services/api/useTraveler";
+import Profile from "../components/Profil/Profile";
 
 const Profilpage = () => {
   const navigate = useNavigate();
@@ -66,7 +67,7 @@ const Profilpage = () => {
 
 const profileChange = (params) => {
   if (params === "profile") {
-    return <Profil />;
+    return <Profile />;
   }
   if (params === "traveler") {
     return <Traveler />;
