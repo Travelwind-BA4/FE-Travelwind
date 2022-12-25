@@ -1,12 +1,6 @@
 import { Form, Select } from "antd";
-import { useEffect } from "react";
-import useCountries from "../../services/api/useCountries";
 
-const Countries = ({ name, items }) => {
-  const { getCountries, countries } = useCountries();
-  useEffect(() => {
-    getCountries();
-  }, []);
+const Countries = ({ name, countries }) => {
   return (
     <>
       <div>

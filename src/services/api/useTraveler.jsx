@@ -41,15 +41,14 @@ const useTraveler = () => {
       const config = {
         headers: { Authorization: `Bearer ${token}` },
       };
-      const data = await axios.post(`${process.env.REACT_APP_URL_API}/traveler-list/add`, payloads, config);
-
-      console.log(data);
+      await axios.post(`${process.env.REACT_APP_URL_API}/traveler-list/add/from-order`, payloads, config);
+      setStatus(false);
     } catch (error) {
-      return error;
+      setStatus(error);
     }
   };
 
-  return { addTravelerByOrder, getTraveler, travelers, status };
+  return { addTravelerByOrder, getTraveler, travelers, status, addTraveler };
 };
 
 export default useTraveler;
