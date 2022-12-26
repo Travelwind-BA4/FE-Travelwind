@@ -2,15 +2,26 @@ import { Select } from "antd";
 import useSchedule from "../../services/api/useSchedule";
 
 const Sorting = () => {
-  const { byLowerPrice } = useSchedule();
-  const byPrices = () => {
+  const { byPrice } = useSchedule();
+  const byPrices = ({ depAirport, arrAirport, depDate }) => {
+    const lower = (val) => {
+      console.log(val);
+      const payload = {
+        depAirport: depAirport,
+        arrAirport: arrAirport,
+        depDate: depDate,
+        size: 5,
+        page: 0,
+      };
+      byPrice(val, payload);
+    };
     return (
-      <Select className="bg-gray-200 rounded-md" placeholder="Prices" bordered={false}>
-        <Select.Option key={1}>
+      <Select className="bg-gray-200 rounded-md" placeholder="Prices" bordered={false} onSelect={lower}>
+        <Select.Option key={1} value="lower-price">
           <h1>Lower Prices</h1>
         </Select.Option>
-        <Select.Option key={2}>
-          <h1>Lower Prices</h1>
+        <Select.Option key={2} value="higher-price">
+          <h1>High Prices</h1>
         </Select.Option>
       </Select>
     );

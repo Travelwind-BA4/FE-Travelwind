@@ -6,6 +6,8 @@ import AddTraveler from "../components/Profil/AddTraveler";
 
 const BookingPage = () => {
   const qty = localStorage.getItem("traveler");
+  const schedule = JSON.parse(localStorage.getItem("schedule"));
+
   const { addTravelerByOrder, status } = useTraveler();
 
   const bookTraveler = (value) => {
@@ -32,7 +34,7 @@ const BookingPage = () => {
     addTravelerByOrder(payloads);
   };
   return (
-    <div className="container mx-auto py-10 px-10">
+    <div className="container mx-auto py-10 px-10 min-h-screen">
       <Form onFinish={bookTraveler}>
         <div className="grid lg:grid-cols-3 grid-cols-2 gap-y-8">
           <div className="col-span-2 bg-[#f1f5f5]  px-8 pb-8  rounded-md">
@@ -46,10 +48,19 @@ const BookingPage = () => {
 
           <div className="lg:ml-5 lg:col-span-1 col-span-2">
             <div className="bg-[#f1f5f5] p-4 rounded-md">
-              <h1 className="font-medium text-xl">Total Price</h1>
+              <h1 className="font-medium text-xl">Detail Price</h1>
               <div className="flex justify-between py-3  font-medium">
+                <p>Traveler</p>
+                <p>{qty} Traveler</p>
+              </div>
+              <div className="flex justify-between pb-3  font-medium">
                 <p>Depart (CGK to DPS)</p>
-                <p>Rp. 2.137.740</p>
+                <p>Rp. {schedule.price}</p>
+              </div>
+              <hr className="my-4" />
+              <div className="flex justify-between pb-3  font-medium">
+                <p>Total Price</p>
+                <p>Rp. {schedule.price * qty}</p>
               </div>
             </div>
             <div className="mt-3">

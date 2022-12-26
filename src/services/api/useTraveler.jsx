@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 const useTraveler = () => {
   const navigate = useNavigate();
   const [status, setStatus] = useState(null);
+
   const addTravelerByOrder = async (payloads) => {
     try {
       const token = JSON.parse(localStorage.getItem("token"));

@@ -4,17 +4,14 @@ import qs from "qs";
 const useSchedule = () => {
   const [schedules, setSchedules] = useState([]);
 
-  const getSchedule = useCallback(
-    async (payload) => {
-      try {
-        const data = await axios.get(`${process.env.REACT_APP_URL_API}/schedule/search?${qs.stringify(payload)}`);
-        setSchedules(data.data.data);
-      } catch (error) {
-        return error;
-      }
-    },
-    [schedules]
-  );
+  const getSchedule = useCallback(async (payload) => {
+    try {
+      const data = await axios.get(`${process.env.REACT_APP_URL_API}/schedule/search?${qs.stringify(payload)}`);
+      setSchedules(data.data.data);
+    } catch (error) {
+      return error;
+    }
+  }, []);
 
   const getScheduleById = useCallback(async (idSchedule) => {
     try {
@@ -26,17 +23,16 @@ const useSchedule = () => {
     }
   }, []);
 
-  const byLowerPrice = useCallback(async (payload) => {
+  const byPrice = async (type, payload) => {
     try {
-      const data = await axios.get(`${process.env.REACT_APP_URL_API}/schedule/higher-price?${qs.stringify(payload)}`);
-      localStorage.setItem("schedule", JSON.stringify(data.data.data));
+      const data = await axios.get(`${process.env.REACT_APP_URL_API}/schedule/${type}?${qs.stringify(payload)}`);
       setSchedules(data.data.data);
     } catch (error) {
       return error;
     }
-  }, []);
+  };
 
-  return { getSchedule, getScheduleById, schedules, byLowerPrice };
+  return { getSchedule, getScheduleById, schedules, byPrice };
 };
 
 export default useSchedule;

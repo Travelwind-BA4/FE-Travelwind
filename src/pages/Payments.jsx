@@ -5,7 +5,8 @@ import usePayments from "../services/api/usePayments";
 const Payments = () => {
   const navigate = useNavigate();
   const { getPayments, payments } = usePayments();
-
+  const qty = localStorage.getItem("traveler");
+  const schedule = JSON.parse(localStorage.getItem("schedule"));
   useEffect(() => {
     getPayments();
   }, []);
@@ -15,7 +16,7 @@ const Payments = () => {
   };
 
   return (
-    <div>
+    <>
       <div className="container mx-auto py-10 px-10 min-h-screen">
         <div className="grid lg:grid-cols-3 grid-cols-2 ">
           <div className="col-span-2 bg-[#f1f5f5] px-8 pb-8 rounded-md">
@@ -41,14 +42,23 @@ const Payments = () => {
               </div>
               <div className="flex justify-between lg:flex-col flex-row xl:flex-row py-3 font-medium items-center">
                 <h1 className="text-xl">Booking Status</h1>
-                <button className="px-3 py-2 bg-[#DF9947] rounded-full text-white my-4">Need Payment</button>
+                <button className="px-3 py-2 bg-[#DF9947] rounded-full text-white my-4">WAITING</button>
               </div>
             </div>
             <div className="bg-[#f1f5f5] p-4 rounded-md mt-8">
-              <h1 className="font-medium text-xl">Total Price</h1>
+              <h1 className="font-medium text-xl">Detail Price</h1>
               <div className="flex justify-between py-3  font-medium">
+                <p>Traveler</p>
+                <p>{qty} Traveler</p>
+              </div>
+              <div className="flex justify-between pb-3  font-medium">
                 <p>Depart (CGK to DPS)</p>
-                <p>Rp. 2.137.740</p>
+                <p>Rp. {schedule.price}</p>
+              </div>
+              <hr className="my-4" />
+              <div className="flex justify-between pb-3  font-medium">
+                <p>Total Price</p>
+                <p>Rp. {schedule.price * qty}</p>
               </div>
             </div>
             {/* <div className="mt-3">
@@ -59,7 +69,7 @@ const Payments = () => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
