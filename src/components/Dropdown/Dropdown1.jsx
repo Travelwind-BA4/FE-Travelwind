@@ -1,18 +1,29 @@
 import { Dropdown } from "antd";
 import { FiUser } from "react-icons/fi";
+import { useNavigate } from "react-router-dom";
 
-const items = [
-  {
-    key: "1",
-    label: <a href="/account/profile">Profile</a>,
-  },
-  {
-    key: "2",
-    label: <a href="/account/orders">Order List</a>,
-  },
-];
+const Dropdown1 = ({ name }) => {
+  const navigate = useNavigate();
+  const handleLogOut = () => {
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+    navigate("/");
+  };
 
-const Dropdown1 = ({name}) => {
+  const items = [
+    {
+      key: "1",
+      label: <a href="/account/profile">Profile</a>,
+    },
+    {
+      key: "2",
+      label: <a href="/account/orders">Order List</a>,
+    },
+    {
+      key: "3",
+      label: <a onClick={handleLogOut}>Logout</a>,
+    },
+  ];
   return (
     <div>
       <Dropdown

@@ -8,6 +8,7 @@ import "swiper/css/pagination";
 
 // import required modules
 import { FreeMode, Pagination } from "swiper";
+import { bali } from "../../assets/images/home";
 
 const Homeslider = () => {
   return (
@@ -34,7 +35,7 @@ const Homeslider = () => {
         className="mySwiper"
       >
         <SwiperSlide>
-          <div className="recomendation-image mb-6"></div>
+          <img className="rounded-lg" src={bali} alt="" />
         </SwiperSlide>
       </Swiper>
     </div>

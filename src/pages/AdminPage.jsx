@@ -1,11 +1,6 @@
 import React, { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import {
-  DesktopOutlined,
-  PieChartOutlined,
-  UserOutlined,
-  LogoutOutlined,
-} from "@ant-design/icons";
+import { useNavigate } from "react-router-dom";
+import { DesktopOutlined, PieChartOutlined, UserOutlined, LogoutOutlined } from "@ant-design/icons";
 import { Breadcrumb, Layout, Menu, theme } from "antd";
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -45,11 +40,7 @@ const SideBar = () => {
         minHeight: "100vh",
       }}
     >
-      <Sider
-        collapsible
-        collapsed={collapsed}
-        onCollapse={(value) => setCollapsed(value)}
-      >
+      <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
         <div
           style={{
             height: 32,
