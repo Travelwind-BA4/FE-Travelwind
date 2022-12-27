@@ -4,7 +4,7 @@ import Title from "../Dropdown/Title";
 import Date from "../Input/Date";
 import { useEffect } from "react";
 import useCountries from "../../services/api/useCountries";
-const AddTraveler = ({ type }) => {
+const AddTraveler = ({ type, index }) => {
   const { getCountries, countries } = useCountries();
   useEffect(() => {
     getCountries();
@@ -14,7 +14,7 @@ const AddTraveler = ({ type }) => {
       <div className="border shadow-md py-5 px-3">
         {type ? (
           <>
-            <p className="font-semibold text-xl mb-3">Traveler 1</p>
+            <p className="font-semibold text-xl mb-3">Traveler {index + 1}</p>
             <div className=" border-b border-gray-300 mb-4"></div>
           </>
         ) : (
@@ -31,7 +31,7 @@ const AddTraveler = ({ type }) => {
                 <Title
                   placeholder={"Mr/Mrs"}
                   styles="w-[100px] border-b border-gray-300"
-                  name="title"
+                  name={["title", index]}
                   items={[
                     {
                       value: "Mr",
@@ -49,10 +49,10 @@ const AddTraveler = ({ type }) => {
           </div>
           <div className="flex flex-wrap -mx-3 mb-6">
             <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-              <Text name="First Name" placeholder="Jhon" />
+              <Text name={["First Name", index]} placeholder="Jhon" />
             </div>
             <div className="w-full md:w-1/2 px-3">
-              <Text name="Last Name" placeholder="Smith" />
+              <Text name={["Last Name", index]} placeholder="Smith" />
             </div>
           </div>
           <div className="flex flex-wrap -mx-3 mb-6">
@@ -61,39 +61,39 @@ const AddTraveler = ({ type }) => {
                 Date Birth <span className="text-red-500">*</span>
               </label>
               <div className="relative">
-                <Date style="border-b border-gray-300" name="dateBirth" />
+                <Date style="border-b border-gray-300" name={["dateBirth", index]} />
               </div>
             </div>
             <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-              <Countries name="Nationality" countries={countries} />
+              <Countries name={["Nationality", index]} countries={countries} />
             </div>
           </div>
           <div className="flex flex-wrap -mx-3 mb-6">
             <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-              <Text name="ID Passport" placeholder="ex. 1702192905990001" />
+              <Text name={["ID Passport", index]} placeholder="ex. 1702192905990001" />
             </div>
             <div className="w-full md:w-1/3 px-3">
-              <Countries name="Passport Country" countries={countries} />
+              <Countries name={["Passport Country", index]} countries={countries} />
+            </div>
+            <div className="w-full md:w-1/3 px-3">
+              <label className="block  tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
+                Passport Expiry <span className="text-red-500">*</span>
+              </label>
+              <Date style="border-b border-gray-300" name={["passportExpired", index]} />
+            </div>
+          </div>
+          <div className="flex flex-wrap -mx-3 mb-6">
+            <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+              <Text name={["ID Card Number", index]} placeholder="ex. 1702192905990001" />
+            </div>
+            <div className="w-full md:w-1/3 px-3">
+              <Countries name={["Card Country", index]} countries={countries} />
             </div>
             <div className="w-full md:w-1/3 px-3">
               <label className="block  tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
                 Card Expiry <span className="text-red-500">*</span>
               </label>
-              <Date style="border-b border-gray-300" name="passportExpired" />
-            </div>
-          </div>
-          <div className="flex flex-wrap -mx-3 mb-6">
-            <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-              <Text name="ID Card Number" placeholder="ex. 1702192905990001" />
-            </div>
-            <div className="w-full md:w-1/3 px-3">
-              <Countries name="Card Country" countries={countries} />
-            </div>
-            <div className="w-full md:w-1/3 px-3">
-              <label className="block  tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
-                Card Expiry <span className="text-red-500">*</span>
-              </label>
-              <Date style="border-b border-gray-300" name="cardExpired" />
+              <Date style="border-b border-gray-300" name={["cardExpired", index]} />
             </div>
           </div>
         </div>

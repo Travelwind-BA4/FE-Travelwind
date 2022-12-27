@@ -37,6 +37,12 @@ const Homeslider = () => {
         <SwiperSlide>
           <img className="rounded-lg" src={bali} alt="" />
         </SwiperSlide>
+        <SwiperSlide>
+          <img className="rounded-lg" src={bali} alt="" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img className="rounded-lg" src={bali} alt="" />
+        </SwiperSlide>
       </Swiper>
     </div>
   );

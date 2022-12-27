@@ -1,5 +1,4 @@
 import { Form, Select } from "antd";
-import { GiCommercialAirplane } from "react-icons/gi";
 
 const Options = ({ placeholder, name, airports, styles }) => {
   const onSearch = (value) => {

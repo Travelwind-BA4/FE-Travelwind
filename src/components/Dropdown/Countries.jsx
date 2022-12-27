@@ -1,11 +1,12 @@
 import { Form, Select } from "antd";
 
 const Countries = ({ name, countries }) => {
+  console.log(name);
   return (
     <>
       <div>
         <label className="block  tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-city">
-          {name} <span className="text-red-500">*</span>
+          {name[0]} <span className="text-red-500">*</span>
         </label>
         <Form.Item
           name={name}

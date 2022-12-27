@@ -1,4 +1,4 @@
-import { Form, Input, InputNumber } from "antd";
+import { Form, InputNumber } from "antd";
 const Number = () => {
   return (
     <Form.Item
