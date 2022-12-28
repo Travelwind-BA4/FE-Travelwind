@@ -37,8 +37,8 @@ const Payments = () => {
           <div className="lg:ml-5 lg:col-span-1 col-span-2">
             <div className="bg-[#f1f5f5] p-4 rounded-md mt-10 lg:mt-0">
               <div className="flex justify-between py-3  font-medium">
-                <h1 className="text-xl">AirSanz Code</h1>
-                <p>102301231</p>
+                <h1 className="text-xl">Travel Code</h1>
+                <p>{schedule.scheduleId.slice(0, 13)}</p>
               </div>
               <div className="flex justify-between lg:flex-col flex-row xl:flex-row py-3 font-medium items-center">
                 <h1 className="text-xl">Booking Status</h1>

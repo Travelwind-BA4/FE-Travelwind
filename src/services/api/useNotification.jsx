@@ -11,7 +11,7 @@ const useNotification = () => {
         headers: { Authorization: `Bearer ${token}` },
       };
 
-      const { data } = await axios.get(`${process.env.REACT_APP_URL_API}/notification/get/${userId}`, config);
+      const { data } = await axios.get(`${process.env.REACT_APP_URL_API}/notification/get?userId=${userId}`, config);
       setNotif(data.data.content);
     } catch (error) {
       return error;

@@ -5,7 +5,7 @@ import { AiOutlineArrowRight } from "react-icons/ai";
 import { RiSuitcase2Line } from "react-icons/ri";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import useSchedule from "../services/api/useSchedule";
-import Sorting from "../components/Dropdown/Sorting";
+
 import { Select } from "antd";
 
 const Resultpage = () => {
@@ -158,7 +158,7 @@ const Resultpage = () => {
                       </div>
                     </div>
                     <div className="button-choose mr-12 md:block hidden">
-                      <button className="bg-blue-700 text-sm font-medium text-white rounded-md py-2 px-2 hover:bg-blue-600" onClick={() => navigate(`/flight/${schedule.scheduleId}`)}>
+                      <button className="bg-blue-700 text-sm font-medium text-white rounded-md py-2 px-2 hover:bg-blue-600" onClick={() => navigate(`/flight/${schedule.scheduleId}?traveler=${traveler}`)}>
                         Choose Flight
                       </button>
                     </div>

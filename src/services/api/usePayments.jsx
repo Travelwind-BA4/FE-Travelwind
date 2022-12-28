@@ -23,7 +23,7 @@ const usePayments = () => {
       const config = {
         headers: { Authorization: `Bearer ${token}` },
       };
-      const { data } = await axios.get(`${process.env.REACT_APP_URL_API}/payment/name/${name}`, config);
+      const { data } = await axios.get(`${process.env.REACT_APP_URL_API}/payment/findby-name?paymentName=${name}`, config);
       setPayments(data.data);
     } catch (error) {
       return error;

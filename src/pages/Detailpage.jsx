@@ -4,19 +4,19 @@ import { CiRollingSuitcase } from "react-icons/ci";
 import { BiCabinet } from "react-icons/bi";
 
 import Button2 from "../components/Buttons/Button2";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import useSchedule from "../services/api/useSchedule";
 import { useEffect } from "react";
 const Detailpage = () => {
   const { id } = useParams();
-  console.log(id);
+  let [searchParams, setSearchParams] = useSearchParams();
+  const traveler = searchParams.get("traveler");
   const { getScheduleById, schedules } = useSchedule();
   const navigate = useNavigate();
 
   useEffect(() => {
     getScheduleById(id);
   }, [id]);
-  console.log(schedules);
 
   return (
     <div>
@@ -105,11 +105,11 @@ const Detailpage = () => {
                 <p>
                   Depart ( {schedules.departureCity} to {schedules.arrivalCity} )
                 </p>
-                <p>Rp. {schedules.price}</p>
+                <p>Rp. {schedules.price * traveler}</p>
               </div>
             </div>
             <div className="mt-3">
-              <button className="bg-[#3e5cb8] w-full text-white p-4 rounded-md font-semibold" onClick={() => navigate("/booking")}>
+              <button className="bg-[#3e5cb8] w-full text-white p-4 rounded-md font-semibold" onClick={() => navigate(`/booking?traveler=${traveler}&code=${schedules.scheduleId}`)}>
                 Continue Booking
               </button>
             </div>

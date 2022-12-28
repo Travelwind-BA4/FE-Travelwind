@@ -109,7 +109,7 @@ const Homepage = () => {
         </div>
       </section>
 
-      <section className="my-20 recomendation">
+      <section className="py-20 recomendation ">
         <div className="container mx-auto px-10">
           <div className="text-center mb-14">
             <h1 className="text-5xl font-bold text-[#232730] leading-[60px]">Reccomended For You</h1>
@@ -136,7 +136,7 @@ const Homepage = () => {
                   </div>
                 </div>
                 <h1 className="font-medium font-sans text-2xl mt-8">BOX & RELAX</h1>
-                <p className=" mt-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. In, eius. Ipsa in illum reiciendis sit.</p>
+                <p className=" mt-3">We realize ideas from simple to complex,every become easy to use</p>
               </div>
             </div>
             <div className="col-span-1 bg-[#fff]  flex justify-center items-center text-center rounded-3xl p-10 shadow-lg max-w-[400px] my-10 sm:my-0">
@@ -147,7 +147,7 @@ const Homepage = () => {
                   </div>
                 </div>
                 <h1 className="font-medium font-sans text-2xl mt-8">SMART CHECKLISH</h1>
-                <p className=" mt-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. In, eius. Ipsa in illum reiciendis sit.</p>
+                <p className=" mt-3">Flight booking in your mind looking for cheap</p>
               </div>
             </div>
             <div className="lg:col-span-1 col-span-2 bg-[#fff]  flex justify-center items-center text-center rounded-3xl p-10 shadow-lg max-w-[400px]">
@@ -158,7 +158,7 @@ const Homepage = () => {
                   </div>
                 </div>
                 <h1 className="font-medium font-sans text-2xl mt-8">SAVE MORE</h1>
-                <p className=" mt-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. In, eius. Ipsa in illum reiciendis sit.</p>
+                <p className=" mt-3">Find cheap flight,travel great list ideals from over travel providers</p>
               </div>
             </div>
           </div>

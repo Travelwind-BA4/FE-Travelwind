@@ -16,52 +16,64 @@ const Traveler = () => {
 
   const submitTraveler = (value) => {
     const user = JSON.parse(localStorage.getItem("user"));
+
     const payloads = [
       {
         type: "TRAVELER",
-        title: value.title,
-        firstName: value["First Name"],
-        lastName: value["Last Name"],
-        birthDate: timeConverter(value.dateBirth),
-        nationality: value.Nationality,
+        title: value.title[0],
+        firstName: value["First Name"][0],
+        lastName: value["Last Name"][0],
+        birthDate: timeConverter(value.dateBirth[0]),
+        nationality: value.Nationality[0],
         userId: user.userId,
-        idCardNumber: value["ID Card Number"],
-        idCardExpiry: value.cardExpired && timeConverter(value.cardExpired),
-        idCardCountry: value["Card Country"],
-        passportNumber: value["ID Passport"],
-        passportExpiry: timeConverter(value.passportExpired),
-        passportCardCountry: value["Passport Country"],
+        idCardNumber: value["ID Card Number"][0],
+        idCardExpiry: value.cardExpired[0] && timeConverter(value.cardExpired[0]),
+        idCardCountry: value["Card Country"][0],
+        passportNumber: value["ID Passport"][0],
+        passportExpiry: timeConverter(value.passportExpired[0]),
+        passportCardCountry: value["Passport Country"][0],
       },
     ];
+    console.log(payloads);
     addTraveler(payloads);
   };
 
   return (
     <div>
-      <div className="bg-[#f1f5f5] px-10 py-4 rounded-lg ">
-        <div className="flex items-center justify-between">
+      <div className="bg-[#f1f5f5] px-10 pt-4 rounded-lg ">
+        <div className="flex items-center justify-between py-5">
           <h1 className="flex items-center text-2xl ">
             <BsCardList className="mr-4" /> Traveler List
           </h1>
-          <button class="mr-4 font-medium hover:text-[#f6ffed] text-[#52c41a]" onClick={() => setShow(!show)}>
-            Add Traveler
-          </button>
+          {show ? (
+            <button class="mr-4 font-semibold text-[#3e5cb8]" onClick={() => setShow(!show)}>
+              Back
+            </button>
+          ) : (
+            <button class="mr-4 font-semibold text-[#3e5cb8]" onClick={() => setShow(!show)}>
+              Add Traveler
+            </button>
+          )}
         </div>
-        <hr className="my-4" />
+        <hr className="mt-2 mb-6" />
         {show ? (
           <>
             {status == null ? "" : status == false ? <Alert className="my-5" message="Success Added Traveler" type="success" closable /> : <Alert className="my-5" message="failed added traveler" type="error" closable />}
             <Form onFinish={submitTraveler}>
-              <AddTraveler />
-              <div className="flex justify-end my-10">
-                <button className="px-3 py-2 bg-[#3e5cb8] text-white rounded-lg" type="submit">
-                  Add Traveler
+              <AddTraveler index={0} />
+              <div className="flex justify-end py-10 gap-5">
+                <button className="px-7 py-2 text-[18px] leading-[25px] border-none rounded-lg bg-[#db053f] text-white" onClick={() => setShow(!show)}>
+                  Cancel
+                </button>
+
+                <button className="px-7 py-2 text-[18px] leading-[25px] border-none rounded-lg bg-[#52c41a] text-white" type="submit">
+                  Add
                 </button>
               </div>
             </Form>
           </>
         ) : (
-          <div className="flex flex-col gap-y-3">
+          <div className="flex flex-col gap-y-3 pb-5">
             {travelers.map((traveler) => {
               return (
                 <Card
