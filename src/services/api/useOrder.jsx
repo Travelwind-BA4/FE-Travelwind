@@ -73,7 +73,8 @@ const useOrder = () => {
       const config = {
         headers: { Authorization: `Bearer ${token}` },
       };
-      await axios.get(`${process.env.REACT_APP_URL_API}/invoice/generate/${orderId}`, config);
+      const data = await axios.get(`${process.env.REACT_APP_URL_API}/invoice/generate?orderId=${orderId}`, config);
+      console.log(data.data)
     } catch (error) {
       return error;
     }
