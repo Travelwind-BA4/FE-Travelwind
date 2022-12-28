@@ -15,11 +15,17 @@ const Payment = () => {
   const paymentOrder = (e) => {
     e.preventDefault();
     const user = JSON.parse(localStorage.getItem("user"));
+    const traveler = parseInt(JSON.parse(localStorage.getItem("traveler")));
+    
+    const datas = []
+    for (let a = 0; a < traveler; a++) {
+      datas.push(schedule.scheduleId)
+    }
 
     const payload = {
       userId: user.userId,
       paymentId: payments.paymentId,
-      scheduleId: [schedule.scheduleId],
+      scheduleId: datas,
     };
 
     addOrder(payload);
