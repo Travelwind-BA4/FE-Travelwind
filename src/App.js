@@ -2,7 +2,7 @@ import RoutesApp from "./routes";
 
 function App() {
   return (
-    <div>
+    <div className="overflow-x-hidden">
       <RoutesApp />
     </div>
   );
