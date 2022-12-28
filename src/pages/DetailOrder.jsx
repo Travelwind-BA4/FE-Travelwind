@@ -10,7 +10,7 @@ import useOrder from '../services/api/useOrder';
 const DetailOrder = () => {
   const  { orderId } = useParams();
   console.log(orderId)
-  const { getByOrderId, ordersUser, generateInvoice } = useOrder()
+  const { getByOrderId, ordersUser, generateInvoice,invoice } = useOrder()
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -91,7 +91,7 @@ const DetailOrder = () => {
           <p>Rp. {order.totalPrice}</p>
         </div>
       </div>
-      { order.status === "ACCEPT" ? <h1 className='text-end text-base mt-7 text-blue-700 underline cursor-pointer' onClick={() => generateInvoice(order.orderId)}>Generate Invoice</h1> : ""}
+      { order.status === "ACCEPT" ? <a href='https://api-flight.up.railway.app/invoice/generate?orderId=1c0200bf-22f1-4c6d-b6c8-10ca5027d1a4' className='text-end text-base mt-7 text-blue-700 underline cursor-pointer' onClick={() => generateInvoice(order.orderId)}>Generate Invoice</a> : ""}
         </div>
           )
         }) }
