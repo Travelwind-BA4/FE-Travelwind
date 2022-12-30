@@ -47,7 +47,7 @@ const Orders = () => {
             <div className="block lg:grid grid-cols-3 ">
               <div className="col-span-2 lg:mr-10 flex items-center justify-center">
                 <div className="text-center">
-                  <p>{item.departureCity}</p>
+                  <p>{item.departureCity[0]}</p>
                 </div>
                 <div className="lg:flex grid items-center mx-5">
                   <div className="max-w-[50px] xl:min-w-[100px] h-0.5 bg-[#7d7d7f] mx-auto px-10"></div>
@@ -55,7 +55,7 @@ const Orders = () => {
                   <div className="max-w-[50px] xl:min-w-[100px] h-0.5 bg-[#7d7d7f] mx-auto px-10"></div>
                 </div>
                 <div className="text-center">
-                  <p>{item.arrivalCity}</p>
+                  <p>{item.arrivalCity[0]}</p>
                 </div>
               </div>
               <div className="text-center lg:border-l-2 lg:pl-5">

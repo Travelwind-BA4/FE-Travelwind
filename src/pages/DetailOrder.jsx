@@ -117,14 +117,6 @@ const DetailOrder = () => {
             </div>
           </div>
 
-          {ordersUser[0]?.status === "ACCEPT" ? (
-            <a href={`https://api-flight.up.railway.app/invoice/generate?orderId=${orderId}`} className="text-end text-base mt-7 text-blue-700 underline cursor-pointer" onClick={() => generateInvoice(ordersUser[0]?.orderId)}>
-              Generate Invoice
-            </a>
-          ) : (
-            ""
-          )}
-
           <div className="bg-[#f1f5f5] px-10 py-4 rounded-lg">
             <h1 className="text-xl py-2">Total Price</h1>
             <div className="flex justify-between">
@@ -139,6 +131,15 @@ const DetailOrder = () => {
               </p>
             </div>
           </div>
+          {ordersUser[0]?.status === "ACCEPT" ? (
+            <div className="flex justify-end mt-2">
+              <a href={`https://api-flight.up.railway.app/invoice/generate?orderId=${orderId}`} className="text-end text-base mt-7 text-blue-700 underline cursor-pointer" onClick={() => generateInvoice(ordersUser[0]?.orderId)}>
+                Generate Invoice
+              </a>
+            </div>
+          ) : (
+            ""
+          )}
         </div>
       </div>
     </div>
