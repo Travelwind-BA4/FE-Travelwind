@@ -89,7 +89,7 @@ const Traveler = () => {
                     </div>
                   }
                   extra={
-                    <div key={traveler.travelerId} className="hidden border rounded-lg bg-gray-200 p-2 hover:shadow-lg" onClick={() => setShow(true)}>
+                    <div key={traveler.travelerId} className="border rounded-lg bg-gray-200 p-2 hover:shadow-lg" onClick={() => setShow(true)}>
                       <BsPencil />
                     </div>
                   }
