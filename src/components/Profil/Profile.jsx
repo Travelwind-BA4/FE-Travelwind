@@ -29,7 +29,7 @@ const Profile = () => {
   const [showEdit, setShowEdit] = useState(false);
   return (
     <div className="bg-[#f1f5f5] px-10 py-4 rounded-lg">
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between pt-5">
         <h1 className="flex items-center text-xl">
           <FiUser className="mr-4" /> Profile
         </h1>
