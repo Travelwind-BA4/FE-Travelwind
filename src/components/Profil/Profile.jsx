@@ -24,7 +24,7 @@ const Profile = () => {
 
   useEffect(() => {
     getMe(user.userId, user.token);
-  });
+  }, []);
 
   const [showEdit, setShowEdit] = useState(false);
   return (
@@ -84,31 +84,50 @@ const Profile = () => {
               <Form.Item initialValue={users.gender} label="Gender" name="gender" className="border-b w-[100px]">
                 <Select placeholder="Male" bordered={false} options={dataGender} />
               </Form.Item>
-
-              <Form.Item label="Birthdate" name="birthDate" className="border-b rounded-none" hasFeedback>
-                <DatePicker format={"YYYY/MM/DD"} bordered={false} />
+              <Form.Item label="Birthdate" name="birthDate" className="border-b rounded-none">
+                <DatePicker format={"YYYY-MM-DD"} bordered={false} />
               </Form.Item>
             </div>
-
-            <Form.Item
-              initialValue={users.fullName}
-              label="Fullname"
-              name="fullName"
-              rules={[
-                {
-                  whitespace: true,
-                  message: "can not empty",
-                },
-                {
-                  min: 5,
-                  message: "Must be at least 5 characters",
-                },
-              ]}
-              hasFeedback
-              className="border-b rounded-none"
-            >
-              <Input bordered={false} />
-            </Form.Item>
+            <div className="flex gap-16">
+              <Form.Item
+                initialValue={users.fullName}
+                label="Fullname"
+                name="fullName"
+                rules={[
+                  {
+                    whitespace: true,
+                    message: "can not empty",
+                  },
+                  {
+                    min: 5,
+                    message: "Must be at least 5 characters",
+                  },
+                ]}
+                hasFeedback
+                className="border-b rounded-none"
+              >
+                <Input bordered={false} />
+              </Form.Item>
+              <Form.Item
+                initialValue={users.email}
+                label="Email"
+                name="email"
+                rules={[
+                  {
+                    whitespace: true,
+                    message: "can not empty",
+                  },
+                  {
+                    min: 5,
+                    message: "Must be at least 5 characters",
+                  },
+                ]}
+                hasFeedback
+                className="border-b rounded-none"
+              >
+                <Input bordered={false} />
+              </Form.Item>
+            </div>
 
             <Form.Item initialValue={users.telephone} label="Telephone" name="telephone" className="border-b">
               <Input bordered={false} />
