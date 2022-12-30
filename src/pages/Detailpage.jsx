@@ -105,7 +105,12 @@ const Detailpage = () => {
                 <p>
                   Depart ( {schedules.departureCity} to {schedules.arrivalCity} )
                 </p>
-                <p>Rp. {schedules.price * traveler}</p>
+                <p>
+                  {(schedules.price * traveler).toLocaleString("id-ID", {
+                    style: "currency",
+                    currency: "IDR",
+                  })}
+                </p>
               </div>
             </div>
             <div className="mt-3">

@@ -74,15 +74,15 @@ const useOrder = () => {
       const config = {
         headers: { Authorization: `Bearer ${token}` },
       };
-    const {data} =  await axios.get(`${process.env.REACT_APP_URL_API}/invoice/generate?orderId=${orderId}`, config);
+      const { data } = await axios.get(`${process.env.REACT_APP_URL_API}/invoice/generate?orderId=${orderId}`, config);
       console.log(data);
-      // setInvoice(data)
-  } catch (error) {
+      setInvoice(orderId);
+    } catch (error) {
       return error;
     }
   });
 
-  return { addOrder, getOrderUser, getByOrderId, getByStatus, generateInvoice, ordersUser, status ,invoice};
+  return { addOrder, getOrderUser, getByOrderId, getByStatus, generateInvoice, ordersUser, status, invoice };
 };
 
 export default useOrder;

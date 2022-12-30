@@ -52,19 +52,19 @@ const useUsers = () => {
 
   const editUser = useCallback(async (value, userId, token) => {
     try {
-
+      console.log(userId);
       const config = {
         headers: { Authorization: `Bearer ${token}` },
       };
       const payload = {
         fullName: value.fullName,
         email: value.email,
-        telephone: value.telephone,
+        telephone: value.telephone.trim(),
         birthDate: timeConverter(value.birthDate),
         gender: value.gender,
-      }
-      const res = await axios.put(`${process.env.REACT_APP_URL_API}/user/update?userId=${userId}`, payload, config)
+      };
       console.log(payload);
+      const res = await axios.put(`${process.env.REACT_APP_URL_API}/user/update?userId=${userId}`, payload, config);
     } catch (error) {
       return error;
     }

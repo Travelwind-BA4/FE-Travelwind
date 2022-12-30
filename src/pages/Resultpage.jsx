@@ -127,10 +127,10 @@ const Resultpage = () => {
             </div>
           </div>
           <div className="flex flex-col sm:gap-y-6 gap-y-2 mt-3">
-            {schedules.map((schedule) => {
+            {schedules.map((schedule, i) => {
               return (
                 <>
-                  <div className="flex justify-between items-center gap-4 bg-[#f1f5f5] rounded-md  px-5 py-8">
+                  <div className="flex justify-between items-center gap-4 bg-[#f1f5f5] rounded-md  px-5 py-8" key={i}>
                     <div className="flex items-center">
                       <div className="mx-8">
                         <SiChinasouthernairlines size="2.5rem" />
@@ -154,7 +154,12 @@ const Resultpage = () => {
                         <p className="font-light">20kg</p>
                       </div>
                       <div className="price mx-8">
-                        <p className="font-semibold text-xl">{`Rp. ${schedule.price}`}</p>
+                        <p className="font-semibold text-xl">
+                          {schedule.price.toLocaleString("id-ID", {
+                            style: "currency",
+                            currency: "IDR",
+                          })}
+                        </p>
                       </div>
                     </div>
                     <div className="button-choose mr-12 md:block hidden">

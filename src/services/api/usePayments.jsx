@@ -3,8 +3,9 @@ import { useCallback, useState } from "react";
 
 const usePayments = () => {
   const [payments, setPayments] = useState([]);
+  const [datas, setDatas] = useState([]);
 
-  const getPayments = useCallback(async () => {
+  const getPayments = useCallback(async (passengers) => {
     try {
       const token = JSON.parse(localStorage.getItem("token"));
       const config = {
@@ -25,11 +26,12 @@ const usePayments = () => {
       };
       const { data } = await axios.get(`${process.env.REACT_APP_URL_API}/payment/findby-name?paymentName=${name}`, config);
       setPayments(data.data);
+      setDatas(["asdasd", "asdas"]);
     } catch (error) {
       return error;
     }
   };
-  return { payments, getPayments, getPayment };
+  return { payments, getPayments, getPayment, datas };
 };
 
 export default usePayments;
