@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const useOrder = () => {
   const [ordersUser, setOrdersUser] = useState([]);
+  const [invoice, setInvoice] = useState(null);
   const [status, setStatus] = useState(null);
 
   const navigate = useNavigate();
@@ -73,13 +74,15 @@ const useOrder = () => {
       const config = {
         headers: { Authorization: `Bearer ${token}` },
       };
-      await axios.get(`${process.env.REACT_APP_URL_API}/invoice/generate/${orderId}`, config);
+      const { data } = await axios.get(`${process.env.REACT_APP_URL_API}/invoice/generate?orderId=${orderId}`, config);
+      console.log(data);
+      setInvoice(orderId);
     } catch (error) {
       return error;
     }
   });
 
-  return { addOrder, getOrderUser, getByOrderId, getByStatus, generateInvoice, ordersUser, status };
+  return { addOrder, getOrderUser, getByOrderId, getByStatus, generateInvoice, ordersUser, status, invoice };
 };
 
 export default useOrder;

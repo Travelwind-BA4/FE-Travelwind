@@ -5,21 +5,30 @@ import useOrder from "../services/api/useOrder";
 import usePayments from "../services/api/usePayments";
 
 const Payment = () => {
-  const { getPayment, payments } = usePayments();
+  const { getPayment, payments, datas } = usePayments();
   const { addOrder, status } = useOrder();
   const schedule = JSON.parse(localStorage.getItem("schedule"));
   const qty = localStorage.getItem("traveler");
   let [searchParams, setSearchParams] = useSearchParams();
   const methodPay = searchParams.get("method");
+  console.log(datas);
 
   const paymentOrder = (e) => {
     e.preventDefault();
     const user = JSON.parse(localStorage.getItem("user"));
+    const travelersPicked = JSON.parse(localStorage.getItem("travelersPicked"));
+    const traveler = parseInt(JSON.parse(localStorage.getItem("traveler")));
+
+    const datas = [];
+    for (let a = 0; a < traveler; a++) {
+      datas.push(schedule.scheduleId);
+    }
 
     const payload = {
       userId: user.userId,
       paymentId: payments.paymentId,
-      scheduleId: [schedule.scheduleId],
+      scheduleId: datas,
+      travelerListId: travelersPicked,
     };
 
     addOrder(payload);
@@ -85,7 +94,22 @@ const Payment = () => {
             </div>
             <div className="flex justify-between pb-3  font-medium">
               <p>Depart (CGK to DPS)</p>
-              <p>Rp. {schedule.price}</p>
+              <p>
+                {schedule.price.toLocaleString("id-ID", {
+                  style: "currency",
+                  currency: "IDR",
+                })}
+              </p>
+            </div>
+            <hr className="my-4" />
+            <div className="flex justify-between pb-3  font-medium">
+              <p>Total Price</p>
+              <p>
+                {(schedule.price * qty).toLocaleString("id-ID", {
+                  style: "currency",
+                  currency: "IDR",
+                })}
+              </p>
             </div>
           </div>
         </div>

@@ -1,12 +1,15 @@
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import usePayments from "../services/api/usePayments";
 
 const Payments = () => {
   const navigate = useNavigate();
   const { getPayments, payments } = usePayments();
+  // const location = useLocation();
+  // console.log(location);
   const qty = localStorage.getItem("traveler");
   const schedule = JSON.parse(localStorage.getItem("schedule"));
+
   useEffect(() => {
     getPayments();
   }, []);
@@ -53,12 +56,22 @@ const Payments = () => {
               </div>
               <div className="flex justify-between pb-3  font-medium">
                 <p>Depart (CGK to DPS)</p>
-                <p>Rp. {schedule.price}</p>
+                <p>
+                  {schedule.price.toLocaleString("id-ID", {
+                    style: "currency",
+                    currency: "IDR",
+                  })}
+                </p>
               </div>
               <hr className="my-4" />
               <div className="flex justify-between pb-3  font-medium">
                 <p>Total Price</p>
-                <p>Rp. {schedule.price * qty}</p>
+                <p>
+                  {(schedule.price * qty).toLocaleString("id-ID", {
+                    style: "currency",
+                    currency: "IDR",
+                  })}
+                </p>
               </div>
             </div>
             {/* <div className="mt-3">

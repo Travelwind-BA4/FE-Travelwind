@@ -1,10 +1,13 @@
 import axios from "axios";
-import React, { useCallback, useState } from "react";
+import { useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const useTraveler = () => {
   const navigate = useNavigate();
+  const passengers = [];
   const [status, setStatus] = useState(null);
+  // const [passengers, setPassenger] = useState([]);
+  console.log(passengers);
 
   const addTravelerByOrder = async (payloads) => {
     try {
@@ -12,8 +15,18 @@ const useTraveler = () => {
       const config = {
         headers: { Authorization: `Bearer ${token}` },
       };
-      const data = await axios.post(`${process.env.REACT_APP_URL_API}/traveler-list/add/from-order`, payloads, config);
+      const { data } = await axios.post(`${process.env.REACT_APP_URL_API}/traveler-list/add/from-order`, payloads, config);
+
+      data.data.forEach((e) => {
+        passengers.push(e.travelerId);
+        // setPassenger([...passengers, e.travelerId]);
+      });
+
+      console.log(passengers);
+      localStorage.setItem("travelersPicked", JSON.stringify(passengers));
+
       if (data.status == 200) {
+        // navigate("/payments", { state: passengers });
         navigate("/payments");
       }
       console.log(data);
@@ -49,7 +62,7 @@ const useTraveler = () => {
     }
   };
 
-  return { addTravelerByOrder, getTraveler, travelers, status, addTraveler };
+  return { addTravelerByOrder, getTraveler, travelers, status, addTraveler, passengers };
 };
 
 export default useTraveler;
