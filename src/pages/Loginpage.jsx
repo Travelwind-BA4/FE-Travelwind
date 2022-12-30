@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { Form, Input, Alert } from "antd";
 import useUsers from "../services/api/useUsers";
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
-import { gapi } from 'gapi-script';
 import jwt_decode from "jwt-decode";
 
 const Loginpage = () => {
@@ -15,6 +14,17 @@ const Loginpage = () => {
   const Auth = (val) => {
     postLogin(val);
   };
+
+  const responseGoogle = (response) => {
+    try {
+      console.log(response)
+      let decode = jwt_decode(response.credential);
+      localStorage.setItem("token", response.credential);
+      localStorage.setItem("user", JSON.stringify({ imageUrl: decode.picture, givenName: decode.given_name, familyName: decode.family_name }))
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <div className=" sm:bg-gradient-to-br from-[#2c4282] via-[#3e5cb8] to-[#4a6fde]">
@@ -69,14 +79,17 @@ const Loginpage = () => {
                 <Input.Password placeholder="Enter Password" bordered={false} />
               </Form.Item>
               <br></br>
-              <GoogleOAuthProvider>
+              <GoogleOAuthProvider clientId="376587108230-nv528gnfio7b42i0l1h4idnj24o2v6eb.apps.googleusercontent.com">
               <button
                 type="submit"
                 className="button-signup p-[15px_25px] text-[18px] leading-[25px] border-none rounded-md flex w-full bg-[#3e5cb8] text-white shadow-md mb-[20px] font-bold touch-manipulation transition-shadow duration-[0.25s] will-change-[box-shadow] relative cursor-pointer justify-center text-center whitespace-nowrap items-center align-top hover:shadow-none hover:bg-[#3855aa]"
               >
                 <span className="text-[18px] leading-[25px] font-normal">Log In</span>
               </button>
-                <GoogleLogin shape="rectangular" />
+                <GoogleLogin shape="rectangular" size="large"
+                onSuccess={responseGoogle}
+                // onError={console.log("error")}
+                />
               </GoogleOAuthProvider>
               
               {/* <button className="button-google p-[15px_25px] text-[18px] leading-[25px] border-none flex w-full shadow-md mt-[30px] font-bold touch-manipulation transition-shadow duration-[.25s] will-change-[box-shadow] relative text-[#9a9a9d] cursor-pointer justify-center text-center whitespace-nowrap bg-white items-center align-top hover:shadow-sm hover:text-[#59595b]">
