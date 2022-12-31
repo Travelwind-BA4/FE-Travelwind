@@ -28,6 +28,16 @@ const useUsers = () => {
     }
   });
 
+  const OauthGoogle = async () => {
+    try {
+      const res = await axios.get('https://api-flight.up.railway.app/oauth2/authorization/google')
+      // console.log(res.data)
+      localStorage.setItem('gtoken', JSON.stringify(res.data.data))
+    } catch (error) {
+      return error;
+    }
+  }
+
   const postRegister = useCallback(async (value) => {
     try {
       console.log(value.email);
@@ -82,7 +92,7 @@ const useUsers = () => {
     }
   });
 
-  return { postLogin, msgError, postRegister, editUser, getMe, users };
+  return { postLogin, msgError, postRegister, editUser, getMe, users, OauthGoogle };
 };
 
 export default useUsers;

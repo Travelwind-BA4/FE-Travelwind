@@ -42,7 +42,7 @@ const Navbar = ({ nav, notif }) => {
               <div className="relative">
                 <Notification style={notif} />
               </div>
-              <Dropdown1 name={user.fullName} />
+              <Dropdown1 name={user.fullName || user.givenName} />
             </div>
           )}
           {/* <div className="">

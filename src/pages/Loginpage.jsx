@@ -9,26 +9,43 @@ import jwt_decode from "jwt-decode";
 const Loginpage = () => {
   <Alert message="Success Text" type="success" />;
   const navigate = useNavigate();
-  const { postLogin } = useUsers();
+  const { postLogin, OauthGoogle } = useUsers();
 
   const Auth = (val) => {
     postLogin(val);
   };
 
-  const loginWithGoogle = useGoogleLogin({
-    onSuccess: tokenResponse => console.log(tokenResponse)
-  })
+  // const loginWithGoogle = useGoogleLogin({
+  //   // redirect_uri: "http://localhost:3000/login/oauth2/code/google",
+  //   onSuccess : (CodeResponse) => {
+  //     try {
+  //       console.log(CodeResponse);
+  //       // localStorage.setItem('token', JSON.stringify(response.access_token))
+  //       // localStorage.setItem('user', JSON.stringify(response.scope));
+  //       // navigate('/')
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   },
+  //   flow: "auth-code",
+  //   redirect_uri: "https://api-flight.up.railway.app/oauth2/authorization/google",
+  //   ux_mode: "redirect"
+    
+      
+  // })
 
-  // const responseGoogle = (response) => {
-  //   try {
-  //     console.log(response)
-  //     let decode = jwt_decode(response.credential);
-  //     localStorage.setItem("gtoken", response.credential);
-  //     localStorage.setItem("guser", JSON.stringify({ imageUrl: decode.picture, givenName: decode.given_name, familyName: decode.family_name }))
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
+  const responseGoogle = (response) => {
+    try {
+      console.log(response)
+      let decode = jwt_decode(response.credential);
+      console.log(decode)
+      localStorage.setItem("token", JSON.stringify(response.credential));
+      localStorage.setItem("user", JSON.stringify({ givenName: decode.given_name, familyName: decode.family_name, email: decode.email, userId: decode.jti }))
+      navigate('/')
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <div className=" sm:bg-gradient-to-br from-[#2c4282] via-[#3e5cb8] to-[#4a6fde]">
@@ -83,7 +100,8 @@ const Loginpage = () => {
                 <Input.Password placeholder="Enter Password" bordered={false} />
               </Form.Item>
               <br></br>
-              {/* <GoogleOAuthProvider clientId="376587108230-nv528gnfio7b42i0l1h4idnj24o2v6eb.apps.googleusercontent.com"> */}
+              <GoogleOAuthProvider clientId="953090499155-f5pgpt16s6lhge53hhi4s5cm5dg18in3.apps.googleusercontent.com"
+              >
               <button
                 type="submit"
                 className="button-signup p-[15px_25px] text-[18px] leading-[25px] border-none rounded-md flex w-full bg-[#3e5cb8] text-white shadow-md mb-[20px] font-bold touch-manipulation transition-shadow duration-[0.25s] will-change-[box-shadow] relative cursor-pointer justify-center text-center whitespace-nowrap items-center align-top hover:shadow-none hover:bg-[#3855aa]"
@@ -91,17 +109,18 @@ const Loginpage = () => {
                 <span className="text-[18px] leading-[25px] font-normal">Log In</span>
               </button>
 
-              <button onClick={() => loginWithGoogle()} className="button-google p-[15px_25px] text-[18px] leading-[25px] border-none flex w-full shadow-md mt-[30px] font-bold touch-manipulation transition-shadow duration-[.25s] will-change-[box-shadow] relative text-[#9a9a9d] cursor-pointer justify-center text-center whitespace-nowrap bg-white items-center align-top hover:shadow-sm hover:text-[#59595b]">
+              {/* <button onClick={() => loginWithGoogle()} className="button-google p-[15px_25px] text-[18px] leading-[25px] border-none flex w-full shadow-md mt-[30px] font-bold touch-manipulation transition-shadow duration-[.25s] will-change-[box-shadow] relative text-[#9a9a9d] cursor-pointer justify-center text-center whitespace-nowrap bg-white items-center align-top hover:shadow-sm hover:text-[#59595b]">
                 <img src="https://cdn.airpaz.com/nuxt/8584e352a276fbbc255e780a7b081934.svg" alt="" className="icon-google w-[20px] mr-[5px] h-[1.5em] relative inline-flex items-center justify-center align-[-0.125em]" />
                 <span className="text-[18px] leading-[25px] font-bold ml-1">Log in with Google</span>
-              </button>
+              </button> */}
 
-                {/* <GoogleLogin locale="en"
+                <GoogleLogin
+                ux_mode="redirect"
                 onSuccess={responseGoogle}
                 // onError={console.log("error")}
-                /> */}
+                />
                 
-              {/* </GoogleOAuthProvider> */}
+              </GoogleOAuthProvider>
               
               
             </Form>
