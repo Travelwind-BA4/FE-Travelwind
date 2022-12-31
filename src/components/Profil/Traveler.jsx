@@ -34,14 +34,14 @@ const Traveler = () => {
         passportCardCountry: value["Passport Country"][0],
       },
     ];
-    console.log(payloads);
+
     addTraveler(payloads);
   };
 
   return (
     <div>
       <div className="bg-[#f1f5f5] px-10 pt-4 rounded-lg ">
-        <div className="flex items-center justify-between py-5">
+        <div className="flex items-center justify-between pt-5">
           <h1 className="flex items-center text-2xl ">
             <BsCardList className="mr-4" /> Traveler List
           </h1>

@@ -1,7 +1,6 @@
 import { Form, Select } from "antd";
 
 const Countries = ({ name, countries }) => {
-  console.log(name);
   return (
     <>
       <div>

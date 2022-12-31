@@ -63,12 +63,22 @@ const BookingPage = () => {
               </div>
               <div className="flex justify-between pb-3  font-medium">
                 <p>Depart (CGK to DPS)</p>
-                <p>Rp. {schedule.price}</p>
+                <p>
+                  {schedule.price.toLocaleString("id-ID", {
+                    style: "currency",
+                    currency: "IDR",
+                  })}
+                </p>
               </div>
               <hr className="my-4" />
               <div className="flex justify-between pb-3  font-medium">
                 <p>Total Price</p>
-                <p>Rp. {schedule.price * traveler}</p>
+                <p>
+                  {(schedule.price * traveler).toLocaleString("id-ID", {
+                    style: "currency",
+                    currency: "IDR",
+                  })}
+                </p>
               </div>
             </div>
             <div className="mt-3">
