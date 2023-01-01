@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { logo_white, logo_mini, logo_mini_white } from "../assets/images/logo/index";
 import { Select, DatePicker, Form, Input, message } from "antd";
+import { GoogleLogin, GoogleOAuthProvider, useGoogleLogin } from "@react-oauth/google";
+import jwt_decode from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 import useUsers from "../services/api/useUsers";
+import axios from "axios";
 
 const Registerpage = () => {
+  const [googleStatus, setGoogleStatus] = useState(null)
   const navigate = useNavigate();
   const dataGender = [
     {
@@ -18,6 +22,29 @@ const Registerpage = () => {
   ];
 
   const { postRegister } = useUsers();
+
+  const googleResponse = async(credentialResponse) => {
+    try {
+      let decode = jwt_decode(credentialResponse.credential);
+      await axios.post('https://api-flight.up.railway.app/user/sign-up', 
+      {
+        fullName: decode.name,
+        email: decode.email,
+        password: decode.sub,
+        telephone: "8888888",
+        birthDate: "2022-01-01",
+        gender: true,
+        rolesId: 2,
+      }
+      ).then((res) => {
+        return res;
+      })
+      navigate('/login')
+    } catch (error) {
+      console.log("error")
+      setGoogleStatus(error);
+    }
+  }
 
   const handleRegister = async (value) => {
     postRegister(value);
@@ -156,14 +183,23 @@ const Registerpage = () => {
                 <Input.Password placeholder="Enter Password" bordered={false}/>
               </Form.Item>
               <br></br>
-              <button type="submit" className="button-signup p-[15px_25px] text-[18px] leading-[25px] border-none rounded-md flex w-full bg-[#3e5cb8] text-white shadow-md mb-[20px] font-bold touch-manipulation transition-shadow duration-[0.25s] will-change-[box-shadow] relative cursor-pointer justify-center text-center whitespace-nowrap items-center align-top hover:shadow-none hover:bg-[#3855aa]">
-                <span className="text-[18px] leading-[25px] font-normal">Register</span>
-              </button>
+              <GoogleOAuthProvider clientId="953090499155-f5pgpt16s6lhge53hhi4s5cm5dg18in3.apps.googleusercontent.com">
+                <button type="submit" className="button-signup p-[15px_25px] text-[18px] leading-[25px] border-none rounded-md flex w-full bg-[#3e5cb8] text-white shadow-md mb-[20px] font-bold touch-manipulation transition-shadow duration-[0.25s] will-change-[box-shadow] relative cursor-pointer justify-center text-center whitespace-nowrap items-center align-top hover:shadow-none hover:bg-[#3855aa]">
+                  <span className="text-[18px] leading-[25px] font-normal">Register</span>
+                </button>
               
-              <button className="button-google p-[15px_25px] text-[18px] leading-[25px] border-none flex w-full shadow-md mt-[30px] font-bold touch-manipulation transition-shadow duration-[.25s] will-change-[box-shadow] relative text-[#9a9a9d] cursor-pointer justify-center text-center whitespace-nowrap bg-white items-center align-top hover:shadow-sm hover:text-[#59595b]">
-                <img src="https://cdn.airpaz.com/nuxt/8584e352a276fbbc255e780a7b081934.svg" alt="" className="icon-google w-[20px] mr-[5px] h-[1.5em] relative inline-flex items-center justify-center align-[-0.125em]" />
-                <span className="text-[18px] leading-[25px] font-bold ml-1">Register with Google</span>
-              </button>
+                <GoogleLogin
+                locale="en"
+                text="signup_with"
+                onSuccess={googleResponse}
+                />
+
+                {/* <button className="button-google p-[15px_25px] text-[18px] leading-[25px] border-none flex w-full shadow-md mt-[30px] font-bold touch-manipulation transition-shadow duration-[.25s] will-change-[box-shadow] relative text-[#9a9a9d] cursor-pointer justify-center text-center whitespace-nowrap bg-white items-center align-top hover:shadow-sm hover:text-[#59595b]">
+                  <img src="https://cdn.airpaz.com/nuxt/8584e352a276fbbc255e780a7b081934.svg" alt="" className="icon-google w-[20px] mr-[5px] h-[1.5em] relative inline-flex items-center justify-center align-[-0.125em]" />
+                  <span className="text-[18px] leading-[25px] font-bold ml-1">Register with Google</span>
+                </button> */}
+              </GoogleOAuthProvider>
+              
               
               <div className="term-condition sm:px-[70px] py-[30px]">
                 <p className="leading-[20px] text-[#9a9a9d] text-center text-[12px] font-normal m-0 p-0">
