@@ -40,7 +40,6 @@ const useUsers = () => {
 
   const postRegister = useCallback(async (value) => {
     try {
-      console.log(value.email);
       await axios
         .post(`https://api-flight.up.railway.app/user/sign-up`, {
           fullName: value.fullName,

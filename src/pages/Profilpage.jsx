@@ -38,26 +38,26 @@ const Profilpage = () => {
     <div className="min-h-screen pb-20">
       <div className="container mx-auto px-10 lg:grid grid-cols-4 block mt-20 gap-x-10">
         <aside className="col-span-1 flex flex-col gap-y-4 mb-5">
-          <div className="bg-[#3e5cb8] text-white lg:max-w-[300px] rounded-lg cursor-pointer" onClick={() => navigate("/account/profile")}>
+          <button className="bg-[#f1f5f5] text-[#000] lg:max-w-[300px] rounded-lg cursor-pointer focus:bg-[#3e5cb8] focus:text-white" onClick={() => navigate("/account/profile")}>
             <h2 className="flex items-center pl-10 h-full min-h-[50px]">
               <FiUser className="mr-3" /> Profile
             </h2>
-          </div>
-          <div className="bg-[#f1f5f5] text-[#000] lg:max-w-[300px] rounded-lg cursor-pointer" onClick={handleTraveler}>
+          </button>
+          <button className="bg-[#f1f5f5] text-[#000] lg:max-w-[300px] rounded-lg cursor-pointer focus:bg-[#3e5cb8] focus:text-white" onClick={handleTraveler}>
             <h2 className="flex items-center pl-10  h-full min-h-[50px]">
               <BsCardList className="mr-3" /> Traveler List
             </h2>
-          </div>
-          <div className="bg-[#f1f5f5] text-[#000] lg:max-w-[300px] rounded-lg cursor-pointer" onClick={handleOrder}>
+          </button>
+          <button className="bg-[#f1f5f5] text-[#000] lg:max-w-[300px] rounded-lg cursor-pointer focus:bg-[#3e5cb8] focus:text-white" onClick={handleOrder}>
             <h2 className="flex items-center pl-10  h-full min-h-[50px]">
               <BsCalendar2Check className="mr-3" /> Orders
             </h2>
-          </div>
-          <div className="bg-[#f1f5f5] text-[#000] lg:max-w-[300px] rounded-lg cursor-pointer" onClick={handleLogOut}>
+          </button>
+          <button className="bg-[#f1f5f5] text-[#000] lg:max-w-[300px] rounded-lg cursor-pointer focus:bg-[#3e5cb8] focus:text-white" onClick={handleLogOut}>
             <h2 className="flex items-center pl-10  h-full min-h-[50px]">
               <FiLogOut className="mr-3" /> Log Out
             </h2>
-          </div>
+          </button>
         </aside>
         <div className="col-span-3">{profileChange(params)}</div>
       </div>
