@@ -1,8 +1,16 @@
 const timeConverter = (date) => {
-  console.log(date);
-  const test = new Date(date.$d).toISOString();
-  console.log(test);
-  return test.slice(0, 10);
+  let year = date.$d.getFullYear();
+  let month = date.$d.getMonth() + 1;
+  let dt = date.$d.getDate();
+
+  if (dt < 10) {
+    dt = "0" + dt;
+  }
+  if (month < 10) {
+    month = "0" + month;
+  }
+
+  return year + "-" + month + "-" + dt;
 };
 
 export default timeConverter;

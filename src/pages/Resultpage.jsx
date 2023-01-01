@@ -123,6 +123,7 @@ const Resultpage = () => {
           </div>
           <div className="flex flex-col sm:gap-y-6 gap-y-2 mt-3 mb-10">
             {schedules.map((schedule, i) => {
+              console.log(schedule);
               return (
                 <>
                   <div className="sm:flex hidden justify-between items-center gap-4 bg-[#f1f5f5] rounded-md  px-5 py-8" key={i}>
