@@ -81,14 +81,9 @@ const Resultpage = () => {
                 </p>
               </div>
               <div className="mx-8">
-                <button className="text-base font-medium text-gray-500 rounded-md w-full py-2 px-6 bg-gray-200 hover:bg-gray-100" onClick={() => setShowDate(!showDate)}>
+                <button className="text-base font-medium text-gray-500 rounded-md w-full py-2 px-6 bg-gray-200 hover:bg-gray-100" onClick={() => navigate("/")}>
                   Change Date
                 </button>
-              </div>
-            </div>
-            <div className={showDate ? "flex justify-center my-2 pt-2" : "hidden"}>
-              <div className="bg-[#f1f5f5]">
-                <h1>Coming Soon</h1>
               </div>
             </div>
 
@@ -126,11 +121,11 @@ const Resultpage = () => {
               </div>
             </div>
           </div>
-          <div className="flex flex-col sm:gap-y-6 gap-y-2 mt-3">
+          <div className="flex flex-col sm:gap-y-6 gap-y-2 mt-3 mb-10">
             {schedules.map((schedule, i) => {
               return (
                 <>
-                  <div className="flex justify-between items-center gap-4 bg-[#f1f5f5] rounded-md  px-5 py-8" key={i}>
+                  <div className="sm:flex hidden justify-between items-center gap-4 bg-[#f1f5f5] rounded-md  px-5 py-8" key={i}>
                     <div className="flex items-center">
                       <div className="mx-8">
                         <SiChinasouthernairlines size="2.5rem" />
@@ -162,6 +157,45 @@ const Resultpage = () => {
                         </p>
                       </div>
                     </div>
+                    <div className="button-choose mr-12 md:block hidden">
+                      <button className="bg-blue-700 text-sm font-medium text-white rounded-md py-2 px-2 hover:bg-blue-600" onClick={() => navigate(`/flight/${schedule.scheduleId}?traveler=${traveler}`)}>
+                        Choose Flight
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* mobile phone */}
+                  <div className="justify-between items-center grid grid-cols-4 bg-[#f1f5f5] rounded-md my-2  px-5 py-8 sm:hidden" key={i} onClick={() => navigate(`/flight/${schedule.scheduleId}?traveler=${traveler}`)}>
+                    <div className="mx-4">
+                      <SiChinasouthernairlines size="2.5rem" />
+                      <p className="text-sm">{schedule.airplaneName}</p>
+                    </div>
+                    <div>
+                      <p className="font-semibold text-xl">{schedule.departureTime}</p>
+                      <p className="font-light text-sm">{schedule.departureCity}</p>
+                    </div>
+                    <AiOutlineArrowRight size="1.4rem" className="text-gray-400 mx-5" />
+                    <div>
+                      <p className="font-semibold text-xl">{schedule.arrivalTime}</p>
+                      <p className="font-light text-sm">{schedule.arrivalCity}</p>
+                    </div>
+                    <div className="duration mx-8  lg:block hidden">
+                      <p className="font-semibold text-xl">1H 30M</p>
+                      <p className="font-light text-sm">{schedule.status}</p>
+                    </div>
+                    <div className="items-center mx-8 lg:flex hidden">
+                      <RiSuitcase2Line size="1.2rem" className="mr-4" />
+                      <p className="font-light">20kg</p>
+                    </div>
+                    <div className="price mx-8 col-span-4  bg-[#0e67b4] text-white rounded-lg mt-4">
+                      <p className="font-semibold text-xl text-center">
+                        {schedule.price.toLocaleString("id-ID", {
+                          style: "currency",
+                          currency: "IDR",
+                        })}
+                      </p>
+                    </div>
+
                     <div className="button-choose mr-12 md:block hidden">
                       <button className="bg-blue-700 text-sm font-medium text-white rounded-md py-2 px-2 hover:bg-blue-600" onClick={() => navigate(`/flight/${schedule.scheduleId}?traveler=${traveler}`)}>
                         Choose Flight
