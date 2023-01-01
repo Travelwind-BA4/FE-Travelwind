@@ -20,7 +20,7 @@ const Detailpage = () => {
 
   return (
     <div>
-      <div className="container mx-auto py-10 px-10 h-screen">
+      <div className="container mx-auto py-10 px-10 min-h-screen">
         <div className="grid lg:grid-cols-3 grid-cols-2 gap-y-8">
           <div className="col-span-2 bg-[#f1f5f5]  px-8 pb-8  rounded-md">
             <div className="flex  justify-between items-center ">
@@ -31,12 +31,11 @@ const Detailpage = () => {
                 </h6>
                 <p className="text-gray-400 text-sm">1 Pax | Direct</p>
               </div>
-              <Button2 name="Change Flight" style="rounded-lg sm:block hidden" />
+              <Button2 name="Change Flight" style="rounded-lg sm:block hidden" onClick={() => window.history.back()} />
             </div>
             <hr className="my-4" />
             <div className="grid sm:grid-cols-4 grid-cols-2 gap-y-4">
               <div>
-                <img />
                 <p>
                   {schedules.airplaneName} {schedules.airplaneType}
                 </p>

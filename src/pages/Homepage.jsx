@@ -2,7 +2,7 @@ import { GiAirplaneArrival, GiAirplaneDeparture } from "react-icons/gi";
 import { AiOutlineUserAdd } from "react-icons/ai";
 import { BsCalendarDate, BsSearch, BsCalendar4Event, BsBookmarkCheck, BsCheckSquare } from "react-icons/bs";
 import "../styles/Home.css";
-import { header_2, promotion_1, promotion_2, promotion_3, promotion_4 } from "../assets/images/home";
+import { header_1, promotion_1, promotion_2, promotion_3, promotion_4 } from "../assets/images/home";
 import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer/Footer";
 
@@ -35,7 +35,7 @@ const Homepage = () => {
       <section className="relative sm:mb-[250px] mb-[450px]">
         <Navbar nav="absolute top-0 w-full z-10 text-white" notif="text-white" />
         <div className="h-[75vh] header">
-          <div className=" bg-header bg-cover brightness-[0.85] w-full h-full absolute top-0" style={{ backgroundImage: `url(${header_2})`, zIndex: "-2" }}></div>
+          <div className=" bg-header bg-cover brightness-[0.85] w-full h-full absolute top-0" style={{ backgroundImage: `url(${header_1})`, zIndex: "-2" }}></div>
           <div className="flex flex-col justify-center h-full items-center text-white z-10 text-center">
             <h2 className="font-medium text-4xl mb-4"> Experience Your</h2>
             <h1 className="font-bold text-6xl  mb-6">Best Flight With Us</h1>
