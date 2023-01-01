@@ -30,13 +30,13 @@ const useUsers = () => {
 
   const OauthGoogle = async () => {
     try {
-      const res = await axios.get('https://api-flight.up.railway.app/oauth2/authorization/google')
+      const res = await axios.get("https://api-flight.up.railway.app/oauth2/authorization/google");
       // console.log(res.data)
-      localStorage.setItem('gtoken', JSON.stringify(res.data.data))
+      localStorage.setItem("gtoken", JSON.stringify(res.data.data));
     } catch (error) {
       return error;
     }
-  }
+  };
 
   const postRegister = useCallback(async (value) => {
     try {
@@ -66,6 +66,10 @@ const useUsers = () => {
       };
 
       const res = await axios.put(`${process.env.REACT_APP_URL_API}/user/update?userId=${userId}`, payload, config);
+      console.log(res.status == 200);
+      if (res.status == 200) {
+        window.location.reload();
+      }
     } catch (error) {
       return error;
     }
