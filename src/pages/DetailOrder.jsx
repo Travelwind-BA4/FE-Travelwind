@@ -8,7 +8,7 @@ import useOrder from "../services/api/useOrder";
 
 const DetailOrder = () => {
   const { orderId } = useParams();
-  const { getByOrderId, ordersUser, generateInvoice, invoice } = useOrder();
+  const { getByOrderId, ordersUser, generateInvoice } = useOrder();
   const navigate = useNavigate();
   const [price, setPrice] = useState(0);
   const totalPrice = async () => {
@@ -34,6 +34,7 @@ const DetailOrder = () => {
 
   return (
     <div className="h-auto pb-20">
+      {console.log(ordersUser)}
       <div className="container mx-auto px-10 lg:grid grid-cols-4 block mt-20 gap-x-10">
         <aside className="col-span-1 flex flex-col gap-y-4 mb-5">
           <button className="bg-[#f1f5f5] text-[#000] lg:max-w-[300px] rounded-lg cursor-pointer focus:bg-[#3e5cb8] focus:text-white" onClick={() => navigate("/account/profile")}>

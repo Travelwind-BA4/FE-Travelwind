@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { FiUser } from "react-icons/fi";
 import useUsers from "../../services/api/useUsers";
 import { DatePicker, Form, Input, Select } from "antd";
+import timeConverter from "../../utils/timeConverter";
 
 const Profile = () => {
   const { getMe, users, editUser } = useUsers();
@@ -19,7 +20,14 @@ const Profile = () => {
   ];
 
   const handleSubmit = async (value) => {
-    editUser(value, user.userId, user.token);
+    const payload = {
+      fullName: value.fullName,
+      email: value.email,
+      telephone: value.telephone.trim(),
+      birthDate: timeConverter(value.birthDate),
+      gender: value.gender,
+    };
+    editUser(payload, user.userId, user.token);
   };
 
   useEffect(() => {
