@@ -108,24 +108,38 @@ const DetailOrder = () => {
                 <h1>
                   {ordersUser[0]?.paymentType} | {ordersUser[0]?.paymentName}
                 </h1>
-                <button className="px-3 py-2 bg-[#DF9947] rounded-full text-white my-4">{ordersUser[0]?.status}</button>
+                <button className={`px-4 py-2 rounded-full text-white my-4 ${ordersUser[0]?.status == "ACCEPT" ? " bg-[#52c41a] " : ordersUser[0]?.status == "WAITING" ? "bg-[#DF9947]" : "bg-[#db053f]"}`}>{ordersUser[0]?.status}</button>
                 <p className="mb-2 text-[12px] xl:text-sm">
                   Booked on <span>{new Date(ordersUser[0]?.orderDate).toDateString()}</span>
                 </p>
-                <div className="bg-[#3d74eb] rounded-lg text-[#fff] flex py-4 justify-center">
+                {/* <div className="bg-[#0f67b4] rounded-lg text-[#fff] flex py-4 justify-center">
                   <span>
                     {ordersUser[0]?.totalPrice.toLocaleString("id-ID", {
                       style: "currency",
                       currency: "IDR",
                     })}
                   </span>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
 
           <div className="bg-[#f1f5f5] px-10 py-4 rounded-lg">
-            <h1 className="text-xl py-2">Total Price</h1>
+            <h1 className="text-xl py-2">Detail Prices</h1>
+            <div className="flex justify-between">
+              <p>Traveler :</p>
+              <p>{ordersUser[0]?.travelerListName.length} Traveler</p>
+            </div>
+            <div className="flex justify-between mt-2">
+              <p>Price :</p>
+              <p>
+                {ordersUser[0]?.totalPrice.toLocaleString("id-ID", {
+                  style: "currency",
+                  currency: "IDR",
+                })}
+              </p>
+            </div>
+            <hr className="my-4" />
             <div className="flex justify-between">
               <p>
                 Depart : ({ordersUser[0]?.departureIATA} - {ordersUser[0]?.arrivalIATA}){" "}
@@ -140,7 +154,11 @@ const DetailOrder = () => {
           </div>
           {ordersUser[0]?.status === "ACCEPT" ? (
             <div className="flex justify-end mt-2">
-              <a href={`https://api-flight.up.railway.app/invoice/generate?orderId=${orderId}`} className="text-end text-base mt-7 text-blue-700 underline cursor-pointer" onClick={() => generateInvoice(ordersUser[0]?.orderId)}>
+              <a
+                href={`https://api-flight.up.railway.app/invoice/generate?orderId=${orderId}`}
+                className=" px-3 py-2 bg-[#0e67b4] rounded-lg text-white text-end text-base mt-7 cursor-pointer"
+                onClick={() => generateInvoice(ordersUser[0]?.orderId)}
+              >
                 Generate Invoice
               </a>
             </div>

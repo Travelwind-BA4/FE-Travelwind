@@ -21,10 +21,18 @@ const Orders = () => {
           <hr className="my-4" />
           <div className="">
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
-              <button className="px-4 py-3 bg-[#fff] rounded-full  focus:bg-[#3e5cb8] focus:text-white"  onClick={() => getOrderUser()} >All</button>
-              <button className="px-4 py-3 bg-[#fff] rounded-full focus:bg-[#3e5cb8] focus:text-white" onClick={() => getByStatus("ACCEPT")}>Confirmed</button>
-              <button className="px-4 py-3 bg-[#fff] rounded-full focus:bg-[#3e5cb8] focus:text-white"  onClick={() => getByStatus("WAITING")} >Waiting</button>
-              <button className="px-4 py-3 bg-[#fff] rounded-full focus:bg-[#3e5cb8] focus:text-white" onClick={() => getByStatus("CANCELED")}>Cancelled</button>
+              <button className="px-4 py-3 bg-[#fff] rounded-full  focus:bg-[#3e5cb8] focus:text-white" onClick={() => getOrderUser()}>
+                All
+              </button>
+              <button className="px-4 py-3 bg-[#fff] rounded-full focus:bg-[#3e5cb8] focus:text-white" onClick={() => getByStatus("ACCEPT")}>
+                Confirmed
+              </button>
+              <button className="px-4 py-3 bg-[#fff] rounded-full focus:bg-[#3e5cb8] focus:text-white" onClick={() => getByStatus("WAITING")}>
+                Waiting
+              </button>
+              <button className="px-4 py-3 bg-[#fff] rounded-full focus:bg-[#3e5cb8] focus:text-white" onClick={() => getByStatus("CANCELED")}>
+                Cancelled
+              </button>
             </div>
           </div>
         </div>
@@ -51,16 +59,21 @@ const Orders = () => {
                 </div>
               </div>
               <div className="text-center lg:border-l-2 lg:pl-5">
-                <h1> Code</h1>
-                <p>{item.orderId.slice(0, 8)}</p>
-                <button className="px-3 py-2 bg-[#DF9947] rounded-full text-white my-4">{item.status}</button>
-                <div className="bg-[#3d74eb] rounded-lg text-[#fff] flex justify-center py-4">
-                  <span>
+                <div className="flex justify-between">
+                  <h1> Code</h1>
+                  <p>{item.orderId.slice(0, 8)}</p>
+                </div>
+                <div className="flex justify-between mt-2">
+                  <h1>Price</h1>
+                  <p>
                     {item.totalPrice.toLocaleString("id-ID", {
                       style: "currency",
                       currency: "IDR",
                     })}
-                  </span>
+                  </p>
+                </div>
+                <div className={`py-2 rounded-full text-white my-4 ${item.status == "ACCEPT" ? " bg-[#52c41a] " : item.status == "WAITING" ? "bg-[#DF9947]" : "bg-[#db053f]"}`}>
+                  <p>{item.status}</p>
                 </div>
               </div>
             </div>

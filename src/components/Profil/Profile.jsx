@@ -29,7 +29,15 @@ const Profile = () => {
     };
     editUser(payload, user.userId, user.token);
   };
+  const worker = {
+    gender: users.gender,
+    fullName: users.fullName,
+    email: users.email,
+    Birthdate: new Date(users.birthDate),
+    telephone: users.telephone,
+  };
 
+  console.log(worker);
   useEffect(() => {
     getMe(user.userId, user.token);
   }, []);
@@ -56,7 +64,7 @@ const Profile = () => {
             </div>
             <div className="col-span-1">
               <h1 className="text-[#a5a5a8] mb-1">Gender</h1>
-              <p>{users.gender ? "Laki-laki" : "Perempuan" || user.gender === null ? "null" : "null"}</p>
+              <p>{users.gender ? "Laki-laki" : "Perempuan"}</p>
             </div>
           </div>
           <div className="grid grid-cols-2">
@@ -66,7 +74,7 @@ const Profile = () => {
             </div>
             <div className="col-span-1">
               <h1 className="text-[#a5a5a8] mb-1">Email</h1>
-              <p>{users.email || user.email }</p>
+              <p>{users.email || user.email}</p>
             </div>
           </div>
           <div className="grid grid-cols-2">
@@ -78,27 +86,16 @@ const Profile = () => {
         </div>
       ) : (
         <div className="mx-2 py-4">
-          <Form
-            onFinish={handleSubmit}
-            requiredMark={false}
-            layout="vertical"
-            name="basic"
-            initialValues={{
-              remember: true,
-            }}
-            autoComplete="off"
-          >
-            <div className="flex gap-16">
-              <Form.Item initialValue={users.gender} label="Gender" name="gender" className="border-b w-[100px]">
+          <Form onFinish={handleSubmit} requiredMark={false} layout="vertical" name="basic" initialValues={worker} autoComplete="off">
+            <div className="grid grid-cols-2 gap-5">
+              <Form.Item label="Gender" name="gender" className="border-b ">
                 <Select placeholder="Male" bordered={false} options={dataGender} />
               </Form.Item>
+
               <Form.Item label="Birthdate" name="birthDate" className="border-b rounded-none">
                 <DatePicker format={"YYYY-MM-DD"} bordered={false} />
               </Form.Item>
-            </div>
-            <div className="flex gap-16">
               <Form.Item
-                initialValue={users.fullName}
                 label="Fullname"
                 name="fullName"
                 rules={[
@@ -117,7 +114,6 @@ const Profile = () => {
                 <Input bordered={false} />
               </Form.Item>
               <Form.Item
-                initialValue={users.email}
                 label="Email"
                 name="email"
                 rules={[
@@ -135,12 +131,11 @@ const Profile = () => {
               >
                 <Input bordered={false} />
               </Form.Item>
+              <Form.Item label="Telephone" name="telephone" className="border-b">
+                <Input bordered={false} />
+              </Form.Item>
             </div>
 
-            <Form.Item initialValue={users.telephone} label="Telephone" name="telephone" className="border-b">
-              <Input bordered={false} />
-            </Form.Item>
-            <br></br>
             <div className="flex justify-end my-4 gap-4 mr-4">
               <button onClick={() => setShowEdit(false)} className="px-5 py-2 text-[18px] leading-[25px] border-none rounded-lg bg-[#db053f] text-white">
                 Cancel
