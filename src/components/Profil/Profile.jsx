@@ -52,11 +52,11 @@ const Profile = () => {
           <div className="grid grid-cols-2">
             <div className="col-span-1">
               <h1 className="text-[#a5a5a8] mb-1">Name</h1>
-              <p>{users.fullName}</p>
+              <p>{users.fullName || `${user.givenName} ${user.familyName}`}</p>
             </div>
             <div className="col-span-1">
               <h1 className="text-[#a5a5a8] mb-1">Gender</h1>
-              <p>{users.gender ? "Laki-laki" : "Perempuan"}</p>
+              <p>{users.gender ? "Laki-laki" : "Perempuan" || user.gender === null ? "null" : "null"}</p>
             </div>
           </div>
           <div className="grid grid-cols-2">
@@ -66,7 +66,7 @@ const Profile = () => {
             </div>
             <div className="col-span-1">
               <h1 className="text-[#a5a5a8] mb-1">Email</h1>
-              <p>{users.email}</p>
+              <p>{users.email || user.email }</p>
             </div>
           </div>
           <div className="grid grid-cols-2">
