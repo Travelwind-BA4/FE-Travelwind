@@ -18,6 +18,9 @@ const Homeslider = () => {
         spaceBetween={30}
         freeMode={true}
         breakpoints={{
+          0: {
+            slidesPerView: 1,
+          },
           375: {
             slidesPerView: 1,
           },
