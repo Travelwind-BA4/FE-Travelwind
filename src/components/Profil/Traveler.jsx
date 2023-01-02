@@ -6,9 +6,11 @@ import { Alert, Card, Form } from "antd";
 import useTraveler from "../../services/api/useTraveler";
 import AddTraveler from "./AddTraveler";
 import timeConverter from "../../utils/timeConverter";
+import { useNavigate } from "react-router-dom";
 
 const Traveler = () => {
   const { getTraveler, travelers, addTraveler, status } = useTraveler();
+  const navigate = useNavigate();
   const [show, setShow] = useState(false);
   useEffect(() => {
     getTraveler();
@@ -89,7 +91,7 @@ const Traveler = () => {
                     </div>
                   }
                   extra={
-                    <div key={traveler.travelerId} className="border rounded-lg bg-gray-200 p-2 hover:shadow-lg" onClick={() => setShow(true)}>
+                    <div key={traveler.travelerId} className="border hidden rounded-lg bg-gray-200 p-2 hover:shadow-lg" onClick={() => navigate(`/account/traveler/${traveler.id}`)}>
                       <BsPencil />
                     </div>
                   }

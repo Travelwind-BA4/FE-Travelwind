@@ -17,6 +17,7 @@ import Error from "../pages/Error";
 import AdminPage from "../pages/AdminPage";
 import UserAdmin from "../components/Admin/UserAdmin";
 import DataCountry from "../components/Admin/DataCountry";
+import EditTraveler from "../pages/EditTraveler";
 
 const Index = () => {
   const { pathname } = useLocation();
@@ -59,6 +60,7 @@ const Index = () => {
         <Route path="/account/traveler" element={<Profilpage />} />
         <Route path="/account/orders" element={<Profilpage />} />
         <Route path="/account/orders/:orderId" element={<DetailOrder />} />
+        <Route path="/account/traveler/:travelerId" element={<EditTraveler />} />
         <Route path="/account/changepass" element={<Profilpage />} />
         <Route path="*" element={<Error />} />
       </Routes>

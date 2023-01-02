@@ -62,6 +62,18 @@ const useTraveler = () => {
     }
   };
 
+
+  const editTraveler = async (payloads, userId, token) => {
+    try {
+      const config = {
+        headers: { Authorization: `Bearer ${token}` },
+      };
+      const res = await axios.put(`${process.env.REACT_APP_URL_API}/traveler-list/update?userId=${userId}`, payloads, config)
+    } catch (error) {
+      
+    }
+  }
+
   return { addTravelerByOrder, getTraveler, travelers, status, addTraveler, passengers };
 };
 
