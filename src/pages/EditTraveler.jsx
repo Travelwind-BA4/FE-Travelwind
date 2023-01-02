@@ -1,38 +1,19 @@
+import React from 'react';
+import { useParams, useNavigate, NavLink } from 'react-router-dom';
 import { FiUser, FiLogOut } from "react-icons/fi";
 import { BsCalendar2Check, BsCardList } from "react-icons/bs";
-import Profil from "../components/Profil/Profil";
-import { useLocation, useNavigate, useParams, NavLink } from "react-router-dom";
-import Traveler from "../components/Profil/Traveler";
-import Orders from "../components/Profil/Orders";
-import useOrder from "../services/api/useOrder";
-import useTraveler from "../services/api/useTraveler";
-import Profile from "../components/Profil/Profile";
 
-const Profilpage = () => {
-  const navigate = useNavigate();
-  const params = useLocation().pathname.split("/")[2];
-  const { getOrderUser, OrdersUser } = useOrder();
-  const { getTraveler } = useTraveler();
+const EditTraveler = () => {
+    const { travelerId } = useParams();
+    const navigate = useNavigate();
 
-  const { orderId } = useParams();
+    const handleLogOut = () => {
+        localStorage.removeItem("user");
+        localStorage.removeItem("token");
+        navigate("/");
+      };
 
-  const handleOrder = (e) => {
-    e.preventDefault();
-    getOrderUser();
-    navigate("/account/orders");
-  };
 
-  const handleTraveler = (e) => {
-    e.preventDefault();
-    getTraveler();
-    navigate("/account/traveler");
-  };
-
-  const handleLogOut = () => {
-    localStorage.removeItem("user");
-    localStorage.removeItem("token");
-    navigate("/");
-  };
 
   return (
     <div className="min-h-screen pb-20">
@@ -61,22 +42,9 @@ const Profilpage = () => {
             </h2>
           </button>
         </aside>
-        <div className="col-span-3">{profileChange(params)}</div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-const profileChange = (params) => {
-  if (params === "profile") {
-    return <Profile />;
-  }
-  if (params === "traveler") {
-    return <Traveler />;
-  }
-  if (params === "orders") {
-    return <Orders />;
-  }
-};
-
-export default Profilpage;
+export default EditTraveler;
