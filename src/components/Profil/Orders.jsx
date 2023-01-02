@@ -1,11 +1,48 @@
+import { useState } from "react";
 import { useEffect } from "react";
 import { BsCalendar2Check } from "react-icons/bs";
 import { IoAirplaneOutline } from "react-icons/io5";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import useOrder from "../../services/api/useOrder";
 const Orders = () => {
   const { getOrderUser, getByStatus, ordersUser } = useOrder();
   const navigate = useNavigate();
+  const [allShow, setAll] = useState(false);
+  const [accShow, setAcc] = useState(false);
+  const [waitShow, setWait] = useState(false);
+  const [cancelShow, setCancel] = useState(false);
+
+  const getAllOrder = () => {
+    getOrderUser();
+    setAll(true)
+    setAcc(false)
+    setCancel(false)
+    setWait(false)
+  }
+
+  const getAccOrder = () => {
+    getByStatus("ACCEPT");
+    setAll(false)
+    setAcc(true)
+    setCancel(false)
+    setWait(false)
+  }
+
+  const getWaitOrder = () => {
+    getByStatus("WAITING");
+    setAll(false)
+    setAcc(false)
+    setCancel(false)
+    setWait(true)
+  }
+
+  const getCancelOrder = () => {
+    getByStatus("CANCELED");
+    setAll(false)
+    setAcc(false)
+    setCancel(true)
+    setWait(false)
+  }
 
   useEffect(() => {
     getOrderUser();
@@ -19,18 +56,18 @@ const Orders = () => {
             <BsCalendar2Check className="mr-4" /> Orders
           </h1>
           <hr className="my-4" />
-          <div className="">
+          <div className=""> 
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
-              <button className="px-4 py-3 bg-[#fff] rounded-full  focus:bg-[#3e5cb8] focus:text-white" onClick={() => getOrderUser()}>
+              <button className={`px-4 py-3 rounded-full  ${allShow ? 'bg-[#3e5cb8] text-white' : 'bg-[#fff] text-black'}`} onClick={getAllOrder}>
                 All
               </button>
-              <button className="px-4 py-3 bg-[#fff] rounded-full focus:bg-[#3e5cb8] focus:text-white" onClick={() => getByStatus("ACCEPT")}>
+              <button className={`px-4 py-3 rounded-full  ${accShow ? 'bg-[#3e5cb8] text-white' : 'bg-[#fff] text-black'}`} onClick={getAccOrder}>
                 Confirmed
               </button>
-              <button className="px-4 py-3 bg-[#fff] rounded-full focus:bg-[#3e5cb8] focus:text-white" onClick={() => getByStatus("WAITING")}>
+              <button className={`px-4 py-3 rounded-full  ${waitShow ? 'bg-[#3e5cb8] text-white' : 'bg-[#fff] text-black'}`} onClick={getWaitOrder}>
                 Waiting
               </button>
-              <button className="px-4 py-3 bg-[#fff] rounded-full focus:bg-[#3e5cb8] focus:text-white" onClick={() => getByStatus("CANCELED")}>
+              <button className={`px-4 py-3 rounded-full  ${cancelShow ? 'bg-[#3e5cb8] text-white' : 'bg-[#fff] text-black'}`} onClick={getCancelOrder}>
                 Cancelled
               </button>
             </div>
