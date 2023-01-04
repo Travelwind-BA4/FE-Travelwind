@@ -15,7 +15,7 @@ const useAirports = () => {
 
   const searchAirport = useCallback(async (city) => {
     try {
-      const data = await axios.get(`https://api-flight.up.railway.app/airports/city/${city}`);
+      const data = await axios.get(`https://be-flightticket-production.up.railway.app/airports/city/${city}`);
 
       setAirports(data.data.data);
     } catch (error) {

@@ -19,7 +19,7 @@ const Loginpage = () => {
   const googleResponse = async (credentialResponse) => {
     try {
       let decode = jwt_decode(credentialResponse.credential);
-      await axios.post('https://api-flight.up.railway.app/user/sign-in', 
+      await axios.post('https://be-flightticket-production.up.railway.app/user/sign-in', 
       {
         email: decode.email,
         password: decode.sub,
