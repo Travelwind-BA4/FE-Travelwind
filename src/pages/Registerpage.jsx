@@ -26,7 +26,7 @@ const Registerpage = () => {
   const googleResponse = async(credentialResponse) => {
     try {
       let decode = jwt_decode(credentialResponse.credential);
-      await axios.post('https://api-flight.up.railway.app/user/sign-up', 
+      await axios.post('https://be-flightticket-production.up.railway.app/user/sign-up', 
       {
         fullName: decode.name,
         email: decode.email,
