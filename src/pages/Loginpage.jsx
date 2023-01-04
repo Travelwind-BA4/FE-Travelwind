@@ -116,7 +116,7 @@ const Loginpage = () => {
                 <Input.Password placeholder="Enter Password" bordered={false} />
               </Form.Item>
               <br></br>
-              <GoogleOAuthProvider clientId="953090499155-f5pgpt16s6lhge53hhi4s5cm5dg18in3.apps.googleusercontent.com"
+              <GoogleOAuthProvider clientId="376587108230-nv528gnfio7b42i0l1h4idnj24o2v6eb.apps.googleusercontent.com"
               >
               <button
                 type="submit"
