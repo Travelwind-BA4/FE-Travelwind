@@ -157,7 +157,7 @@ const DetailOrder = () => {
           {ordersUser[0]?.status === "ACCEPT" ? (
             <div className="flex justify-end mt-2">
               <a
-                href={`https://api-flight.up.railway.app/invoice/generate?orderId=${orderId}`}
+                href={`${process.env.REACT_APP_URL_API}/invoice/generate?orderId=${orderId}`}
                 className=" px-3 py-2 bg-[#0e67b4] rounded-lg text-white text-end text-base mt-7 cursor-pointer"
                 onClick={() => generateInvoice(ordersUser[0]?.orderId)}
               >
