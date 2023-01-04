@@ -7,7 +7,7 @@ const useAuth = () => {
     const navigate = useNavigate();
     const postLogin = useCallback(async (val) => {
         try {
-            await axios.post(`https://api-flight.up.railway.app/user/sign-in`, {
+            await axios.post(`https://be-flightticket-production.up.railway.app/user/sign-in`, {
         email: val.email,
         password: val.password,
     }).then((response) => {

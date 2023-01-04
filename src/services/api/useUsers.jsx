@@ -11,7 +11,7 @@ const useUsers = () => {
   const postLogin = useCallback(async (value) => {
     try {
       await axios
-        .post(`https://api-flight.up.railway.app/user/sign-in`, {
+        .post(`${process.env.REACT_APP_URL_API}/user/sign-in`, {
           email: value.email,
           password: value.password,
         })
@@ -30,7 +30,7 @@ const useUsers = () => {
 
   const OauthGoogle = async () => {
     try {
-      const res = await axios.get("https://api-flight.up.railway.app/oauth2/authorization/google");
+      const res = await axios.get("https://be-flightticket-production.up.railway.app/oauth2/authorization/google");
       // console.log(res.data)
       localStorage.setItem("gtoken", JSON.stringify(res.data.data));
     } catch (error) {
@@ -41,7 +41,7 @@ const useUsers = () => {
   const postRegister = useCallback(async (value) => {
     try {
       await axios
-        .post(`https://api-flight.up.railway.app/user/sign-up`, {
+        .post(`${process.env.REACT_APP_URL_API}/user/sign-up`, {
           fullName: value.fullName,
           birthDate: timeConverter(value.birthDate),
           telephone: value.telephone,
@@ -80,7 +80,7 @@ const useUsers = () => {
       const config = {
         headers: { Authorization: `Bearer ${token}` },
       };
-      const { data } = await axios.get(`https://api-flight.up.railway.app/user/findby-id?userId=${id}`, config);
+      const { data } = await axios.get(`${process.env.REACT_APP_URL_API}/user/findby-id?userId=${id}`, config);
       setUsers(data.data);
     } catch (error) {
       console.log("error");
