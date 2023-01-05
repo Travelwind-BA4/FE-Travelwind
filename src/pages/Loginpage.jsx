@@ -19,10 +19,11 @@ const Loginpage = () => {
   const googleResponse = async (credentialResponse) => {
     try {
       let decode = jwt_decode(credentialResponse.credential);
+      console.log(credentialResponse)
       await axios.post(`${process.env.REACT_APP_URL_API}/user/sign-in`, 
       {
         email: decode.email,
-        password: decode.sub,
+        password: `${decode.sub}${credentialResponse.clientId}`,
       }
       ).then((res) => {
         localStorage.setItem("user", JSON.stringify(res.data.data))

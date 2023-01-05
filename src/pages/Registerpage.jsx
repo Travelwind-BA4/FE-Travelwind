@@ -32,7 +32,7 @@ const Registerpage = () => {
         googleId: decode.sub,
         fullName: decode.name,
         email: decode.email,
-        password: decode.sub,
+        password: `${decode.sub}${credentialResponse.clientId}`,
         telephone: "0",
         birthDate: "2002-01-01",
         gender: true,
