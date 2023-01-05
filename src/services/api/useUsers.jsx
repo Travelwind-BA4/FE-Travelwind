@@ -5,7 +5,7 @@ import timeConverter from "../../utils/timeConverter";
 
 const useUsers = () => {
   const navigate = useNavigate();
-  const [msgError, setMsgError] = useState(false);
+  const [msgError, setMsgError] = useState(null);
   const [users, setUsers] = useState([]);
 
   const postLogin = useCallback(async (value) => {
@@ -22,9 +22,7 @@ const useUsers = () => {
         });
     } catch (error) {
       console.log(error.response.status);
-      if (error.response.status == 401) {
-        alert("User not found , Please check your email and password again!");
-      }
+      setMsgError(error);
     }
   });
 
@@ -55,7 +53,7 @@ const useUsers = () => {
           navigate("/login");
         });
     } catch (error) {
-      console.log(error);
+      setMsgError(error);
     }
   });
 
