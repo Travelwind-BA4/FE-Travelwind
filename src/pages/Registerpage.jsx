@@ -23,17 +23,18 @@ const Registerpage = () => {
 
   const { postRegister, msgError } = useUsers();
 
-
   const googleResponse = async(credentialResponse) => {
     try {
       let decode = jwt_decode(credentialResponse.credential);
-      await axios.post('https://be-flightticket-production.up.railway.app/user/sign-up', 
+      await axios.post(`${process.env.REACT_APP_URL_API}/user/sign-up`, 
       {
+        authProvider: "GOOGLE",
+        googleId: decode.sub,
         fullName: decode.name,
         email: decode.email,
         password: decode.sub,
-        telephone: "8888888",
-        birthDate: "2022-01-01",
+        telephone: "0",
+        birthDate: "2002-01-01",
         gender: true,
         rolesId: 2,
       }
