@@ -10,7 +10,7 @@ import axios from "axios";
 const Loginpage = () => {
   const navigate = useNavigate();
   const [googleStatus, setGoogleStatus] = useState(null);
-  const { postLogin } = useUsers();
+  const { postLogin, msgError } = useUsers();
 
   const Auth = (val) => {
     postLogin(val);
@@ -83,6 +83,8 @@ const Loginpage = () => {
               autoComplete="off"
             >
               <h1 className="login-form mb-[30px] text-[18px] leading-[25px] font-bold">Login</h1>
+              {googleStatus ? <Alert message={googleStatus.message} type="error" className="mb-4" /> : ""}
+              {msgError ? <Alert message="Please check your email and password again!!" type="error" className="mb-4" /> : ""}
               <Form.Item
                 label="Email"
                 name="email"
