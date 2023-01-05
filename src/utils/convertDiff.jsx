@@ -1,3 +1,4 @@
+import moment from "moment";
 const convertDiff = (departureTime, arrivalTime) => {
   var time = moment
     .utc(
