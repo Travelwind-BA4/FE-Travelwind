@@ -66,7 +66,7 @@ const useUsers = () => {
       };
 
       const res = await axios.put(`${process.env.REACT_APP_URL_API}/user/update?userId=${userId}`, payload, config);
-      console.log(res.status == 200);
+
       if (res.status == 200) {
         window.location.reload();
       }

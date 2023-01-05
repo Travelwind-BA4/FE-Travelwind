@@ -44,19 +44,11 @@ const Resultpage = () => {
                 <GiAirplaneDeparture size="2rem" />
               </div>
               <div className="description ">
-                <p className="text-lg font-medium">Select Departure Flight</p>
-                <p className="text-base font-light">
-                  <span>
-                    {depAirport} - {arrAirport}
-                  </span>
-                  <span className="px-1"> | </span> {new Date(depDate).toDateString()}
+                <p className="text-lg font-medium">
+                  {depAirport} - {arrAirport}
                 </p>
+                <p className="text-base font-light">{new Date(depDate).toDateString()}</p>
               </div>
-            </div>
-            <div className="flight-header-item sm:block hidden">
-              <button onClick={() => setShowForm(!showForm)} className="text-base text-white rounded-md border bg-transparent border-white border-solid flex w-full py-2 px-6 ">
-                Change Search
-              </button>
             </div>
           </div>
           <div className={showForm ? "flight-form flex py-10 mx-10" : "hidden"}>
@@ -91,7 +83,7 @@ const Resultpage = () => {
               <div className="flex flex-row items-center list-filter gap-2 mx-5 py-2">
                 <p>Filter: </p>
                 <div className="flex button-filter gap-3">
-                  <Select className="bg-gray-200 rounded-md" placeholder="Prices" bordered={false} onSelect={lower}>
+                  <Select className="bg-gray-200 rounded-md " placeholder="Prices" bordered={false} onSelect={lower}>
                     <Select.Option key={1} value="lower-price">
                       <h1>Lower Prices</h1>
                     </Select.Option>
@@ -115,15 +107,11 @@ const Resultpage = () => {
                   </Select>
                 </div>
               </div>
-              <div className="flex filter-sort gap-2 mx-5">
-                <p>Sort: </p>
-                <button>Sorting</button>
-              </div>
             </div>
           </div>
           <div className="flex flex-col sm:gap-y-6 gap-y-2 mt-3 mb-10">
             {schedules.map((schedule, i) => {
-              console.log(schedule);
+              // console.log(schedule);
               return (
                 <>
                   <div className="sm:flex hidden justify-between items-center gap-4 bg-[#f1f5f5] rounded-md  px-5 py-8" key={i}>
