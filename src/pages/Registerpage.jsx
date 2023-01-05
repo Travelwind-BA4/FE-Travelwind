@@ -29,6 +29,7 @@ const Registerpage = () => {
       await axios.post(`${process.env.REACT_APP_URL_API}/user/sign-up`, 
       {
         authProvider: "GOOGLE",
+        googleId: decode.sub,
         fullName: decode.name,
         email: decode.email,
         password: decode.sub,
