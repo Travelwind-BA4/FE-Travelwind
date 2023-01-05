@@ -19,7 +19,7 @@ const Loginpage = () => {
   const googleResponse = async (credentialResponse) => {
     try {
       let decode = jwt_decode(credentialResponse.credential);
-      await axios.post('https://be-flightticket-production.up.railway.app/user/sign-in', 
+      await axios.post(`${process.env.REACT_APP_URL_API}/user/sign-in`, 
       {
         email: decode.email,
         password: decode.sub,
@@ -29,6 +29,26 @@ const Loginpage = () => {
         localStorage.setItem("token", JSON.stringify(res.data.data.token))
       })
       navigate('/')
+    } catch (error) {
+      setGoogleStatus(error)
+    }
+  }
+
+  const responseGoogle = async (credentialResponse) => {
+    try {
+      let decode = jwt_decode(credentialResponse.credential);
+      console.log(decode);
+      await axios.post(`https://api-flight.up.railway.app/user/login-google`, 
+      {
+        fullName: decode.name,
+        email: decode.email,
+        googleId: decode.sub
+      }
+      ).then((res) => {
+        console.log(res.data.data)
+        localStorage.setItem("user", JSON.stringify(res.data.data))
+        localStorage.setItem("token", JSON.stringify(res.data.data.token))
+      })
     } catch (error) {
       setGoogleStatus(error)
     }
