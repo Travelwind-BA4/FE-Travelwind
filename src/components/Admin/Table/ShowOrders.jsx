@@ -75,7 +75,7 @@ const ShowOrders = () => {
 
   return (
     <>
-      <Table dataSource={orders} columns={columns} />;
+      <Table dataSource={orders} columns={columns} />
     </>
   );
 };
