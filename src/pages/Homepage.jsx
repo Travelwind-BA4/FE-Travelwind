@@ -37,9 +37,9 @@ const Homepage = () => {
         <div className="h-[75vh] header">
           <div className=" bg-header bg-cover brightness-[0.85] w-full h-full absolute top-0" style={{ backgroundImage: `url(${header_1})`, zIndex: "-2" }}></div>
           <div className="flex flex-col justify-center h-full items-center text-white z-10 text-center">
-            <h2 className="font-medium text-4xl mb-4"> Experience Your</h2>
-            <h1 className="font-bold text-6xl  mb-6">Best Flight With Us</h1>
-            <p className="text-xl">We have more than 1 million happy customer arround the world</p>
+            <h2 className="font-medium md:text-4xl text-2xl mb-4"> Experience Your</h2>
+            <h1 className="font-bold md:text-6xl text-4xl mb-6">Best Flight With Us</h1>
+            <p className="md:text-xl text-md">We have more than 1 million happy customer arround the world</p>
           </div>
           <div className="flex justify-center">
             <div className="border-2 rounded-xl shadow-md bg-[#fff] absolute sm:bottom-[-140px] bottom-[-400px] px-10 py-3 mx-5 lg:min-w-[800px] ">
