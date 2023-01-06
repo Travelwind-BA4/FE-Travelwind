@@ -9,6 +9,7 @@ import useSchedule from "../services/api/useSchedule";
 import { useEffect } from "react";
 import convertDiff from "../utils/convertDiff";
 const Detailpage = () => {
+  const token = JSON.parse(localStorage.getItem("token"));
   const { id } = useParams();
   let [searchParams, setSearchParams] = useSearchParams();
   const traveler = searchParams.get("traveler");

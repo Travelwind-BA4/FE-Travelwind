@@ -7,7 +7,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import useSchedule from "../services/api/useSchedule";
 import convertDiff from "../utils/convertDiff";
 
-import { Select } from "antd";
+import { Select, Pagination } from "antd";
 
 const Resultpage = () => {
   let [searchParams, setSearchParams] = useSearchParams();
@@ -28,7 +28,6 @@ const Resultpage = () => {
       depAirport: depAirport,
       arrAirport: arrAirport,
       depDate: depDate,
-      size: 5,
       page: 0,
     };
     byPrice(val, payload);
@@ -49,6 +48,14 @@ const Resultpage = () => {
                 <p className="text-base font-light">{new Date(depDate).toDateString()}</p>
               </div>
             </div>
+            <div className="flight-header-item sm:block hidden">
+              <button
+                onClick={() => navigate('/')}
+                className="text-base text-white rounded-md border bg-transparent border-white border-solid flex w-full py-2 px-6 "
+              >
+                Change Search
+              </button>
+            </div>
           </div>
         </div>
       </section>
@@ -62,18 +69,34 @@ const Resultpage = () => {
                   {new Date(depDate).toDateString()} <span> | </span> {`${traveler} Traveler`}
                 </p>
               </div>
-              <div className="mx-8">
-                <button className="text-base font-medium text-gray-500 rounded-md w-full py-2 px-6 bg-gray-200 hover:bg-gray-100" onClick={() => navigate("/")}>
+              {/* <div className="mx-8">
+                <button
+                  className="text-base font-medium text-gray-500 rounded-md w-full py-2 px-6 bg-gray-200 hover:bg-gray-100"
+                  onClick={() => navigate("/")}
+                >
                   Change Date
                 </button>
-              </div>
+              </div> */}
             </div>
 
             <div className="flex flex-1 justify-between items-center mt-2">
               <div className="flex flex-row items-center list-filter gap-2 mx-5 py-2">
                 <p>Filter: </p>
-                <div className="flex button-filter gap-3">
-                  <Select className="bg-gray-200 rounded-md " placeholder="Prices" bordered={false} onSelect={lower}>
+                <div className="sm:flex sm:gap-3">
+                  <button></button>
+                  <button></button>
+                  <button></button>
+                  <button></button>
+                  <button></button>
+                  <button></button>
+                </div>
+                {/* <div className="flex button-filter gap-3">
+                  <Select
+                    className="bg-gray-200 rounded-md"
+                    placeholder="Prices"
+                    bordered={false}
+                    onSelect={lower}
+                  >
                     <Select.Option key={1} value="lower-price">
                       <h1>Lower Prices</h1>
                     </Select.Option>
@@ -95,7 +118,7 @@ const Resultpage = () => {
                       <h1>latest arrival</h1>
                     </Select.Option>
                   </Select>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
@@ -181,9 +204,13 @@ const Resultpage = () => {
                       </button>
                     </div>
                   </div>
+                  
                 </>
               );
             })}
+            <Pagination total={30} pageSize={5} onChange={(page, pageSize) => {
+
+            }}/>
           </div>
         </div>
       </section>
