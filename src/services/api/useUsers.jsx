@@ -47,7 +47,7 @@ const useUsers = () => {
           telephone: value.telephone,
           email: value.email,
           password: value.password,
-          gender: value.gender,
+          gender: value.gender
         })
         .then((res) => {
           localStorage.setItem("idUser", JSON.stringify(res.data.data.userId));
