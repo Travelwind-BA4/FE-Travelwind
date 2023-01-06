@@ -36,7 +36,6 @@ const Registerpage = () => {
         telephone: "0",
         birthDate: "2002-01-01",
         gender: true,
-        rolesId: 2,
       }
       )
       navigate('/login')

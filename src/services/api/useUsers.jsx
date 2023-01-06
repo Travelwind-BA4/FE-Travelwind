@@ -46,7 +46,6 @@ const useUsers = () => {
           email: value.email,
           password: value.password,
           gender: value.gender,
-          rolesId: 2,
         })
         .then((res) => {
           localStorage.setItem("idUser", JSON.stringify(res.data.data.userId));
