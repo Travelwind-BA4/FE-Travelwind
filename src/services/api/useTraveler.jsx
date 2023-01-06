@@ -62,19 +62,32 @@ const useTraveler = () => {
     }
   };
 
-
   const editTraveler = async (payloads, userId, token) => {
     try {
       const config = {
         headers: { Authorization: `Bearer ${token}` },
       };
-      const res = await axios.put(`${process.env.REACT_APP_URL_API}/traveler-list/update?userId=${userId}`, payloads, config)
-    } catch (error) {
-      
-    }
-  }
+      const res = await axios.put(`${process.env.REACT_APP_URL_API}/traveler-list/update?userId=${userId}`, payloads, config);
+    } catch (error) {}
+  };
 
-  return { addTravelerByOrder, getTraveler, travelers, status, addTraveler, passengers };
+  const [complete, setComplete] = useState([]);
+
+  const autoComplete = async (userId) => {
+    try {
+      const token = JSON.parse(localStorage.getItem("token"));
+      const config = {
+        headers: { Authorization: `Bearer ${token}` },
+      };
+      const { data } = await axios.get(`${process.env.REACT_APP_URL_API}/traveler-list/auto-complete?userId=${userId}`, config);
+      console.log(data);
+      setComplete(data.data);
+    } catch (error) {
+      setStatus(error);
+    }
+  };
+
+  return { addTravelerByOrder, getTraveler, travelers, status, addTraveler, passengers, autoComplete };
 };
 
 export default useTraveler;

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const useOrder = () => {
   const [ordersUser, setOrdersUser] = useState([]);
-
+  const [orders, setOrders] = useState([]);
   const [status, setStatus] = useState(null);
 
   const navigate = useNavigate();
@@ -81,7 +81,34 @@ const useOrder = () => {
     }
   });
 
-  return { addOrder, getOrderUser, getByOrderId, getByStatus, generateInvoice, ordersUser, status };
+  const getAllOrders = useCallback(async () => {
+    try {
+      const token = JSON.parse(localStorage.getItem("token"));
+      const config = {
+        headers: { Authorization: `Bearer ${token}` },
+      };
+      const { data } = await axios.get(`${process.env.REACT_APP_URL_API}/order/get-all-dashboard`, config);
+      setOrders(data.data);
+    } catch (error) {
+      return error;
+    }
+  });
+  const updateOrder = useCallback(async (orderId, payload) => {
+    try {
+      const token = JSON.parse(localStorage.getItem("token"));
+      const config = {
+        headers: { Authorization: `Bearer ${token}` },
+      };
+      const { data } = await axios.put(`${process.env.REACT_APP_URL_API}/order/update?orderId=${orderId}`, payload, config);
+      if (data.status === 200) {
+        setStatus(data.data);
+      }
+    } catch (error) {
+      return error;
+    }
+  });
+
+  return { addOrder, getOrderUser, getByOrderId, getByStatus, generateInvoice, ordersUser, status, getAllOrders, orders, updateOrder };
 };
 
 export default useOrder;

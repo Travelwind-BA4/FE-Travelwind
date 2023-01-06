@@ -2,7 +2,7 @@ import { Form, Select } from "antd";
 
 const Options = ({ placeholder, name, airports, styles }) => {
   const onSearch = (value) => {
-    airports.find((e) => e.name === value);
+    airports.find((e) => value === e.cityName);
   };
 
   return (
@@ -24,18 +24,16 @@ const Options = ({ placeholder, name, airports, styles }) => {
       ]}
       hasFeedback
     >
-      <Select showSearch className={styles} bordered={false} placeholder={placeholder} onSearch={onSearch}>
+      <Select showSearch showArrow={false} className={styles} bordered={false} placeholder={placeholder} onSearch={onSearch}>
         {airports &&
           airports.map((airport, index) => {
             return (
               <Select.Option key={index} value={airport.airportName}>
                 <div>
                   <h1>
-                    {airport.airportName} ( {airport.cityCode} )
-                  </h1>
-                  <p className="text-gray-400 text-xs">
                     {airport.cityName},{airport.countryName}
-                  </p>
+                  </h1>
+                  <p className="text-gray-400 text-xs">{airport.airportName}</p>
                 </div>
               </Select.Option>
             );
