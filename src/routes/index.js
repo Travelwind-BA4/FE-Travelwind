@@ -22,6 +22,7 @@ import EditTraveler from "../pages/EditTraveler";
 const Index = () => {
   const { pathname } = useLocation();
   const token = JSON.parse(localStorage.getItem("token"));
+  const user = JSON.parse(localStorage.getItem("user"));
 
   if (pathname === "/login" || pathname === "/register" || pathname === "/") {
     return (
@@ -37,13 +38,14 @@ const Index = () => {
 
   if (pathname === "/admin" || pathname === "/admin/user" || pathname === "/admin/data/country") {
     return (
-      <>
-        {!token ? <Navigate to="/" replace /> : 
+      <> 
+        {user.fullName === 'admin' ? 
           <Routes>
             <Route path="/admin" element={<AdminPage />} />
             <Route path="/admin/user" element={<UserAdmin />} />
             <Route path="/admin/data/country" element={<DataCountry />} />
-          </Routes>
+          </Routes> : 
+          <Navigate to="/" replace />
         }
       </>
     );

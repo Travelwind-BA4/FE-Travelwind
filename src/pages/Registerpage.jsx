@@ -35,7 +35,7 @@ const Registerpage = () => {
         password: `${decode.sub}${credentialResponse.clientId}`,
         telephone: "0",
         birthDate: "2002-01-01",
-        gender: true,
+        gender: true
       }
       )
       navigate('/login')
