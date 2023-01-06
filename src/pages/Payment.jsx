@@ -67,7 +67,9 @@ const Payment = () => {
             </div>
           </div>
           <div className="flex justify-between mt-5 items-center">
-            <h1>Orther Select</h1>
+            <h1 onClick={() => window.history.back()} className="cursor-pointer font-medium">
+              Other Select
+            </h1>
             <div>
               <button className="bg-[#3e5cb8] w-full text-white p-4 rounded-md font-semibold" type="submit">
                 Continue Payment

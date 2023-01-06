@@ -38,11 +38,13 @@ const Index = () => {
   if (pathname === "/admin" || pathname === "/admin/user" || pathname === "/admin/data/country") {
     return (
       <>
-        <Routes>
-          <Route path="/admin" element={<AdminPage />} />
-          <Route path="/admin/user" element={<UserAdmin />} />
-          <Route path="/admin/data/country" element={<DataCountry />} />
-        </Routes>
+        {!token ? <Navigate to="/" replace /> : 
+          <Routes>
+            <Route path="/admin" element={<AdminPage />} />
+            <Route path="/admin/user" element={<UserAdmin />} />
+            <Route path="/admin/data/country" element={<DataCountry />} />
+          </Routes>
+        }
       </>
     );
   }
