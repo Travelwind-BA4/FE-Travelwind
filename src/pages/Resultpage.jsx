@@ -1,16 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { GiAirplaneDeparture } from "react-icons/gi";
 import { SiChinasouthernairlines } from "react-icons/si";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import { RiSuitcase2Line } from "react-icons/ri";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import useSchedule from "../services/api/useSchedule";
+import convertDiff from "../utils/convertDiff";
 
 import { Select } from "antd";
 
 const Resultpage = () => {
-  const [showForm, setShowForm] = useState(false);
-  const [showDate, setShowDate] = useState(false);
   let [searchParams, setSearchParams] = useSearchParams();
   const depAirport = searchParams.get("depAirport");
   const arrAirport = searchParams.get("arrAirport");
@@ -44,29 +43,12 @@ const Resultpage = () => {
                 <GiAirplaneDeparture size="2rem" />
               </div>
               <div className="description ">
-                <p className="text-lg font-medium">Select Departure Flight</p>
-                <p className="text-base font-light">
-                  <span>
-                    {depAirport} - {arrAirport}
-                  </span>
-                  <span className="px-1"> | </span> {new Date(depDate).toDateString()}
+                <p className="text-lg font-medium">
+                  {depAirport} - {arrAirport}
                 </p>
+                <p className="text-base font-light">{new Date(depDate).toDateString()}</p>
               </div>
             </div>
-            <div className="flight-header-item sm:block hidden">
-              <button onClick={() => setShowForm(!showForm)} className="text-base text-white rounded-md border bg-transparent border-white border-solid flex w-full py-2 px-6 ">
-                Change Search
-              </button>
-            </div>
-          </div>
-          <div className={showForm ? "flight-form flex py-10 mx-10" : "hidden"}>
-            <div className="flight-header-form-item flex flex-1">
-              <div className="type-flight flex gap-3">
-                <button>One Way</button>
-                <button>Round Trip</button>
-              </div>
-            </div>
-            <form className="form-box"></form>
           </div>
         </div>
       </section>
@@ -91,7 +73,7 @@ const Resultpage = () => {
               <div className="flex flex-row items-center list-filter gap-2 mx-5 py-2">
                 <p>Filter: </p>
                 <div className="flex button-filter gap-3">
-                  <Select className="bg-gray-200 rounded-md" placeholder="Prices" bordered={false} onSelect={lower}>
+                  <Select className="bg-gray-200 rounded-md " placeholder="Prices" bordered={false} onSelect={lower}>
                     <Select.Option key={1} value="lower-price">
                       <h1>Lower Prices</h1>
                     </Select.Option>
@@ -115,15 +97,11 @@ const Resultpage = () => {
                   </Select>
                 </div>
               </div>
-              <div className="flex filter-sort gap-2 mx-5">
-                <p>Sort: </p>
-                <button>Sorting</button>
-              </div>
             </div>
           </div>
           <div className="flex flex-col sm:gap-y-6 gap-y-2 mt-3 mb-10">
             {schedules.map((schedule, i) => {
-              console.log(schedule);
+              // console.log(schedule);
               return (
                 <>
                   <div className="sm:flex hidden justify-between items-center gap-4 bg-[#f1f5f5] rounded-md  px-5 py-8" key={i}>
@@ -142,7 +120,7 @@ const Resultpage = () => {
                         <p className="font-light text-sm">{schedule.arrivalCity}</p>
                       </div>
                       <div className="duration mx-8  lg:block hidden">
-                        <p className="font-semibold text-xl">1H 30M</p>
+                        <p className="font-semibold text-xl">{convertDiff(schedule.departureTime, schedule.arrivalTime)}</p>
                         <p className="font-light text-sm">{schedule.status}</p>
                       </div>
                       <div className="items-center mx-8 lg:flex hidden">
@@ -181,7 +159,7 @@ const Resultpage = () => {
                       <p className="font-light text-sm">{schedule.arrivalCity}</p>
                     </div>
                     <div className="duration mx-8  lg:block hidden">
-                      <p className="font-semibold text-xl">1H 30M</p>
+                      <p className="font-semibold text-xl">{convertDiff(schedule.departureTime, schedule.arrivalTime)}</p>
                       <p className="font-light text-sm">{schedule.status}</p>
                     </div>
                     <div className="items-center mx-8 lg:flex hidden">

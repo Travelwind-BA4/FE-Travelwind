@@ -1,4 +1,5 @@
 import { Badge, Divider, Dropdown } from "antd";
+import { useEffect } from "react";
 
 import { IoMdNotificationsOutline, IoMdAirplane } from "react-icons/io";
 import useNotification from "../../services/api/useNotification";
@@ -26,33 +27,33 @@ const items = [
 ];
 const Notification = ({ style }) => {
   const user = JSON.parse(localStorage.getItem("user"));
-  const { postNotification, notif } = useNotification();
+  const { postNotification, notif, updateNotif } = useNotification();
 
-  const getNotif = () => {
+  useEffect(() => {
     postNotification(user.userId);
-  };
-
+  }, []);
   return (
     <Dropdown
       dropdownRender={() => (
         <div className="dropdown-content rounded-md bg-[#f1f5f5] p-3 rounded-md min-w-[100px]">
           <h1 className="mb-1">Notification</h1>
-          {notif.map((e, i) => {
-            return (
-              <div className="border-t-2 pt-2" key={i}>
-                <h1 className="">{e.title}</h1>
-                <p>{e.content}</p>
-              </div>
-            );
-          })}
+          {notif &&
+            notif.map((e, i) => {
+              console.log(e);
+              return (
+                <div className="border-t-2 pt-2 cursor-pointer" key={i} onClick={() => updateNotif(user.userId, e.notificationId)}>
+                  <h1 className="">{e.title}</h1>
+                  <p>{e.content}</p>
+                </div>
+              );
+            })}
         </div>
       )}
       trigger={["click"]}
       placement="bottom"
-      onOpenChange={getNotif}
     >
       <div className="mr-3 text-xl cursor-pointer">
-        <Badge size="small" style={{ backgroundColor: "#3e5cb8" }}>
+        <Badge size="small" style={{ backgroundColor: "#3e5cb8" }} count={notif.length}>
           <IoMdNotificationsOutline className={`text-lg ${style}`} />
         </Badge>
       </div>

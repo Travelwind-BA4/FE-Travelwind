@@ -11,7 +11,7 @@ const BookingPage = () => {
   // const scheduleId = searchParams.get("code");
   const schedule = JSON.parse(localStorage.getItem("schedule"));
 
-  const { addTravelerByOrder, status } = useTraveler();
+  const { addTravelerByOrder, status, autoComplete } = useTraveler();
 
   const bookTraveler = (value) => {
     console.log(value);

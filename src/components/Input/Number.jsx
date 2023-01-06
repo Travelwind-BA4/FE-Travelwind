@@ -11,7 +11,7 @@ const Number = () => {
       ]}
       hasFeedback
     >
-      <InputNumber min={1} max={6} defaultValue={3} bordered={false} />
+      <InputNumber min={1} max={6} defaultValue={0} bordered={false} />
     </Form.Item>
   );
 };

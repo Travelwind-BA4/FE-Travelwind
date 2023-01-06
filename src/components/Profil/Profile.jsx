@@ -3,6 +3,7 @@ import { FiUser } from "react-icons/fi";
 import useUsers from "../../services/api/useUsers";
 import { DatePicker, Form, Input, Select } from "antd";
 import timeConverter from "../../utils/timeConverter";
+import dayjs from "dayjs";
 
 const Profile = () => {
   const { getMe, users, editUser } = useUsers();
@@ -29,11 +30,12 @@ const Profile = () => {
     };
     editUser(payload, user.userId, user.token);
   };
+  console.log(new Date(users.birthDate));
   const worker = {
     gender: users.gender,
     fullName: users.fullName,
     email: users.email,
-    Birthdate: new Date(users.birthDate),
+
     telephone: users.telephone,
   };
 
@@ -93,7 +95,7 @@ const Profile = () => {
               </Form.Item>
 
               <Form.Item label="Birthdate" name="birthDate" className="border-b rounded-none">
-                <DatePicker format={"YYYY-MM-DD"} bordered={false} />
+                <DatePicker defaultValue={dayjs(users.birthDate)} bordered={false} format={"YYYY-MM-DD"} />
               </Form.Item>
               <Form.Item
                 label="Fullname"

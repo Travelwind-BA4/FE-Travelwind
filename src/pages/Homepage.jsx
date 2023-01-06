@@ -52,7 +52,7 @@ const Homepage = () => {
                     <div className="bg-[#f1f5f5] p-3 rounded-xl">
                       <GiAirplaneDeparture className="text-[30px]" />
                     </div>
-                    <div className="pl-2">
+                    <div className="pl-2 w-[200px]">
                       <div>
                         <h1 className="text-lg font-medium pl-3">Location From</h1>
                         <Options placeholder="Soekarno Hatta ( JKT ) " name="departureAirport" styles="min-w-[200px]" airports={airports} searchAirport={searchAirport} />
@@ -63,7 +63,7 @@ const Homepage = () => {
                     <div className="bg-[#f1f5f5] p-3 rounded-xl">
                       <GiAirplaneArrival className="text-[30px]" />
                     </div>
-                    <div className="pl-2">
+                    <div className="pl-2 w-[200px]">
                       <div>
                         <h1 className="text-lg font-medium pl-3">Location To</h1>
                         <Options placeholder="Soekarno Hatta ( JKT ) " name="arrivalAirport" airports={airports} styles="min-w-[200px]" />
@@ -146,7 +146,7 @@ const Homepage = () => {
                     <BsCheckSquare className="text-5xl" />
                   </div>
                 </div>
-                <h1 className="font-medium font-sans text-2xl mt-8">SMART CHECKLISH</h1>
+                <h1 className="font-medium font-sans text-2xl mt-8">SMART CHECKLIST</h1>
                 <p className=" mt-3">Flight booking in your mind looking for cheap</p>
               </div>
             </div>

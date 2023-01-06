@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { DesktopOutlined, PieChartOutlined, UserOutlined, LogoutOutlined } from "@ant-design/icons";
 import { Breadcrumb, Layout, Menu, theme } from "antd";
+import ShowOrders from "../components/Admin/Table/ShowOrders";
+import useOrder from "../services/api/useOrder";
 
 const { Header, Content, Footer, Sider } = Layout;
 function getItem(label, key, icon, children) {
@@ -34,6 +36,7 @@ const SideBar = () => {
   const {
     token: { colorBgContainer },
   } = theme.useToken();
+
   return (
     <Layout
       style={{
@@ -93,7 +96,7 @@ const SideBar = () => {
                 background: colorBgContainer,
               }}
             >
-              Content
+              <ShowOrders />
             </div>
           </Content>
           <Footer
