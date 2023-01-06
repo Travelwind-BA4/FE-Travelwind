@@ -6,7 +6,6 @@ import { RiSuitcase2Line } from "react-icons/ri";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import useSchedule from "../services/api/useSchedule";
 import convertDiff from "../utils/convertDiff";
-
 import { Select, Pagination } from "antd";
 import { useState } from "react";
 
@@ -224,7 +223,6 @@ const Resultpage = () => {
           </div>
           <div className="flex flex-col sm:gap-y-6 gap-y-2 mt-3 mb-10">
             {schedules.map((schedule, i) => {
-              // console.log(schedule);
               return (
                 <>
                   <div className="sm:flex hidden justify-between items-center gap-4 bg-[#f1f5f5] rounded-md  px-5 py-8" key={i}>
@@ -308,9 +306,6 @@ const Resultpage = () => {
                 </>
               );
             })}
-            {/* <Pagination total={30} pageSize={5} onChange={(page, pageSize) => {
-
-            }}/> */}
           </div>
         </div>
       </section>
