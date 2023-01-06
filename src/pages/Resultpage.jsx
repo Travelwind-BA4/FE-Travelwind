@@ -1,16 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { GiAirplaneDeparture } from "react-icons/gi";
 import { SiChinasouthernairlines } from "react-icons/si";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import { RiSuitcase2Line } from "react-icons/ri";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import useSchedule from "../services/api/useSchedule";
+import convertDiff from "../utils/convertDiff";
 
 import { Select } from "antd";
 
 const Resultpage = () => {
-  const [showForm, setShowForm] = useState(false);
-  const [showDate, setShowDate] = useState(false);
   let [searchParams, setSearchParams] = useSearchParams();
   const depAirport = searchParams.get("depAirport");
   const arrAirport = searchParams.get("arrAirport");
@@ -50,15 +49,6 @@ const Resultpage = () => {
                 <p className="text-base font-light">{new Date(depDate).toDateString()}</p>
               </div>
             </div>
-          </div>
-          <div className={showForm ? "flight-form flex py-10 mx-10" : "hidden"}>
-            <div className="flight-header-form-item flex flex-1">
-              <div className="type-flight flex gap-3">
-                <button>One Way</button>
-                <button>Round Trip</button>
-              </div>
-            </div>
-            <form className="form-box"></form>
           </div>
         </div>
       </section>
@@ -130,7 +120,7 @@ const Resultpage = () => {
                         <p className="font-light text-sm">{schedule.arrivalCity}</p>
                       </div>
                       <div className="duration mx-8  lg:block hidden">
-                        <p className="font-semibold text-xl">1H 30M</p>
+                        <p className="font-semibold text-xl">{convertDiff(schedule.departureTime, schedule.arrivalTime)}</p>
                         <p className="font-light text-sm">{schedule.status}</p>
                       </div>
                       <div className="items-center mx-8 lg:flex hidden">
@@ -169,7 +159,7 @@ const Resultpage = () => {
                       <p className="font-light text-sm">{schedule.arrivalCity}</p>
                     </div>
                     <div className="duration mx-8  lg:block hidden">
-                      <p className="font-semibold text-xl">1H 30M</p>
+                      <p className="font-semibold text-xl">{convertDiff(schedule.departureTime, schedule.arrivalTime)}</p>
                       <p className="font-light text-sm">{schedule.status}</p>
                     </div>
                     <div className="items-center mx-8 lg:flex hidden">

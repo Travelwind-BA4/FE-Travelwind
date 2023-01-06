@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { logo_white, logo_mini, logo_mini_white } from "../assets/images/logo/index";
-import { Select, DatePicker, Form, Input, message } from "antd";
+import { Select, DatePicker, Form, Input, Alert } from "antd";
 import { GoogleLogin, GoogleOAuthProvider, useGoogleLogin } from "@react-oauth/google";
 import jwt_decode from "jwt-decode";
 import { useNavigate } from "react-router-dom";
@@ -8,7 +8,7 @@ import useUsers from "../services/api/useUsers";
 import axios from "axios";
 
 const Registerpage = () => {
-  const [googleStatus, setGoogleStatus] = useState(null)
+  const [googleStatus, setGoogleStatus] = useState(false)
   const navigate = useNavigate();
   const dataGender = [
     {
@@ -21,28 +21,28 @@ const Registerpage = () => {
     },
   ];
 
-  const { postRegister } = useUsers();
+  const { postRegister, msgError } = useUsers();
 
   const googleResponse = async(credentialResponse) => {
     try {
       let decode = jwt_decode(credentialResponse.credential);
-      await axios.post('https://be-flightticket-production.up.railway.app/user/sign-up', 
+      await axios.post(`${process.env.REACT_APP_URL_API}/user/sign-up`, 
       {
+        authProvider: "GOOGLE",
+        googleId: decode.sub,
         fullName: decode.name,
         email: decode.email,
         password: decode.sub,
-        telephone: "8888888",
-        birthDate: "2022-01-01",
+        telephone: "0",
+        birthDate: "2002-01-01",
         gender: true,
         rolesId: 2,
       }
-      ).then((res) => {
-        return res;
-      })
+      )
       navigate('/login')
     } catch (error) {
-      console.log("error")
-      setGoogleStatus(error);
+      console.log(error)
+      setGoogleStatus(true);
     }
   }
 
@@ -73,6 +73,8 @@ const Registerpage = () => {
               <h1 className="login-form mb-[30px] text-[18px] leading-[25px] font-bold">
                 Create Account
               </h1>
+              {googleStatus ? <Alert message="This account already register!" type="error" className="mb-4"/> : ""}
+              {msgError ? <Alert message={msgError.message} type='error' className="mb-4" /> : ""} 
               <Form.Item
               label="Title"
               name="gender"
