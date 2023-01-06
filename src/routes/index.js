@@ -1,4 +1,4 @@
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes, useLocation, Navigate } from "react-router-dom";
 import Footer from "../components/Footer/Footer";
 import Navbar from "../components/Navbar/Navbar";
 import Detailpage from "../pages/Detailpage";
@@ -21,6 +21,7 @@ import EditTraveler from "../pages/EditTraveler";
 
 const Index = () => {
   const { pathname } = useLocation();
+  const token = JSON.parse(localStorage.getItem("token"));
 
   if (pathname === "/login" || pathname === "/register" || pathname === "/") {
     return (
@@ -52,16 +53,16 @@ const Index = () => {
         <Route path="/results/search" element={<Resultpage />} />
         <Route path="/flight/:id" element={<Detailpage />} />
         <Route path="/payments" element={<Payments />} />
-        <Route path="/booking" element={<BookingPage />} />
-        <Route path="/complete" element={<Completepage />} />
-        <Route path="/payment" element={<Payment />} />
+        <Route path="/booking" element={!token ? <Navigate to='/login' replace/> : <BookingPage /> } /> 
+        <Route path="/complete" element={!token ? <Navigate to='/login' replace/> : <Completepage />} />
+        <Route path="/payment" element={!token ? <Navigate to='/login' replace/> : <Payment />} />
 
-        <Route path="/account/profile" element={<Profilpage />} />
-        <Route path="/account/traveler" element={<Profilpage />} />
-        <Route path="/account/orders" element={<Profilpage />} />
-        <Route path="/account/orders/:orderId" element={<DetailOrder />} />
-        <Route path="/account/traveler/:travelerId" element={<EditTraveler />} />
-        <Route path="/account/changepass" element={<Profilpage />} />
+        <Route path="/account/profile" element={!token ? <Navigate to='/login' replace/> : <Profilpage />} />
+        <Route path="/account/traveler" element={!token ? <Navigate to='/login' replace/> : <Profilpage />} />
+        <Route path="/account/orders" element={!token ? <Navigate to='/login' replace/> : <Profilpage />} />
+        <Route path="/account/orders/:orderId" element={ !token ? <Navigate to='/login' replace/> : <DetailOrder />} />
+        <Route path="/account/traveler/:travelerId" element={ !token ? <Navigate to='/login' replace/> : <EditTraveler />} />
+        <Route path="/account/changepass" element={ !token ? <Navigate to='/login' replace/> : <Profilpage />} />
         <Route path="*" element={<Error />} />
       </Routes>
       <Footer />

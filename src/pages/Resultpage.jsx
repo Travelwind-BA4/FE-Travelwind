@@ -7,7 +7,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import useSchedule from "../services/api/useSchedule";
 import convertDiff from "../utils/convertDiff";
 
-import { Select } from "antd";
+import { Select, Pagination } from "antd";
 
 const Resultpage = () => {
   const [showForm, setShowForm] = useState(false);
@@ -30,7 +30,6 @@ const Resultpage = () => {
       depAirport: depAirport,
       arrAirport: arrAirport,
       depDate: depDate,
-      size: 5,
       page: 0,
     };
     byPrice(val, payload);
@@ -57,21 +56,12 @@ const Resultpage = () => {
             </div>
             <div className="flight-header-item sm:block hidden">
               <button
-                onClick={() => setShowForm(!showForm)}
+                onClick={() => navigate('/')}
                 className="text-base text-white rounded-md border bg-transparent border-white border-solid flex w-full py-2 px-6 "
               >
                 Change Search
               </button>
             </div>
-          </div>
-          <div className={showForm ? "flight-form flex py-10 mx-10" : "hidden"}>
-            <div className="flight-header-form-item flex flex-1">
-              <div className="type-flight flex gap-3">
-                <button>One Way</button>
-                <button>Round Trip</button>
-              </div>
-            </div>
-            <form className="form-box"></form>
           </div>
         </div>
       </section>
@@ -88,20 +78,28 @@ const Resultpage = () => {
                   {`${traveler} Traveler`}
                 </p>
               </div>
-              <div className="mx-8">
+              {/* <div className="mx-8">
                 <button
                   className="text-base font-medium text-gray-500 rounded-md w-full py-2 px-6 bg-gray-200 hover:bg-gray-100"
                   onClick={() => navigate("/")}
                 >
                   Change Date
                 </button>
-              </div>
+              </div> */}
             </div>
 
             <div className="flex flex-1 justify-between items-center mt-2">
               <div className="flex flex-row items-center list-filter gap-2 mx-5 py-2">
                 <p>Filter: </p>
-                <div className="flex button-filter gap-3">
+                <div className="sm:flex sm:gap-3">
+                  <button></button>
+                  <button></button>
+                  <button></button>
+                  <button></button>
+                  <button></button>
+                  <button></button>
+                </div>
+                {/* <div className="flex button-filter gap-3">
                   <Select
                     className="bg-gray-200 rounded-md"
                     placeholder="Prices"
@@ -134,11 +132,7 @@ const Resultpage = () => {
                       <h1>latest arrival</h1>
                     </Select.Option>
                   </Select>
-                </div>
-              </div>
-              <div className="flex filter-sort gap-2 mx-5">
-                <p>Sort: </p>
-                <button>Sorting</button>
+                </div> */}
               </div>
             </div>
           </div>
@@ -281,9 +275,13 @@ const Resultpage = () => {
                       </button>
                     </div>
                   </div>
+                  
                 </>
               );
             })}
+            <Pagination total={30} pageSize={5} onChange={(page, pageSize) => {
+
+            }}/>
           </div>
         </div>
       </section>

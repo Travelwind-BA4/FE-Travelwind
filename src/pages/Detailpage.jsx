@@ -8,6 +8,7 @@ import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import useSchedule from "../services/api/useSchedule";
 import { useEffect } from "react";
 const Detailpage = () => {
+  const token = JSON.parse(localStorage.getItem("token"));
   const { id } = useParams();
   let [searchParams, setSearchParams] = useSearchParams();
   const traveler = searchParams.get("traveler");
