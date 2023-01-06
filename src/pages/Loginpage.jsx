@@ -23,7 +23,7 @@ const Loginpage = () => {
       await axios.post(`https://be-flightticket-production.up.railway.app/user/sign-in`, 
       {
         email: decode.email,
-        password: `${decode.sub}${credentialResponse.clientId}`,
+        password: `${decode.sub}${credentialResponse.clientId}`
       }
       ).then((res) => {
         localStorage.setItem("user", JSON.stringify(res.data.data))

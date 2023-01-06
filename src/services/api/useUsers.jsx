@@ -40,13 +40,14 @@ const useUsers = () => {
     try {
       await axios
         .post(`${process.env.REACT_APP_URL_API}/user/sign-up`, {
+          authProvider: "LOCAL",
+          googleId: "",
           fullName: value.fullName,
           birthDate: timeConverter(value.birthDate),
           telephone: value.telephone,
           email: value.email,
           password: value.password,
-          gender: value.gender,
-          rolesId: 2,
+          gender: value.gender
         })
         .then((res) => {
           localStorage.setItem("idUser", JSON.stringify(res.data.data.userId));
