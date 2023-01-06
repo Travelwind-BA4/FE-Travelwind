@@ -10,6 +10,8 @@ const ShowOrders = () => {
     getAllOrders();
   }, [status]);
 
+  console.log(orders);
+
   const acceptData = (data) => {
     const payload = {
       status: "ACCEPTED",
@@ -34,6 +36,11 @@ const ShowOrders = () => {
 
   const columns = [
     {
+      title: "Order code",
+      dataIndex: "",
+      render: (_, rec) => <h1>{rec.orderId.slice(0, 8).toUpperCase()}</h1>,
+    },
+    {
       title: "Nama Pemesan",
       dataIndex: "fullName",
     },
@@ -41,10 +48,7 @@ const ShowOrders = () => {
       title: "Email",
       dataIndex: "email",
     },
-    {
-      title: "Order code",
-      dataIndex: "",
-    },
+
     {
       title: "Departure City",
       dataIndex: "departureCity",

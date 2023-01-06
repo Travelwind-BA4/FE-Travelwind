@@ -6,8 +6,8 @@ import { RiSuitcase2Line } from "react-icons/ri";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import useSchedule from "../services/api/useSchedule";
 import convertDiff from "../utils/convertDiff";
-
 import { Select, Pagination } from "antd";
+import { useState } from "react";
 
 const Resultpage = () => {
   let [searchParams, setSearchParams] = useSearchParams();
@@ -16,12 +16,29 @@ const Resultpage = () => {
   const depDate = searchParams.get("depDate");
   const traveler = searchParams.get("traveler");
   const { schedules, getSchedule, byPrice } = useSchedule();
+  const [lowerPrice, setLowerPrice] = useState(false)
+  const [higherPrice, setHigherPrice] = useState(false)
+  const [earlyDepr, setEarlyDep] = useState(false)
+  const [lateDepr, setLateDep] = useState(false)
+  const [earlyArri, setEarlyArri] = useState(false)
+  const [lateArri, setLateArri] = useState(false)
 
   const navigate = useNavigate();
 
   useEffect(() => {
     getSchedule({ depAirport, arrAirport, depDate });
   }, []);
+
+  const filter = (val) => {
+    const payload = {
+      depAirport: depAirport,
+      arrAirport: arrAirport,
+      depDate: depDate,
+      page: 0,
+    };
+
+    byPrice(val, payload);
+  }
 
   const lower = (val) => {
     const payload = {
@@ -30,6 +47,92 @@ const Resultpage = () => {
       depDate: depDate,
       page: 0,
     };
+    setLowerPrice(true)
+    setHigherPrice(false)
+    setEarlyDep(false)
+    setLateDep(false)
+    setEarlyArri(false)
+    setLateArri(false)
+    byPrice(val, payload);
+  };
+
+  const higher = (val) => {
+    const payload = {
+      depAirport: depAirport,
+      arrAirport: arrAirport,
+      depDate: depDate,
+      page: 0,
+    };
+    setLowerPrice(false)
+    setHigherPrice(true)
+    setEarlyDep(false)
+    setLateDep(false)
+    setEarlyArri(false)
+    setLateArri(false)
+    byPrice(val, payload);
+  };
+
+  const earlDep = (val) => {
+    const payload = {
+      depAirport: depAirport,
+      arrAirport: arrAirport,
+      depDate: depDate,
+      page: 0,
+    };
+    setLowerPrice(false)
+    setHigherPrice(false)
+    setEarlyDep(true)
+    setLateDep(false)
+    setEarlyArri(false)
+    setLateArri(false)
+    byPrice(val, payload);
+  };
+
+  const lateDep = (val) => {
+    const payload = {
+      depAirport: depAirport,
+      arrAirport: arrAirport,
+      depDate: depDate,
+      page: 0,
+    };
+    setLowerPrice(false)
+    setHigherPrice(false)
+    setEarlyDep(false)
+    setLateDep(true)
+    setEarlyArri(false)
+    setLateArri(false)
+    byPrice(val, payload);
+  };
+
+  const earlArr = (val) => {
+    const payload = {
+      depAirport: depAirport,
+      arrAirport: arrAirport,
+      depDate: depDate,
+      page: 0,
+    };
+    setLowerPrice(false)
+    setHigherPrice(false)
+    setEarlyDep(false)
+    setLateDep(false)
+    setEarlyArri(true)
+    setLateArri(false)
+    byPrice(val, payload);
+  };
+
+  const lateArr = (val) => {
+    const payload = {
+      depAirport: depAirport,
+      arrAirport: arrAirport,
+      depDate: depDate,
+      page: 0,
+    };
+    setLowerPrice(false)
+    setHigherPrice(false)
+    setEarlyDep(false)
+    setLateDep(false)
+    setEarlyArri(false)
+    setLateArri(true)
     byPrice(val, payload);
   };
   return (
@@ -48,6 +151,7 @@ const Resultpage = () => {
                 <p className="text-base font-light">{new Date(depDate).toDateString()}</p>
               </div>
             </div>
+            {/* <div className="flight-header-item sm:block hidden">
             <div className="flight-header-item sm:block hidden">
               <button
                 onClick={() => navigate('/')}
@@ -55,9 +159,9 @@ const Resultpage = () => {
               >
                 Change Search
               </button>
+            </div> */}
             </div>
           </div>
-        </div>
       </section>
       <section>
         <div className="container sm:mx-auto sm:p-10 mt-4 ">
@@ -69,33 +173,40 @@ const Resultpage = () => {
                   {new Date(depDate).toDateString()} <span> | </span> {`${traveler} Traveler`}
                 </p>
               </div>
-              {/* <div className="mx-8">
+              <div className="mx-8">
                 <button
                   className="text-base font-medium text-gray-500 rounded-md w-full py-2 px-6 bg-gray-200 hover:bg-gray-100"
                   onClick={() => navigate("/")}
                 >
                   Change Date
                 </button>
-              </div> */}
-            </div>
+              </div>
+            
 
             <div className="flex flex-1 justify-between items-center mt-2">
               <div className="flex flex-row items-center list-filter gap-2 mx-5 py-2">
                 <p>Filter: </p>
-                <div className="sm:flex sm:gap-3">
-                  <button></button>
-                  <button></button>
-                  <button></button>
-                  <button></button>
-                  <button></button>
-                  <button></button>
+                <div className="sm:flex sm:gap-4 hidden">/
+                  <div className="flex gap-4">
+                    <button value="lower-price" onClick={(e) => lower(e.target.value)} className={`rounded-md  px-3 text-sm py-1 hover:bg-gray-400 ${lowerPrice ? 'bg-gray-500' : 'bg-gray-300'}`}>
+                      Lower
+                    </button>
+                    <button value="higher-price" onClick={(e) => higher(e.target.value)} className={`rounded-md  px-3 text-sm py-1 hover:bg-gray-400 ${higherPrice ? 'bg-gray-500' : 'bg-gray-300'}`}>
+                      Higher</button>
+                  </div> 
+                  <div className="flex gap-4">
+                    <button value="earliest-departure" onClick={(e) => earlDep(e.target.value)} className={`rounded-md  px-3 text-sm py-1 hover:bg-gray-400 ${earlyDepr? 'bg-gray-500' : 'bg-gray-300'}`}>Earliest Departure</button>
+                    <button value="latest-departure" onClick={(e) => lateDep(e.target.value)} className={`rounded-md  px-3 text-sm py-1 hover:bg-gray-400 ${lateDepr ? 'bg-gray-500' : 'bg-gray-300'}`}>Latest Departure</button>
+                    <button value="earliest-arrival" onClick={(e) => earlArr(e.target.value)} className={`rounded-md  px-3 text-sm py-1 hover:bg-gray-400 ${earlyArri ? 'bg-gray-500' : 'bg-gray-300'}`}>Earliest Arrival</button>
+                    <button value="latest-arrival" onClick={(e) => lateArr(e.target.value)} className={`rounded-md  px-3 text-sm py-1 hover:bg-gray-400 ${lateArri ? 'bg-gray-500' : 'bg-gray-300'}`}>Latest Arrival</button>
+                  </div>
                 </div>
-                {/* <div className="flex button-filter gap-3">
+                <div className="flex button-filter gap-3 sm:hidden">
                   <Select
                     className="bg-gray-200 rounded-md"
                     placeholder="Prices"
                     bordered={false}
-                    onSelect={lower}
+                    onSelect={filter}
                   >
                     <Select.Option key={1} value="lower-price">
                       <h1>Lower Prices</h1>
@@ -118,13 +229,13 @@ const Resultpage = () => {
                       <h1>latest arrival</h1>
                     </Select.Option>
                   </Select>
-                </div> */}
+                </div>
+                
               </div>
             </div>
           </div>
           <div className="flex flex-col sm:gap-y-6 gap-y-2 mt-3 mb-10">
             {schedules.map((schedule, i) => {
-              // console.log(schedule);
               return (
                 <>
                   <div className="sm:flex hidden justify-between items-center gap-4 bg-[#f1f5f5] rounded-md  px-5 py-8" key={i}>
@@ -208,11 +319,9 @@ const Resultpage = () => {
                 </>
               );
             })}
-            <Pagination total={30} pageSize={5} onChange={(page, pageSize) => {
-
-            }}/>
           </div>
         </div>
+      </div>
       </section>
     </div>
   );

@@ -59,7 +59,7 @@ const Profile = () => {
       <hr className="my-4"></hr>
       {!showEdit ? (
         <div className="flex flex-col gap-y-3">
-          <div className="grid grid-cols-2">
+          <div className="grid sm:grid-cols-2 grid-cols-1 gap-2">
             <div className="col-span-1">
               <h1 className="text-[#a5a5a8] mb-1">Name</h1>
               <p>{users.fullName || `${user.givenName} ${user.familyName}`}</p>
@@ -69,7 +69,7 @@ const Profile = () => {
               <p>{users.gender ? "Laki-laki" : "Perempuan"}</p>
             </div>
           </div>
-          <div className="grid grid-cols-2">
+          <div className="grid sm:grid-cols-2 grid-cols-1 gap-2">
             <div className="col-span-1">
               <h1 className="text-[#a5a5a8] mb-1">Mobile Phone</h1>
               <p>{users.telephone}</p>
@@ -110,7 +110,6 @@ const Profile = () => {
                     message: "Must be at least 5 characters",
                   },
                 ]}
-                hasFeedback
                 className="border-b rounded-none"
               >
                 <Input bordered={false} />

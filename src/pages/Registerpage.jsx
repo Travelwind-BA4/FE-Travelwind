@@ -26,7 +26,7 @@ const Registerpage = () => {
   const googleResponse = async(credentialResponse) => {
     try {
       let decode = jwt_decode(credentialResponse.credential);
-      await axios.post(`${process.env.REACT_APP_URL_API}/user/sign-up`, 
+      await axios.post(`https://be-flightticket-production.up.railway.app/user/sign-up`, 
       {
         authProvider: "GOOGLE",
         googleId: decode.sub,

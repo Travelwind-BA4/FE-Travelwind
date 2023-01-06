@@ -23,7 +23,7 @@ const AddTraveler = ({ type, index }) => {
         <p className=" text-sm px-3 text-orange-400 font-semibold">Name according to ID Card/Passport without title and punctuation</p>
         <div className="mt-3 w-full max-w-2xl px-3">
           <div className="flex flex-wrap -mx-3 mb-6">
-            <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+            <div className="w-full md:w-1/3 px-3 md:mb-0">
               <label className="block  tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
                 Title <span className="text-red-500">*</span>
               </label>
@@ -47,8 +47,8 @@ const AddTraveler = ({ type, index }) => {
               </div>
             </div>
           </div>
-          <div className="flex flex-wrap -mx-3 mb-6">
-            <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+          <div className="flex flex-wrap -mx-3 ">
+            <div className="w-full md:w-1/2 px-3 md:mb-0">
               <Text name={["First Name", index]} placeholder="Jhon" />
             </div>
             <div className="w-full md:w-1/2 px-3">
@@ -56,7 +56,7 @@ const AddTraveler = ({ type, index }) => {
             </div>
           </div>
           <div className="flex flex-wrap -mx-3 mb-6">
-            <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+            <div className="w-full md:w-1/2 px-3 md:mb-0">
               <label className="block  tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
                 Date Birth <span className="text-red-500">*</span>
               </label>
@@ -64,29 +64,29 @@ const AddTraveler = ({ type, index }) => {
                 <Date style="border-b border-gray-300" name={["dateBirth", index]} />
               </div>
             </div>
-            <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+            <div className="w-full md:w-1/2 px-3  md:mb-0">
               <Countries name={["Nationality", index]} countries={countries} />
             </div>
           </div>
-          <div className="flex flex-wrap -mx-3 mb-6">
-            <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+          <div className="flex flex-wrap -mx-3 ">
+            <div className="w-full md:w-1/3 px-3 md:mb-0">
               <Text name={["ID Passport", index]} placeholder="ex. 1702192905990001" />
             </div>
-            <div className="w-full md:w-1/3 px-3">
+            <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
               <Countries name={["Passport Country", index]} countries={countries} />
             </div>
-            <div className="w-full md:w-1/3 px-3">
+            <div className="w-full md:w-1/3 px-3 ">
               <label className="block  tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
                 Passport Expiry <span className="text-red-500">*</span>
               </label>
               <Date style="border-b border-gray-300" name={["passportExpired", index]} />
             </div>
           </div>
-          <div className="flex flex-wrap -mx-3 mb-6">
-            <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+          <div className="flex flex-wrap -mx-3 mb-6 ">
+            <div className="w-full md:w-1/3 px-3 md:mb-0">
               <Text name={["ID Card Number", index]} placeholder="ex. 1702192905990001" />
             </div>
-            <div className="w-full md:w-1/3 px-3">
+            <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
               <Countries name={["Card Country", index]} countries={countries} />
             </div>
             <div className="w-full md:w-1/3 px-3">
