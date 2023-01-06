@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { DesktopOutlined, PieChartOutlined, UserOutlined, LogoutOutlined } from "@ant-design/icons";
+import { DesktopOutlined, PieChartOutlined, UserOutlined, LogoutOutlined, ConsoleSqlOutlined } from "@ant-design/icons";
 import { Breadcrumb, Layout, Menu, theme } from "antd";
 import ShowOrders from "../components/Admin/Table/ShowOrders";
 import useOrder from "../services/api/useOrder";
+import { logo_blue } from "../assets/images/logo";
 
 const { Header, Content, Footer, Sider } = Layout;
 function getItem(label, key, icon, children) {
@@ -15,20 +16,7 @@ function getItem(label, key, icon, children) {
   };
 }
 
-const items = [
-  getItem("Dashboard", "/admin", <PieChartOutlined />),
-  getItem("Users", "/admin/user", <UserOutlined />),
-  getItem("Data", "sub1", <DesktopOutlined />, [
-    getItem("Country", "data/country"),
-    getItem("City", "data/city"),
-    getItem("Airport", "data/airport"),
-    getItem("Airplane", "data/airplane"),
-    getItem("Terminal", "data/terminal"),
-    getItem("Gate", "data/gate"),
-    getItem("Schedule", "data/schedule"),
-  ]),
-  getItem("Sign Out", "/login", <LogoutOutlined />),
-];
+const items = [getItem("Dashboard", "/admin", <DesktopOutlined />), getItem("Sign Out", "/login", <LogoutOutlined />)];
 
 const SideBar = () => {
   const navigate = useNavigate();
@@ -48,9 +36,10 @@ const SideBar = () => {
           style={{
             height: 32,
             margin: 16,
-            background: "rgba(255, 255, 255, 0.2)",
           }}
-        />
+        >
+          <img src={logo_blue} alt="" />
+        </div>
         <Menu
           theme="dark"
           defaultSelectedKeys={["1"]}
@@ -70,11 +59,12 @@ const SideBar = () => {
         <Layout className="site-layout">
           <Header
             style={{
-              padding: 0,
+              paddingLeft: 30,
               background: colorBgContainer,
+              textAlign: "center",
             }}
           >
-            Header
+            <h1 className="text-2xl font-bold text-[#232730] leading-[60px]">DASHBOARD ADMIN</h1>
           </Header>
           <Content
             style={{
@@ -86,8 +76,8 @@ const SideBar = () => {
                 margin: "16px 0",
               }}
             >
-              <Breadcrumb.Item>User</Breadcrumb.Item>
-              <Breadcrumb.Item>Bill</Breadcrumb.Item>
+              <Breadcrumb.Item>Order</Breadcrumb.Item>
+              <Breadcrumb.Item>flight</Breadcrumb.Item>
             </Breadcrumb>
             <div
               style={{

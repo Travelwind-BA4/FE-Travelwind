@@ -12,7 +12,7 @@ const ShowOrders = () => {
 
   const acceptData = (data) => {
     const payload = {
-      status: "ACCEPT",
+      status: "ACCEPTED",
       userId: data.userId,
       paymentId: data.paymentId,
       scheduleId: data.scheduleId,
@@ -56,15 +56,18 @@ const ShowOrders = () => {
 
     {
       title: "Action",
-      dataIndex: "",
+      dataIndex: "status",
       render: (_, rec) => (
         <div className="flex gap-x-2">
-          <button className="font-semibold text-white px-3 py-2 bg-[#52c41a] rounded-lg" onClick={() => acceptData(rec)}>
-            Accept
-          </button>
-          <button className="font-semibold text-white px-3 py-2 bg-[#db053f] rounded-lg" onClick={() => canceledData(rec)}>
-            Canceled
-          </button>
+          {rec.status === "ACCEPTED" ? (
+            <button className="font-semibold text-white px-3 py-2 bg-[#52c41a] rounded-lg" onClick={() => acceptData(rec)}>
+              Accepted
+            </button>
+          ) : (
+            <button className="font-semibold text-white px-3 py-2 bg-[#db053f] rounded-lg" onClick={() => canceledData(rec)}>
+              Canceled
+            </button>
+          )}
         </div>
       ),
     },
@@ -72,7 +75,7 @@ const ShowOrders = () => {
 
   return (
     <>
-      <Table dataSource={orders} columns={columns} />;
+      <Table dataSource={orders} columns={columns} />
     </>
   );
 };

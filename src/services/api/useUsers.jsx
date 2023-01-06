@@ -40,6 +40,8 @@ const useUsers = () => {
     try {
       await axios
         .post(`${process.env.REACT_APP_URL_API}/user/sign-up`, {
+          authProvider: null,
+          googleId: null,
           fullName: value.fullName,
           birthDate: timeConverter(value.birthDate),
           telephone: value.telephone,
