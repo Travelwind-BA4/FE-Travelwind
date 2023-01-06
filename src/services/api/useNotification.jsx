@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const useNotification = () => {
   const [notif, setNotif] = useState([]);
+  const [status, setStatus] = useState([]);
   const navigate = useNavigate();
   const postNotification = async (userId) => {
     try {
@@ -28,14 +29,13 @@ const useNotification = () => {
       const payload = {};
 
       const { data } = await axios.put(`${process.env.REACT_APP_URL_API}/notification/update-status?userId=${userId}&notificationId=${notificationId}`, payload, config);
-      console.log(data);
-      setNotif(data.data.content);
+      setStatus(data.data);
     } catch (error) {
       return error;
     }
   };
 
-  return { postNotification, notif, updateNotif };
+  return { postNotification, notif, updateNotif, status };
 };
 
 export default useNotification;

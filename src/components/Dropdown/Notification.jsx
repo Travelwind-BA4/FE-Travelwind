@@ -27,11 +27,11 @@ const items = [
 ];
 const Notification = ({ style }) => {
   const user = JSON.parse(localStorage.getItem("user"));
-  const { postNotification, notif, updateNotif } = useNotification();
-
+  const { postNotification, notif, updateNotif, status } = useNotification();
+  console.log(status);
   useEffect(() => {
     postNotification(user.userId);
-  }, []);
+  }, [status]);
   return (
     <Dropdown
       dropdownRender={() => (
@@ -39,7 +39,6 @@ const Notification = ({ style }) => {
           <h1 className="mb-1">Notification</h1>
           {notif &&
             notif.map((e, i) => {
-              console.log(e);
               return (
                 <div className="border-t-2 pt-2 cursor-pointer" key={i} onClick={() => updateNotif(user.userId, e.notificationId)}>
                   <h1 className="">{e.title}</h1>
