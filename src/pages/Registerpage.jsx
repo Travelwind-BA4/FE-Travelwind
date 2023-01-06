@@ -33,7 +33,7 @@ const Registerpage = () => {
         fullName: decode.name,
         email: decode.email,
         password: `${decode.sub}${credentialResponse.clientId}`,
-        telephone: "0",
+        telephone: "888888888888",
         birthDate: "2002-01-01",
         gender: true
       }
