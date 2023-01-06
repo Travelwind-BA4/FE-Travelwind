@@ -165,10 +165,10 @@ const Resultpage = () => {
       </section>
       <section>
         <div className="container sm:mx-auto sm:p-10 mt-4 ">
-          <div className="flex flex-col  bg-[#f1f5f5] rounded-md pb-2">
+          <div className="flex flex-col  bg-[#f1f5f5] rounded-md py-4">
             <div className="flex flex-row justify-between items-center border-b border-gray-300">
               <div className="mx-5 py-2">
-                <p className="font-semibold text-xl mb-1">Departure Flight to Test</p>
+                <p className="font-semibold text-xl mb-1">Departure Flight</p>
                 <p className="text-base font-light pb-2">
                   {new Date(depDate).toDateString()} <span> | </span> {`${traveler} Traveler`}
                 </p>
