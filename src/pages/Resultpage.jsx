@@ -165,7 +165,7 @@ const Resultpage = () => {
       </section>
       <section>
         <div className="container sm:mx-auto sm:p-10 mt-4 ">
-          <div className="flex flex-col  bg-[#f1f5f5] rounded-md">
+          <div className="flex flex-col  bg-[#f1f5f5] rounded-md pb-2">
             <div className="flex flex-row justify-between items-center border-b border-gray-300">
               <div className="mx-5 py-2">
                 <p className="font-semibold text-xl mb-1">Departure Flight to Test</p>
@@ -182,11 +182,11 @@ const Resultpage = () => {
                 </button>
               </div>
             
-
+            </div>
             <div className="flex flex-1 justify-between items-center mt-2">
               <div className="flex flex-row items-center list-filter gap-2 mx-5 py-2">
                 <p>Filter: </p>
-                <div className="sm:flex sm:gap-4 hidden">/
+                <div className="sm:flex sm:gap-4 hidden">
                   <div className="flex gap-4">
                     <button value="lower-price" onClick={(e) => lower(e.target.value)} className={`rounded-md  px-3 text-sm py-1 hover:bg-gray-400 ${lowerPrice ? 'bg-gray-500' : 'bg-gray-300'}`}>
                       Lower
@@ -320,7 +320,7 @@ const Resultpage = () => {
               );
             })}
           </div>
-        </div>
+        
       </div>
       </section>
     </div>
