@@ -42,11 +42,15 @@ const ShowOrders = () => {
       dataIndex: "email",
     },
     {
-      title: "departureCity",
+      title: "Order code",
+      dataIndex: "",
+    },
+    {
+      title: "Departure City",
       dataIndex: "departureCity",
     },
     {
-      title: "arrivalCity",
+      title: "Arrival City",
       dataIndex: "arrivalCity",
     },
     {
@@ -60,13 +64,24 @@ const ShowOrders = () => {
       render: (_, rec) => (
         <div className="flex gap-x-2">
           {rec.status === "ACCEPTED" ? (
-            <button className="font-semibold text-white px-3 py-2 bg-[#52c41a] rounded-lg" onClick={() => acceptData(rec)}>
-              Accepted
-            </button>
-          ) : (
             <button className="font-semibold text-white px-3 py-2 bg-[#db053f] rounded-lg" onClick={() => canceledData(rec)}>
               Canceled
             </button>
+          ) : rec.status === "CANCELED" ? (
+            <>
+              <button className="font-semibold text-white px-3 py-2 bg-[#52c41a] rounded-lg" onClick={() => acceptData(rec)}>
+                Accepted
+              </button>
+            </>
+          ) : (
+            <>
+              <button className="font-semibold text-white px-3 py-2 bg-[#db053f] rounded-lg" onClick={() => canceledData(rec)}>
+                Canceled
+              </button>
+              <button className="font-semibold text-white px-3 py-2 bg-[#52c41a] rounded-lg" onClick={() => acceptData(rec)}>
+                Accepted
+              </button>
+            </>
           )}
         </div>
       ),

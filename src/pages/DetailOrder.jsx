@@ -37,19 +37,19 @@ const DetailOrder = () => {
       {console.log(ordersUser)}
       <div className="container mx-auto px-10 lg:grid grid-cols-4 block mt-20 gap-x-10">
         <aside className="col-span-1 flex flex-col gap-y-4 mb-5">
-        <NavLink to="/account/profile" className={({ isActive }) => isActive ? 'bg-[#3e5cb8] text-white lg:max-w-[300px] rounded-lg cursor-pointer' : 'bg-[#f1f5f5] text-[#000] lg:max-w-[300px] rounded-lg cursor-pointer'} >
+          <NavLink to="/account/profile" className={({ isActive }) => (isActive ? "bg-[#3e5cb8] text-white lg:max-w-[300px] rounded-lg cursor-pointer" : "bg-[#f1f5f5] text-[#000] lg:max-w-[300px] rounded-lg cursor-pointer")}>
             <h2 className="flex items-center pl-10 h-full min-h-[50px]">
               <FiUser className="mr-3" /> Profile
             </h2>
           </NavLink>
 
-          <NavLink to="/account/traveler" className={({ isActive }) => isActive ? 'bg-[#3e5cb8] text-white lg:max-w-[300px] rounded-lg cursor-pointer' : 'bg-[#f1f5f5] text-[#000] lg:max-w-[300px] rounded-lg cursor-pointer'} >
+          <NavLink to="/account/traveler" className={({ isActive }) => (isActive ? "bg-[#3e5cb8] text-white lg:max-w-[300px] rounded-lg cursor-pointer" : "bg-[#f1f5f5] text-[#000] lg:max-w-[300px] rounded-lg cursor-pointer")}>
             <h2 className="flex items-center pl-10  h-full min-h-[50px]">
               <BsCardList className="mr-3" /> Traveler List
             </h2>
           </NavLink>
 
-          <NavLink to="/account/orders" className={({ isActive }) => isActive ? 'bg-[#3e5cb8] text-white lg:max-w-[300px] rounded-lg cursor-pointer' : 'bg-[#f1f5f5] text-[#000] lg:max-w-[300px] rounded-lg cursor-pointer'} >
+          <NavLink to="/account/orders" className={({ isActive }) => (isActive ? "bg-[#3e5cb8] text-white lg:max-w-[300px] rounded-lg cursor-pointer" : "bg-[#f1f5f5] text-[#000] lg:max-w-[300px] rounded-lg cursor-pointer")}>
             <h2 className="flex items-center pl-10  h-full min-h-[50px]">
               <BsCalendar2Check className="mr-3" /> Orders
             </h2>
@@ -110,7 +110,7 @@ const DetailOrder = () => {
                 <h1>
                   {ordersUser[0]?.paymentType} | {ordersUser[0]?.paymentName}
                 </h1>
-                <button className={`px-4 py-2 rounded-full text-white my-4 ${ordersUser[0]?.status == "ACCEPT" ? " bg-[#52c41a] " : ordersUser[0]?.status == "WAITING" ? "bg-[#DF9947]" : "bg-[#db053f]"}`}>{ordersUser[0]?.status}</button>
+                <button className={`px-4 py-2 rounded-full text-white my-4 ${ordersUser[0]?.status == "ACCEPTED" ? " bg-[#52c41a] " : ordersUser[0]?.status == "WAITING" ? "bg-[#DF9947]" : "bg-[#db053f]"}`}>{ordersUser[0]?.status}</button>
                 <p className="mb-2 text-[12px] xl:text-sm">
                   Booked on <span>{new Date(ordersUser[0]?.orderDate).toDateString()}</span>
                 </p>
@@ -154,7 +154,7 @@ const DetailOrder = () => {
               </p>
             </div>
           </div>
-          {ordersUser[0]?.status === "ACCEPT" ? (
+          {ordersUser[0]?.status === "ACCEPTED" ? (
             <div className="flex justify-end mt-2">
               <a
                 href={`${process.env.REACT_APP_URL_API}/invoice/generate?orderId=${orderId}`}

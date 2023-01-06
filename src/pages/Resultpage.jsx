@@ -142,6 +142,7 @@ const Resultpage = () => {
               </div>
             </div>
             {/* <div className="flight-header-item sm:block hidden">
+            <div className="flight-header-item sm:block hidden">
               <button
                 onClick={() => navigate('/')}
                 className="text-base text-white rounded-md border bg-transparent border-white border-solid flex w-full py-2 px-6 "
@@ -149,6 +150,7 @@ const Resultpage = () => {
                 Change Search
               </button>
             </div> */}
+            </div>
           </div>
         </div>
       </section>
@@ -163,6 +165,7 @@ const Resultpage = () => {
                 </p>
               </div>
               <div className="mx-8">
+              <div className="mx-8">
                 <button
                   className="text-base font-medium text-gray-500 rounded-md w-full py-2 px-6 bg-gray-200 hover:bg-gray-100"
                   onClick={() => navigate("/")}
@@ -175,7 +178,7 @@ const Resultpage = () => {
             <div className="flex flex-1 justify-between items-center mt-2">
               <div className="flex flex-row items-center list-filter gap-2 mx-5 py-2">
                 <p>Filter: </p>
-                <div className="sm:flex sm:gap-4 hidden">
+                <div className="sm:flex sm:gap-4 hidden">/
                   <div className="flex gap-4">
                     <button value="lower-price" onClick={(e) => lower(e.target.value)} className={`rounded-md  px-3 text-sm py-1 hover:bg-gray-400 ${lowerPrice ? 'bg-gray-500' : 'bg-gray-300'}`}>
                       Lower
@@ -219,12 +222,12 @@ const Resultpage = () => {
                     </Select.Option>
                   </Select>
                 </div>
+                
               </div>
             </div>
           </div>
           <div className="flex flex-col sm:gap-y-6 gap-y-2 mt-3 mb-10">
             {schedules.map((schedule, i) => {
-              // console.log(schedule);
               return (
                 <>
                   <div className="sm:flex hidden justify-between items-center gap-4 bg-[#f1f5f5] rounded-md  px-5 py-8" key={i}>
@@ -308,9 +311,6 @@ const Resultpage = () => {
                 </>
               );
             })}
-            {/* <Pagination total={30} pageSize={5} onChange={(page, pageSize) => {
-
-            }}/> */}
           </div>
         </div>
       </section>
