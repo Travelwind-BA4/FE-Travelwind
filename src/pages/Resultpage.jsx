@@ -29,6 +29,17 @@ const Resultpage = () => {
     getSchedule({ depAirport, arrAirport, depDate });
   }, []);
 
+  const filter = (val) => {
+    const payload = {
+      depAirport: depAirport,
+      arrAirport: arrAirport,
+      depDate: depDate,
+      page: 0,
+    };
+
+    byPrice(val, payload);
+  }
+
   const lower = (val) => {
     const payload = {
       depAirport: depAirport,
@@ -195,7 +206,7 @@ const Resultpage = () => {
                     className="bg-gray-200 rounded-md"
                     placeholder="Prices"
                     bordered={false}
-                    onSelect={lower}
+                    onSelect={filter}
                   >
                     <Select.Option key={1} value="lower-price">
                       <h1>Lower Prices</h1>
