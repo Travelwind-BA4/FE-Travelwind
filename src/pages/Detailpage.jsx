@@ -7,6 +7,7 @@ import Button2 from "../components/Buttons/Button2";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import useSchedule from "../services/api/useSchedule";
 import { useEffect } from "react";
+import convertDiff from "../utils/convertDiff";
 const Detailpage = () => {
   const { id } = useParams();
   let [searchParams, setSearchParams] = useSearchParams();
@@ -55,7 +56,7 @@ const Detailpage = () => {
                     <div>
                       <p className="flex items-center text-gray-400 text-sm py-10">
                         <BsClock className="mr-2" />
-                        1h 50m
+                        {convertDiff(schedules.departureTime, schedules.arrivalTime)}
                       </p>
                     </div>
                     <div>
