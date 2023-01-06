@@ -151,7 +151,6 @@ const Resultpage = () => {
             </div> */}
             </div>
           </div>
-        </div>
       </section>
       <section>
         <div className="container sm:mx-auto sm:p-10 mt-4 ">
@@ -164,7 +163,6 @@ const Resultpage = () => {
                 </p>
               </div>
               <div className="mx-8">
-              <div className="mx-8">
                 <button
                   className="text-base font-medium text-gray-500 rounded-md w-full py-2 px-6 bg-gray-200 hover:bg-gray-100"
                   onClick={() => navigate("/")}
@@ -172,7 +170,7 @@ const Resultpage = () => {
                   Change Date
                 </button>
               </div>
-            </div>
+            
 
             <div className="flex flex-1 justify-between items-center mt-2">
               <div className="flex flex-row items-center list-filter gap-2 mx-5 py-2">
@@ -312,6 +310,7 @@ const Resultpage = () => {
             })}
           </div>
         </div>
+      </div>
       </section>
     </div>
   );
