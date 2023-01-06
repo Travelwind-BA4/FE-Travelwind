@@ -1,12 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  DesktopOutlined,
-  PieChartOutlined,
-  UserOutlined,
-  LogoutOutlined,
-  ConsoleSqlOutlined,
-} from "@ant-design/icons";
+import { DesktopOutlined, PieChartOutlined, UserOutlined, LogoutOutlined, ConsoleSqlOutlined } from "@ant-design/icons";
 import { Breadcrumb, Layout, Menu, theme } from "antd";
 import ShowOrders from "../components/Admin/Table/ShowOrders";
 import useOrder from "../services/api/useOrder";
@@ -22,10 +16,7 @@ function getItem(label, key, icon, children) {
   };
 }
 
-const items = [
-  getItem("Dashboard", "/admin", <DesktopOutlined />),
-  getItem("Sign Out", "/login", <LogoutOutlined />),
-];
+const items = [getItem("Dashboard", "/admin", <DesktopOutlined />), getItem("Sign Out", "/login", <LogoutOutlined />)];
 
 const SideBar = () => {
   const navigate = useNavigate();
@@ -40,11 +31,7 @@ const SideBar = () => {
         minHeight: "100vh",
       }}
     >
-      <Sider
-        collapsible
-        collapsed={collapsed}
-        onCollapse={(value) => setCollapsed(value)}
-      >
+      <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
         <div
           style={{
             height: 32,
@@ -77,9 +64,7 @@ const SideBar = () => {
               textAlign: "center",
             }}
           >
-            <h1 className="text-2xl font-bold text-[#232730] leading-[60px]">
-              DASHBOARD ADMIN
-            </h1>
+            <h1 className="text-2xl font-bold text-[#232730] leading-[60px]">DASHBOARD ADMIN</h1>
           </Header>
           <Content
             style={{
